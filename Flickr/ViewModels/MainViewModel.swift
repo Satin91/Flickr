@@ -14,7 +14,8 @@ class MainViewModel {
     init(NetworkInteractor: NetworkInteractorProtocol) {
         self.networkInteractor = NetworkInteractor
     }
+    
     func parse() async throws {
-        self.photos = try await networkInteractor.getPhotos(text: "merilyn monroe")
+        self.photos = try await networkInteractor.getPhotos(text: "Gradient")
     }
 }

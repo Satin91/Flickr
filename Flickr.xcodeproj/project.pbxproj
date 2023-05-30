@@ -79,6 +79,7 @@
 		8ECDF8E92A2643EC002DBF12 /* Flickr */ = {
 			isa = PBXGroup;
 			children = (
+				8ECDF9192A26B24E002DBF12 /* Router */,
 				8ECDF9162A269D1C002DBF12 /* DIContainer */,
 				8ECDF9082A268449002DBF12 /* App */,
 				8ECDF9052A2683C5002DBF12 /* Repository */,
@@ -168,6 +169,13 @@
 				8ECDF9172A269D26002DBF12 /* DIContainer.swift */,
 			);
 			path = DIContainer;
+			sourceTree = "<group>";
+		};
+		8ECDF9192A26B24E002DBF12 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		D0BE03D56DC88AF2CC2CA0A6 /* Frameworks */ = {

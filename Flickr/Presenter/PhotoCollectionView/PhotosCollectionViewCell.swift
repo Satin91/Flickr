@@ -12,19 +12,19 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        createImageView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        createImageView()
     }
     
     func createImageView() {
         self.addSubview(imageView)
         addImageConstraints()
-        imageView.layer.cornerCurve = .continuous
-        imageView.layer.cornerRadius = 12
-        imageView.layer.masksToBounds = true
+        self.layer.cornerCurve = .continuous
+        self.layer.cornerRadius = 12
+        self.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
     }
     

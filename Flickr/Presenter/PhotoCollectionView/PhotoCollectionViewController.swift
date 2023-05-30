@@ -46,18 +46,8 @@ class PhotoCollectionViewController: UICollectionViewController {
    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotosCollectionViewCell
-        print("Image \(photoArray[indexPath.row])")
         let image = photoArray[indexPath.row]
         cell.imageView.image = image
-        cell.backgroundColor = .gray
         return cell
     }
-    
-//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotosCollectionViewCell
-//        print("Cell")
-//        cell.backgroundColor = .systemRed
-//        cell.imageView.image = photoArray[indexPath.row]
-//        return cell
-//    }
 }

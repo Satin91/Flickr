@@ -26,7 +26,7 @@ class MainViewController: UIViewController {
     
     private func fill(collectionView: PhotoCollectionViewController) {
         Task {
-           try await viewModel.parse()
+            try await viewModel.parse()
             collectionView.photoArray = viewModel.photos
             collectionView.collectionView.reloadData()
         }
