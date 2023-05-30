@@ -23,14 +23,15 @@ class PhotoCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         adjustCollectionView()
-        collectionView.backgroundColor = .systemBlue
         print("Collection View init")
     }
     
     private func adjustCollectionView() {
-        collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "photoCollectionViewCell")
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let layout = UICollectionViewFlowLayout()
         let itemSide = (self.collectionView.bounds.width - horizontalSpacing * 4) / itemCount
         layout.itemSize = CGSize(width: itemSide, height: itemSide)
@@ -39,16 +40,24 @@ class PhotoCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         print("Photo array \(photoArray.count)")
         return photoArray.count
     }
-    
+   
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotosCollectionViewCell
-        print("Cell")
-        cell.backgroundColor = .systemRed
-        cell.imageView.image = photoArray[indexPath.row]
+        print("Image \(photoArray[indexPath.row])")
+        let image = photoArray[indexPath.row]
+        cell.imageView.image = image
+        cell.backgroundColor = .gray
         return cell
     }
+    
+//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotosCollectionViewCell
+//        print("Cell")
+//        cell.backgroundColor = .systemRed
+//        cell.imageView.image = photoArray[indexPath.row]
+//        return cell
+//    }
 }

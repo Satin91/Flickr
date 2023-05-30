@@ -17,7 +17,6 @@ protocol NetworkRepositoryProtocol {
 class NetworkRepository: NetworkRepositoryProtocol {
     
     func parseJson<T: Decodable>(url: String, params: [String : Any], type: T.Type) async throws -> T {
-        
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, parameters: params).responseDecodable(of: type.self) { response in
                 switch response.result {

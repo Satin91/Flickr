@@ -18,7 +18,7 @@ final class NetworkInteractor: NetworkInteractorProtocol {
         self.networkRepository = networkRepository
     }
     func getPhotos(text: String) async throws -> [UIImage] {
-        let params = ["api_key":Constants.Api.flickrKey,
+        let params = ["api_key": Constants.Api.flickrKey,
                       "format": "json",
                       "method": "flickr.photos.search",
                       "per_page": "25",
@@ -30,7 +30,6 @@ final class NetworkInteractor: NetworkInteractorProtocol {
             let image = try await networkRepository.downloadImage(url: photo.photoUrl.absoluteString)
             images.append(image)
         }
-        print("Parse images \(images)")
         return images
     }
 }
