@@ -9,10 +9,15 @@ import Foundation
 
 class DIContainer {
     static var shared = DIContainer()
+    var networkRepository: NetworkRepositoryProtocol
+    var networkInteractor: NetworkInteractorProtocol
+    
+    init() {
+        networkRepository = NetworkRepository()
+        networkInteractor = NetworkInteractor(networkRepository: networkRepository)
+    }
     
     func createMainViewModel() -> MainViewModel {
-        let networkRepository = NetworkRepository()
-        let networkInteractor = NetworkInteractor(networkRepository: networkRepository)
         let mainViewModel = MainViewModel(NetworkInteractor: networkInteractor)
         return mainViewModel
     }

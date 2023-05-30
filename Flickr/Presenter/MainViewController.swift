@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Alamofire
-import AlamofireImage
 
 class MainViewController: UIViewController {
     var viewModel: MainViewModel = DIContainer.shared.createMainViewModel()
