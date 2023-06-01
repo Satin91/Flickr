@@ -99,6 +99,10 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         router.dataStore = interactor
     }
     
+    func some() {
+        print("Some")
+    }
+    
     func updateUI(viewModel: MainScene.Something.ViewModel) {
         collectionView.photoArray = viewModel.photos
         DispatchQueue.main.async {
