@@ -69,7 +69,6 @@
 		8EC0242C2A2859060000F56B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				8EC0242E2A2859880000F56B /* Views */,
 				8EC0242D2A2859150000F56B /* MainScene */,
 			);
 			path = Scenes;
@@ -88,16 +87,10 @@
 			path = MainScene;
 			sourceTree = "<group>";
 		};
-		8EC0242E2A2859880000F56B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		8EC024392A28D98F0000F56B /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				8ECDF9102A268683002DBF12 /* PhotoCollectionView */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -124,11 +117,9 @@
 			isa = PBXGroup;
 			children = (
 				8EC0242C2A2859060000F56B /* Scenes */,
-				8ECDF9192A26B24E002DBF12 /* Router */,
 				8ECDF9162A269D1C002DBF12 /* DIContainer */,
 				8ECDF9082A268449002DBF12 /* App */,
-				8ECDF9052A2683C5002DBF12 /* Repository */,
-				8ECDF9092A268463002DBF12 /* Presenter */,
+				8ECDF9052A2683C5002DBF12 /* Services */,
 				8ECDF90F2A268666002DBF12 /* Models */,
 				8ECDF9132A2699E4002DBF12 /* Extensions */,
 				8ECDF8F02A2643EC002DBF12 /* Main.storyboard */,
@@ -139,12 +130,12 @@
 			path = Flickr;
 			sourceTree = "<group>";
 		};
-		8ECDF9052A2683C5002DBF12 /* Repository */ = {
+		8ECDF9052A2683C5002DBF12 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				8ECDF9062A2683D4002DBF12 /* NetworkService.swift */,
 			);
-			path = Repository;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		8ECDF9082A268449002DBF12 /* App */ = {
@@ -154,14 +145,6 @@
 				8ECDF8EC2A2643EC002DBF12 /* SceneDelegate.swift */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		8ECDF9092A268463002DBF12 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				8ECDF9102A268683002DBF12 /* PhotoCollectionView */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		8ECDF90F2A268666002DBF12 /* Models */ = {
@@ -197,13 +180,6 @@
 				8ECDF9172A269D26002DBF12 /* DIContainer.swift */,
 			);
 			path = DIContainer;
-			sourceTree = "<group>";
-		};
-		8ECDF9192A26B24E002DBF12 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		D0BE03D56DC88AF2CC2CA0A6 /* Frameworks */ = {

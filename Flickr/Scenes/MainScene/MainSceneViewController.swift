@@ -50,7 +50,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         setup()
     }
     
-    func doSomething() {
+    func getPhotos(by text: String) {
         let request = MainScene.Something.Request(text: textFieldText)
         Task {
             try await interactor?.getPhotos(request: request)
@@ -73,7 +73,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     }
     
     @objc func searchButtonTapped() {
-        self.doSomething()
+        self.getPhotos(by: textFieldText)
     }
     
     private func createTextField(frame: CGRect) -> UITextField {
@@ -97,10 +97,6 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
-    }
-    
-    func some() {
-        print("Some")
     }
     
     func updateUI(viewModel: MainScene.Something.ViewModel) {
