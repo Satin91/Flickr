@@ -20,7 +20,7 @@
 		8ECDF8F42A2643EE002DBF12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ECDF8F32A2643EE002DBF12 /* Assets.xcassets */; };
 		8ECDF8F72A2643EE002DBF12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ECDF8F52A2643EE002DBF12 /* LaunchScreen.storyboard */; };
 		8ECDF8FF2A2667AC002DBF12 /* PhotosCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF8FE2A2667AC002DBF12 /* PhotosCollectionViewItem.swift */; };
-		8ECDF9012A26681E002DBF12 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9002A26681E002DBF12 /* PhotoModel.swift */; };
+		8ECDF9012A26681E002DBF12 /* PhotoNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9002A26681E002DBF12 /* PhotoNetworkModel.swift */; };
 		8ECDF9042A268323002DBF12 /* MainSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9032A268323002DBF12 /* MainSceneInteractor.swift */; };
 		8ECDF9072A2683D4002DBF12 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9062A2683D4002DBF12 /* NetworkService.swift */; };
 		8ECDF90E2A2685A4002DBF12 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF90D2A2685A4002DBF12 /* PhotoCollectionViewController.swift */; };
@@ -45,7 +45,7 @@
 		8ECDF8F62A2643EE002DBF12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8ECDF8F82A2643EE002DBF12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8ECDF8FE2A2667AC002DBF12 /* PhotosCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewItem.swift; sourceTree = "<group>"; };
-		8ECDF9002A26681E002DBF12 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		8ECDF9002A26681E002DBF12 /* PhotoNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoNetworkModel.swift; sourceTree = "<group>"; };
 		8ECDF9032A268323002DBF12 /* MainSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneInteractor.swift; sourceTree = "<group>"; };
 		8ECDF9062A2683D4002DBF12 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8ECDF90D2A2685A4002DBF12 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +66,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E8780A92A28E81F00EBE979 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8ECDF9062A2683D4002DBF12 /* NetworkService.swift */,
+				8ECDF9002A26681E002DBF12 /* PhotoNetworkModel.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		8EC0242C2A2859060000F56B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,7 +142,7 @@
 		8ECDF9052A2683C5002DBF12 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8ECDF9062A2683D4002DBF12 /* NetworkService.swift */,
+				8E8780A92A28E81F00EBE979 /* Network */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -150,7 +159,6 @@
 		8ECDF90F2A268666002DBF12 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8ECDF9002A26681E002DBF12 /* PhotoModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -326,7 +334,7 @@
 				8ECDF9152A269A26002DBF12 /* Constants.swift in Sources */,
 				8EC024382A285FE10000F56B /* MainSceneViewController.swift in Sources */,
 				8ECDF8EB2A2643EC002DBF12 /* AppDelegate.swift in Sources */,
-				8ECDF9012A26681E002DBF12 /* PhotoModel.swift in Sources */,
+				8ECDF9012A26681E002DBF12 /* PhotoNetworkModel.swift in Sources */,
 				8EC024302A285CA70000F56B /* MainSceneWorker.swift in Sources */,
 				8ECDF8ED2A2643EC002DBF12 /* SceneDelegate.swift in Sources */,
 			);

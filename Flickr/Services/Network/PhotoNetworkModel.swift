@@ -1,5 +1,5 @@
 //
-//  PhotoModel.swift
+//  PhotoNetworkModel.swift
 //  Flickr
 //
 //  Created by Артур Кулик on 30.05.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Flickr: Decodable {
+struct PhotoNetworkModel: Decodable {
     let photos: Photos
 }
 

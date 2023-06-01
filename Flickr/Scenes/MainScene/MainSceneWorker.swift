@@ -29,7 +29,7 @@ extension MainSceneWorker: MainSceneWorkerLogic {
             "text": request.text,
             "nojsoncallback": "1"
         ]
-        let flickr = try await networkService.parseJson(url: Constants.Api.baseURL, params: params, type: Flickr.self)
+        let flickr = try await networkService.parseJson(url: Constants.Api.baseURL, params: params, type: PhotoNetworkModel.self)
         var images: [UIImage] = []
         for photo in flickr.photos.photo {
             let image = try await networkService.downloadImage(url: photo.photoUrl.absoluteString)
