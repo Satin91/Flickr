@@ -8,25 +8,18 @@
 import UIKit
 
 // Protocol that all configurators must subscribe to
-protocol ConfiguratorProtocol: AnyObject {
+protocol ConfiguratorProtocol {
     func configure<T: UIViewController>(_ vc: T) -> T
 }
 
-protocol SceneFactoryProtocol {
+protocol SceneFactoryProtocol: AnyObject {
     var sceneConfigurator: ConfiguratorProtocol! { get set }
-
-    func makeScene<T: UIViewController>(vc: T) -> T
 }
 
 final class SceneFactory: SceneFactoryProtocol {
-    weak var sceneConfigurator: ConfiguratorProtocol!
+    var sceneConfigurator: ConfiguratorProtocol!
     
     func configure<T>(_ vc: T) -> T where T: UIViewController {
-        let vc = vc.instantiate() as! T
-        return sceneConfigurator.configure(vc)
-    }
-    
-    func makeScene<T: UIViewController>(vc: T) -> T {
         let vc = vc.instantiate() as! T
         return sceneConfigurator.configure(vc)
     }

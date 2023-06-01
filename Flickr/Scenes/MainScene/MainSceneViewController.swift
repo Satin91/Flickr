@@ -37,7 +37,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         super.viewDidLoad()
         configureProperties()
         addCollectionView()
-        setupNavigationBar()
+        configureNavigationBar()
     }
     
     func getPhotos(by text: String) {
@@ -47,7 +47,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         }
     }
     
-    private func setupNavigationBar() {
+    private func configureNavigationBar() {
         guard let navigationBar = navigationController?.navigationBar else { return }
         let textFieldeight: CGFloat = 30
         let textFieldFrame = CGRect(x: .zero, y: .zero, width: navigationBar.bounds.width, height: textFieldeight)
@@ -66,8 +66,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     }
     
     func configureProperties() {
-        let sceneFactory = SceneFactory()
-        MainSceneConfigurator(sceneFactory: sceneFactory).configure(self)
+        ConfiguratorLibrary.mainScene.configure(self)
     }
     
     private func createTextField(frame: CGRect) -> UITextField {

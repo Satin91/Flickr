@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainSceneConfigurator: ConfiguratorProtocol {
+final class DetaikSceneConfigurator: ConfiguratorProtocol {
     private weak var sceneFactory: SceneFactoryProtocol?
     
     init(sceneFactory: SceneFactoryProtocol) {
