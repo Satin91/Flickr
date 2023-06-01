@@ -19,7 +19,6 @@ protocol MainSceneDisplayLogic: AnyObject {
 class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     var interactor: MainSceneInteractor?
     var router: (NSObjectProtocol & MainSceneRoutingLogic & MainSceneDataPassing)?
-    
     let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout())
     var textFieldText = ""
     
@@ -36,7 +35,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupEntities()
+        configureProperties()
         addCollectionView()
         setupNavigationBar()
     }
@@ -66,27 +65,17 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         getPhotos(by: textFieldText)
     }
     
+    func configureProperties() {
+        let sceneFactory = SceneFactory()
+        MainSceneConfigurator(sceneFactory: sceneFactory).configure(self)
+    }
+    
     private func createTextField(frame: CGRect) -> UITextField {
         let textField = UITextField(frame: frame)
         textField.borderStyle = .roundedRect
         textField.placeholder = "Search photo by text"
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return textField
-    }
-    
-    private func setupEntities() {
-        let viewController = self
-        let networkService = NetworkService()
-        let worker = MainSceneWorker(networkService: networkService)
-        let presenter = MainScenePresenter()
-        let interactor = MainSceneInteractor(worker: worker, presenter: presenter)
-        let router = MainSceneRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
     }
     
     func updateUI(viewModel: MainScene.Properties.ViewModel) {

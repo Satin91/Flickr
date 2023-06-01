@@ -1,5 +1,5 @@
 //
-//  MainSceneModels.swift
+//  DetailSceneWorker.swift
 //  Flickr
 //
 //  Created by Артур Кулик on 01.06.2023.
@@ -12,18 +12,10 @@
 
 import UIKit
 
-enum MainScene {
-    enum Properties {
-        struct Request {
-            var text: String
-        }
-
-        struct Response {
-            var photos: [UIImage]
-        }
-
-        struct ViewModel {
-            var photos: [UIImage]
-        }
+class DetailSceneWorker {
+    func doSomeWork() {
     }
+    //    func doSomeOtherWork() {
+    //
+    //    }
 }

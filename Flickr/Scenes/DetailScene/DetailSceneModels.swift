@@ -1,5 +1,5 @@
 //
-//  MainSceneModels.swift
+//  DetailSceneModels.swift
 //  Flickr
 //
 //  Created by Артур Кулик on 01.06.2023.
@@ -12,18 +12,15 @@
 
 import UIKit
 
-enum MainScene {
-    enum Properties {
+enum DetailScene {
+    enum Something {
         struct Request {
-            var text: String
         }
 
         struct Response {
-            var photos: [UIImage]
         }
 
         struct ViewModel {
-            var photos: [UIImage]
         }
     }
 }
