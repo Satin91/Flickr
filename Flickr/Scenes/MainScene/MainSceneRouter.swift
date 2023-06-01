@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol MainSceneRoutingLogic {
-    // func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
 protocol MainSceneDataPassing {
@@ -21,6 +21,10 @@ protocol MainSceneDataPassing {
 }
 
 class MainSceneRouter: NSObject, MainSceneRoutingLogic, MainSceneDataPassing {
+    func routeToSomewhere(segue: UIStoryboardSegue?) {
+        print("Route to somewhere")
+    }
+    
     weak var viewController: MainSceneViewController?
     var dataStore: MainSceneDataStore?
     

@@ -15,7 +15,7 @@ import UIKit
 enum MainScene {
     // MARK: Use cases
 
-    enum Something {
+    enum Properties {
         struct Request {
             var text: String
         }

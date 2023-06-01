@@ -13,7 +13,7 @@
 import UIKit
 
 protocol MainSceneDisplayLogic: AnyObject {
-    func updateUI(viewModel: MainScene.Something.ViewModel)
+    func updateUI(viewModel: MainScene.Properties.ViewModel)
 }
 
 class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
@@ -24,11 +24,6 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     var textFieldText = ""
     
     @IBOutlet private var collectionViewContainer: UIView!
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let scene = segue.identifier {
@@ -41,17 +36,13 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupEntities()
         addCollectionView()
         setupNavigationBar()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
     func getPhotos(by text: String) {
-        let request = MainScene.Something.Request(text: textFieldText)
+        let request = MainScene.Properties.Request(text: textFieldText)
         Task {
             try await interactor?.getPhotos(request: request)
         }
@@ -62,7 +53,6 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         let textFieldeight: CGFloat = 30
         let textFieldFrame = CGRect(x: .zero, y: .zero, width: navigationBar.bounds.width, height: textFieldeight)
         let textField = createTextField(frame: textFieldFrame)
-        
         self.navigationItem.titleView = textField
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .plain, target: self, action: #selector(searchButtonTapped))
     }
@@ -73,7 +63,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     }
     
     @objc func searchButtonTapped() {
-        self.getPhotos(by: textFieldText)
+        getPhotos(by: textFieldText)
     }
     
     private func createTextField(frame: CGRect) -> UITextField {
@@ -84,7 +74,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         return textField
     }
     
-    private func setup() {
+    private func setupEntities() {
         let viewController = self
         let networkService = NetworkService()
         let worker = MainSceneWorker(networkService: networkService)
@@ -99,7 +89,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         router.dataStore = interactor
     }
     
-    func updateUI(viewModel: MainScene.Something.ViewModel) {
+    func updateUI(viewModel: MainScene.Properties.ViewModel) {
         collectionView.photoArray = viewModel.photos
         DispatchQueue.main.async {
             self.collectionView.collectionView.reloadData()

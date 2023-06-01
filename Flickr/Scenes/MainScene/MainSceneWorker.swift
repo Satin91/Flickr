@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainSceneWorkerLogic {
-    func execute(request: MainScene.Something.Request) async throws -> MainScene.Something.Response
+    func execute(request: MainScene.Properties.Request) async throws -> MainScene.Properties.Response
 }
 
 class MainSceneWorker {
@@ -20,7 +20,7 @@ class MainSceneWorker {
 }
 
 extension MainSceneWorker: MainSceneWorkerLogic {
-    func execute(request: MainScene.Something.Request) async throws -> MainScene.Something.Response {
+    func execute(request: MainScene.Properties.Request) async throws -> MainScene.Properties.Response {
         let params = [
             "api_key": Constants.Api.flickrKey,
             "format": "json",
@@ -36,6 +36,6 @@ extension MainSceneWorker: MainSceneWorkerLogic {
             print("Download colpleted \(photo.photoUrl.absoluteString)")
             images.append(image)
         }
-        return MainScene.Something.Response(photos: images)
+        return MainScene.Properties.Response(photos: images)
     }
 }

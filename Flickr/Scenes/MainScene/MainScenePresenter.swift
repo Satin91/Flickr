@@ -13,21 +13,14 @@
 import UIKit
 
 protocol MainScenePresentationLogic {
-    func presentSomething(response: MainScene.Something.Response)
+    func present(response: MainScene.Properties.Response)
 }
 
 class MainScenePresenter: MainScenePresentationLogic {
     weak var viewController: MainSceneDisplayLogic?
-
-    // MARK: Parse and calc respnse from MainSceneInteractor and send simple view model to MainSceneViewController to be displayed
-
-    func presentSomething(response: MainScene.Something.Response) {
-        let viewModel = MainScene.Something.ViewModel(photos: response.photos)
+    
+    func present(response: MainScene.Properties.Response) {
+        let viewModel = MainScene.Properties.ViewModel(photos: response.photos)
         viewController?.updateUI(viewModel: viewModel)
     }
-    
-//    func presentSomethingElse(response: MainScene.SomethingElse.Response) {
-//        let viewModel = MainScene.SomethingElse.ViewModel()
-//        viewController?.displaySomethingElse(viewModel: viewModel)
-//    }
 }
