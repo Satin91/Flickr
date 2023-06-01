@@ -33,7 +33,7 @@ struct Photo: Decodable {
         if let url = URL(string: "https://farm\(farm).staticflickr.com/\(server)/\(id)_\(secret)_m.jpg") {
             return url
         } else {
-            return URL(string:"https://cdn0.iconfinder.com/data/icons/technology-business-and-people/1000/file_light-14-1024.png")!
+            return URL(string: "https://cdn0.iconfinder.com/data/icons/technology-business-and-people/1000/file_light-14-1024.png")!
         }
     }
 }

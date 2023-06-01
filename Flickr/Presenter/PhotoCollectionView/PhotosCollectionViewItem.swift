@@ -7,8 +7,9 @@
 
 import UIKit
 
-class PhotosCollectionViewCell: UICollectionViewCell {
+class PhotosCollectionViewItem: UICollectionViewCell {
     var imageView = UIImageView()
+    let imageRadius: CGFloat = 12
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,7 +24,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         self.addSubview(imageView)
         addImageConstraints()
         self.layer.cornerCurve = .continuous
-        self.layer.cornerRadius = 12
+        self.layer.cornerRadius = imageRadius
         self.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
     }

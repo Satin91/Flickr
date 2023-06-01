@@ -5,19 +5,18 @@
 //  Created by Артур Кулик on 30.05.2023.
 //
 
-import UIKit
 import Alamofire
 import AlamofireImage
+import UIKit
 
-protocol NetworkRepositoryProtocol {
+protocol NetworkServiceProtocol {
     func parseJson<T: Decodable>(url: String, params: [String: Any], type: T.Type) async throws -> T
     func downloadImage(url: String) async throws -> UIImage
 }
 
-class NetworkRepository: NetworkRepositoryProtocol {
-    
-    func parseJson<T: Decodable>(url: String, params: [String : Any], type: T.Type) async throws -> T {
-        return try await withCheckedThrowingContinuation { continuation in
+class NetworkService: NetworkServiceProtocol {
+    func parseJson<T: Decodable>(url: String, params: [String: Any], type: T.Type) async throws -> T {
+        try await withCheckedThrowingContinuation { continuation in
             AF.request(url, parameters: params).responseDecodable(of: type.self) { response in
                 switch response.result {
                 case .success(let data):
@@ -30,7 +29,7 @@ class NetworkRepository: NetworkRepositoryProtocol {
     }
     
     func downloadImage(url: String) async throws -> UIImage {
-        return try await withCheckedThrowingContinuation { continuation in
+        try await withCheckedThrowingContinuation { continuation in
             AF.request(url).responseImage { response in
                 switch response.result {
                 case .success(let image):
