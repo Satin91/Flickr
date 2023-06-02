@@ -15,6 +15,7 @@ import UIKit
 protocol DetailScenePresentationLogic {
     func initialSetup(response: DetailScene.InitialSetup.Response)
     func showActivityView(response: DetailScene.Share.Response)
+    func saveObjectToDatabaseCompleted(response: DetailScene.SaveToDB.Response)
 }
 
 class DetailScenePresenter: DetailScenePresentationLogic {
@@ -31,5 +32,10 @@ class DetailScenePresenter: DetailScenePresentationLogic {
         let activityView = ActivityView(activityItems: [response.urlString], applicationActivities: [])
         let viewModel = DetailScene.Share.ViewModel(activityView: activityView)
         viewController?.showActivityView(viewModel: viewModel)
+    }
+    
+    func saveObjectToDatabaseCompleted(response: DetailScene.SaveToDB.Response) {
+        let viewModel = DetailScene.SaveToDB.ViewModel(isSaved: true)
+        viewController?.savingToDBCompleted(viewModel: viewModel)
     }
 }

@@ -13,7 +13,8 @@
 import UIKit
 
 protocol FavoritesScenePresentationLogic {
-    func presentSomething(response: FavoritesScene.Something.Response)
+    func presentSomething(response: FavoritesScene.Database.Response)
+    func handOverDatabaseObjects(response: FavoritesScene.Database.Response)
 }
 
 class FavoritesScenePresenter: FavoritesScenePresentationLogic {
@@ -21,9 +22,22 @@ class FavoritesScenePresenter: FavoritesScenePresentationLogic {
 
     // MARK: Parse and calc respnse from FavoritesSceneInteractor and send simple view model to FavoritesSceneViewController to be displayed
 
-    func presentSomething(response: FavoritesScene.Something.Response) {
-        let viewModel = FavoritesScene.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func presentSomething(response: FavoritesScene.Database.Response) {
+        //        let viewModel = FavoritesScene.Database.ViewModel()
+        //        viewController?.displaySomething(viewModel: viewModel)
+    }
+    
+    func handOverDatabaseObjects(response: FavoritesScene.Database.Response) {
+        let viewModel = response.objects.map { realmModel in
+            let photoModel = PhotoModel(
+                title: realmModel.title,
+                owner: realmModel.owner,
+                imageURL: realmModel.imageURL,
+                image: UIImage(data: realmModel.image!) ?? UIImage(systemName: "photo.on.rectangle")!
+            )
+            return photoModel
+        }
+        viewController?.completeFetch(viewModel: FavoritesScene.Database.ViewModel(photos: viewModel))
     }
 //
 //    func presentSomethingElse(response: FavoritesScene.SomethingElse.Response) {

@@ -13,11 +13,9 @@ protocol MainSceneWorkerLogic {
 
 class MainSceneWorker {
     var networkService: NetworkServiceProtocol
-    var databaseManager: DatabaseManagerProtocol
     
-    init(networkService: NetworkServiceProtocol, databaseManager: DatabaseManagerProtocol) {
+    init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
-        self.databaseManager = databaseManager
     }
 }
 

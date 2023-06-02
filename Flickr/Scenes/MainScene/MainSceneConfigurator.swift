@@ -20,8 +20,7 @@ final class MainSceneConfigurator: ConfiguratorProtocol {
         let vc = vc as! MainSceneViewController
         sceneFactory.sceneConfigurator = self
         let networkService = NetworkService()
-        let databaseManager = DatabaseManager()
-        let worker = MainSceneWorker(networkService: networkService, databaseManager: databaseManager)
+        let worker = MainSceneWorker(networkService: networkService)
         let presenter = MainScenePresenter()
         let interactor = MainSceneInteractor(worker: worker, presenter: presenter)
         let router = MainSceneRouter()

@@ -168,6 +168,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="">
                                     <imageReference key="image" image="star.circle.fill" catalog="system" renderingMode="original"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="saveToFavoritesButtonAction:" destination="z1h-2n-ng2" eventType="touchUpInside" id="RhO-Tq-QGB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b3x-E4-1Ve"/>

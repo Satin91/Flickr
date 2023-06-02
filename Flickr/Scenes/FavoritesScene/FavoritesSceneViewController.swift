@@ -13,7 +13,8 @@
 import UIKit
 
 protocol FavoritesSceneDisplayLogic: AnyObject {
-    func displaySomething(viewModel: FavoritesScene.Something.ViewModel)
+    func displaySomething(viewModel: FavoritesScene.Database.ViewModel)
+    func completeFetch(viewModel: FavoritesScene.Database.ViewModel)
 }
 
 class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic {
@@ -54,12 +55,21 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
     }
 
     func doSomething() {
-        let request = FavoritesScene.Something.Request()
+        let request = FavoritesScene.Database.Request(type: RealmPhotoModel.self)
         interactor?.doSomething(request: request)
     }
 
-    func displaySomething(viewModel: FavoritesScene.Something.ViewModel) {
+    func displaySomething(viewModel: FavoritesScene.Database.ViewModel) {
         // nameTextField.text = viewModel.name
+    }
+    
+    func startFetchPhotos() {
+        interactor?.fetchObjectsFromDatabase(request: FavoritesScene.Database.Request(type: RealmPhotoModel.self))
+    }
+    
+    func completeFetch(viewModel: FavoritesScene.Database.ViewModel) {
+        let objects = viewModel.photos
+        collectionView.photoArray = objects
     }
 }
 

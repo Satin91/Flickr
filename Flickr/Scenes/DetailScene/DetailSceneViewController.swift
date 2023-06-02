@@ -15,6 +15,7 @@ import UIKit
 protocol DetailSceneDisplayLogic: AnyObject {
     func initialSetup(viewModel: DetailScene.InitialSetup.ViewModel)
     func showActivityView(viewModel: DetailScene.Share.ViewModel)
+    func savingToDBCompleted(viewModel: DetailScene.SaveToDB.ViewModel)
 }
 
 class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
@@ -31,6 +32,10 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
         interactor?.shareLink()
     }
     
+    @IBAction private func saveToFavoritesButtonAction(_ sender: UIButton) {
+        saveToFavoritesButtonTapped()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fillData()
@@ -41,6 +46,10 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
     func fillData() {
         let request = DetailScene.InitialSetup.Request()
         interactor?.initialSetup(request: request)
+    }
+    
+    func saveToFavoritesButtonTapped() {
+        interactor?.saveObjectToDatabase()
     }
     
     func configureViews() {
@@ -58,5 +67,9 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
     func showActivityView(viewModel: DetailScene.Share.ViewModel) {
         viewModel.activityView.showOn(self)
         print("Debug: \(Thread.current)")
+    }
+    
+    func savingToDBCompleted(viewModel: DetailScene.SaveToDB.ViewModel) {
+        print("Save to database completed ? \(viewModel.isSaved)")
     }
 }

@@ -13,8 +13,8 @@
 import UIKit
 
 protocol FavoritesSceneBusinessLogic {
-    func doSomething(request: FavoritesScene.Something.Request)
-//    func doSomethingElse(request: FavoritesScene.SomethingElse.Request)
+    func doSomething(request: FavoritesScene.Database.Request)
+    func fetchObjectsFromDatabase(request: FavoritesScene.Database.Request)
 }
 
 protocol FavoritesSceneDataStore {
@@ -31,16 +31,15 @@ class FavoritesSceneInteractor: FavoritesSceneBusinessLogic, FavoritesSceneDataS
         self.worker = worker
     }
     
-    func doSomething(request: FavoritesScene.Something.Request) {
-        let response = FavoritesScene.Something.Response()
+    func doSomething(request: FavoritesScene.Database.Request) {
+        let response = FavoritesScene.Database.Response(objects: [])
         presenter?.presentSomething(response: response)
     }
-    //
-    //    func doSomethingElse(request: FavoritesScene.SomethingElse.Request) {
-    //        worker = FavoritesSceneWorker()
-    //        worker?.doSomeOtherWork()
-    //
-    //        let response = FavoritesScene.SomethingElse.Response()
-    //        presenter?.presentSomethingElse(response: response)
-    //    }
+    
+    func fetchObjectsFromDatabase(request: FavoritesScene.Database.Request) {
+        let response = worker?.fetchObjectsFromDatabasse(request: request)
+        print("Objects \(response)")
+        print("Objects count \(response?.objects.count)")
+        presenter?.handOverDatabaseObjects(response: response!)
+    }
 }

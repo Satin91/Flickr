@@ -39,4 +39,18 @@ enum DetailScene {
             var activityView: ActivityView
         }
     }
+    
+    enum SaveToDB {
+        struct Request {
+            var realmModel: RealmPhotoModel
+        }
+
+        struct Response {
+            var isSaved: Bool
+        }
+
+        struct ViewModel {
+            var isSaved: Bool
+        }
+    }
 }

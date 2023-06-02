@@ -12,7 +12,20 @@
 
 import UIKit
 
-class DetailSceneWorker {
-    func doSomeWork() {
+protocol DetailSceneWorkerLogic {
+    func saveObjectToDatabase(request: DetailScene.SaveToDB.Request) async throws -> DetailScene.SaveToDB.Response
+}
+
+class DetailSceneWorker: DetailSceneWorkerLogic {
+    private var databaseManager: DatabaseManagerProtocol
+    
+    init(databaseManager: DatabaseManagerProtocol) {
+        self.databaseManager = databaseManager
+    }
+    
+    func saveObjectToDatabase(request: DetailScene.SaveToDB.Request) async throws -> DetailScene.SaveToDB.Response {
+        databaseManager.save(object: request.realmModel)
+        let response = DetailScene.SaveToDB.Response(isSaved: true)
+        return response
     }
 }

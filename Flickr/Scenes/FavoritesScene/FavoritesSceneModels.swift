@@ -15,14 +15,17 @@ import UIKit
 enum FavoritesScene {
     // MARK: Use cases
     
-    enum Something {
+    enum Database {
         struct Request {
+            var type: RealmPhotoModel.Type
         }
         
         struct Response {
+            var objects: [RealmPhotoModel]
         }
         
         struct ViewModel {
+            var photos: [PhotoModel]
         }
     }
     

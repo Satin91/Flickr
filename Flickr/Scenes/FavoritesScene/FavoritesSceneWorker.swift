@@ -12,11 +12,23 @@
 
 import UIKit
 
-class FavoritesSceneWorker {
+protocol FavoritesSceneWorkerLogic {
+    func fetchObjectsFromDatabasse(request: FavoritesScene.Database.Request) -> FavoritesScene.Database.Response
+}
+
+class FavoritesSceneWorker: FavoritesSceneWorkerLogic {
     var databaseManager: DatabaseManagerProtocol
     
     init(databaseManager: DatabaseManagerProtocol) {
         self.databaseManager = databaseManager
+    }
+    
+    func fetchObjectsFromDatabasse(request: FavoritesScene.Database.Request) -> FavoritesScene.Database.Response {
+        let objects = databaseManager.fetch(type: RealmPhotoModel.self)
+        print("Objects \(objects)")
+        print("Objects Count \(objects.count)")
+        let response = FavoritesScene.Database.Response(objects: [])
+        return response
     }
     
     func doSomeWork() {

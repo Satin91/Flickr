@@ -14,6 +14,7 @@ import UIKit
 
 protocol DetailSceneBusinessLogic {
     func initialSetup(request: DetailScene.InitialSetup.Request)
+    func saveObjectToDatabase()
     func shareLink()
 }
 
@@ -27,8 +28,6 @@ class DetailSceneInteractor: DetailSceneBusinessLogic, DetailSceneDataStore {
     var photo: PhotoModel!
     
     func initialSetup(request: DetailScene.InitialSetup.Request) {
-        worker = DetailSceneWorker()
-        worker?.doSomeWork()
         guard let photo else { fatalError("Image not received") }
         let response = DetailScene.InitialSetup.Response(photoModel: photo)
         presenter?.initialSetup(response: response)
@@ -37,5 +36,18 @@ class DetailSceneInteractor: DetailSceneBusinessLogic, DetailSceneDataStore {
     func shareLink() {
         let response = DetailScene.Share.Response(isValidAddress: true, urlString: photo.imageURL)
         presenter?.showActivityView(response: response)
+    }
+    func saveObjectToDatabase() {
+        let realmModel = RealmPhotoModel()
+        realmModel.title = photo.title
+        realmModel.owner = photo.owner
+        realmModel.imageURL = photo.imageURL
+        realmModel.image = photo.image.pngData()
+        let request = DetailScene.SaveToDB.Request(realmModel: realmModel)
+        Task {
+            try await worker?.saveObjectToDatabase(request: request)
+        }
+        let response = DetailScene.SaveToDB.Response(isSaved: true)
+        presenter?.saveObjectToDatabaseCompleted(response: response)
     }
 }
