@@ -47,9 +47,12 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
         self.interactor?.shareLink()
     }
     
+    func openLink() {
+        interactor?.openLink()
+    }
+    
     func initialSetup(viewModel: DetailScene.InitialSetup.ViewModel) {
         imageView.image = viewModel.photoModel.image
-        setupMenu(imageURL: viewModel.photoModel.imageURL)
         tableView.display(
             text: [
                 PhotoDescriptionTableView.TextPairs(title: "Title", body: viewModel.photoModel.title),
@@ -70,6 +73,7 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
 extension DetailSceneViewController {
     private func setupUI() {
         addTableView()
+        setupMenu()
     }
     
     private func addTableView() {
@@ -80,12 +84,12 @@ extension DetailSceneViewController {
         tableView.view.equalConstraint(to: tableViewContainer)
     }
     
-    private func setupMenu(imageURL: String) {
+    private func setupMenu() {
         let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
             self.sharePhoto()
         }
         let openLink = UIAction(title: "Open Link", image: UIImage(systemName: "link")) { _ in
-            UIApplication.shared.open(URL(string: imageURL)!)
+            self.openLink()
         }
         let addToFavorites = UIAction(title: "Save to favorites", image: UIImage(systemName: "star")) { _ in
             self.saveToFavorites()

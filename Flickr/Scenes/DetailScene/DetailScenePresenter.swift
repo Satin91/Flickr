@@ -16,6 +16,7 @@ protocol DetailScenePresentationLogic {
     func initialSetup(response: DetailScene.InitialSetup.Response)
     func showActivityView(response: DetailScene.Share.Response)
     func saveObjectToDatabaseCompleted(response: DetailScene.SaveToDB.Response)
+    func openLinkInBrowser(request: DetailScene.OpenLink.Request)
 }
 
 class DetailScenePresenter: DetailScenePresentationLogic {
@@ -36,5 +37,9 @@ class DetailScenePresenter: DetailScenePresentationLogic {
     func saveObjectToDatabaseCompleted(response: DetailScene.SaveToDB.Response) {
         let viewModel = DetailScene.SaveToDB.ViewModel(isSaved: true)
         viewController?.savingToDBCompleted(viewModel: viewModel)
+    }
+    
+    func openLinkInBrowser(request: DetailScene.OpenLink.Request) {
+        UIApplication.shared.open(URL(string: request.urlString)!)
     }
 }

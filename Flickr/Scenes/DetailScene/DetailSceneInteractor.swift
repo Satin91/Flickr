@@ -16,6 +16,7 @@ protocol DetailSceneBusinessLogic {
     func initialSetup(request: DetailScene.InitialSetup.Request)
     func saveObjectToDatabase()
     func shareLink()
+    func openLink()
 }
 
 protocol DetailSceneDataStore {
@@ -36,6 +37,11 @@ class DetailSceneInteractor: DetailSceneBusinessLogic, DetailSceneDataStore {
     func shareLink() {
         let response = DetailScene.Share.Response(isValidAddress: true, urlString: photo.imageURL)
         presenter?.showActivityView(response: response)
+    }
+    
+    func openLink() {
+        let request = DetailScene.OpenLink.Request(urlString: photo.imageURL)
+        presenter?.openLinkInBrowser(request: request)
     }
     
     func saveObjectToDatabase() {

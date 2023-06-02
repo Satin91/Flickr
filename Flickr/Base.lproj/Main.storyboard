@@ -53,7 +53,7 @@
                     <tabBarItem key="tabBarItem" title="Search" id="ivj-0S-vEh">
                         <imageReference key="image" image="magnifyingglass.circle.fill" catalog="system" renderingMode="hierarchical-single">
                             <hierarchicalColors>
-                                <color systemColor="systemCyanColor"/>
+                                <color systemColor="systemBlueColor"/>
                                 <color systemColor="systemBlueColor"/>
                                 <color name="AccentColor"/>
                             </hierarchicalColors>
@@ -175,7 +175,26 @@
                             </hierarchicalColors>
                         </imageReference>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Favorites" id="Bm3-0B-1qD"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="Bm3-0B-1qD">
+                        <leftBarButtonItems>
+                            <barButtonItem style="plain" id="2eB-oU-BoP">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="WKM-zx-s8d">
+                                    <rect key="frame" x="16" y="5" width="87" height="34.333333333333336"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="n"/>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="wHe-Uw-awP">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="fha-Wb-vpa">
+                                    <rect key="frame" x="-37" y="-17" width="87" height="33"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="n"/>
+                                </button>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionViewContainer" destination="oPE-1s-LDo" id="qUp-FB-BeO"/>
                     </connections>
@@ -238,9 +257,6 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemCyanColor">
-            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

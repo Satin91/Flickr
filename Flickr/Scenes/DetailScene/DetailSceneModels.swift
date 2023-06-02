@@ -40,6 +40,18 @@ enum DetailScene {
         }
     }
     
+    enum OpenLink {
+        struct Request {
+            var urlString: String
+        }
+
+        struct Response {
+        }
+
+        struct ViewModel {
+        }
+    }
+    
     enum SaveToDB {
         struct Request {
             var realmModel: RealmPhotoModel
