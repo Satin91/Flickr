@@ -19,10 +19,12 @@ protocol MainSceneDisplayLogic: AnyObject {
 
 class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout())
+    
     var interactor: MainSceneInteractor?
     var router: (NSObjectProtocol & MainSceneRoutingLogic & MainSceneDataPassing)?
-    private var textFieldText = "Minsk"
+    private var textFieldText = ""
     
+    @IBOutlet private var tabBarViewItem: UITabBarItem!
     @IBOutlet private var collectionViewContainer: UIView!
     
     override func viewDidLoad() {
@@ -90,7 +92,7 @@ extension MainSceneViewController {
         collectionView.didMove(toParent: self)
         collectionView.view.translatesAutoresizingMaskIntoConstraints = false
         collectionView.view.equalConstraint(to: collectionViewContainer)
-        collectionView.itemsPerLine = 1
+        collectionView.itemsPerLine = 3
     }
     
     private func createTextField(frame: CGRect) -> UITextField {

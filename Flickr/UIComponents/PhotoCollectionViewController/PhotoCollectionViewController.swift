@@ -8,9 +8,9 @@
 import UIKit
 
 class PhotoCollectionViewController: UICollectionViewController {
-    private let horizontalSpacing: CGFloat = 12
-    private let verticalSpacing: CGFloat = 12
     private let reuseIdentifier = "photosCollectionViewCell"
+    var horizontalSpacing: CGFloat = 12
+    var verticalSpacing: CGFloat = 12
     var itemsPerLine: CGFloat = 3
     private var spacingCount: CGFloat {
         itemsPerLine + 1
