@@ -8,15 +8,17 @@
 import UIKit
 
 protocol MainSceneBusinessLogic {
-    func getPhotos(request: MainScene.Properties.Request) async throws
+    func getPhotos(request: MainScene.FetchPhotos.Request) async throws
+    func setPhoto(photoModel: PhotoModel)
 }
 
 protocol MainSceneDataStore {
-//    var photos: [UIImage] { get set }
+    var selectedPhoto: PhotoModel { get set }
 }
 
 final class MainSceneInteractor: MainSceneDataStore {
-//    var photos: [UIImage] = []
+    var selectedPhoto = PhotoModel(title: "", owner: "", address: "", image: UIImage())
+    
     var worker: MainSceneWorkerLogic
     var presenter: MainScenePresentationLogic
     
@@ -27,9 +29,12 @@ final class MainSceneInteractor: MainSceneDataStore {
 }
 
 extension MainSceneInteractor: MainSceneBusinessLogic {
-    func getPhotos(request: MainScene.Properties.Request) async throws {
+    func setPhoto(photoModel: PhotoModel) {
+        self.selectedPhoto = photoModel
+    }
+    
+    func getPhotos(request: MainScene.FetchPhotos.Request) async throws {
         let response = try await worker.execute(request: request)
         presenter.present(response: response)
-//        self.photos = photos
     }
 }

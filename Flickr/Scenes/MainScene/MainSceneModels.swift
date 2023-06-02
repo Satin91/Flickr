@@ -13,17 +13,19 @@
 import UIKit
 
 enum MainScene {
-    enum Properties {
+    enum FetchPhotos {
         struct Request {
             var text: String
         }
 
         struct Response {
-            var photos: [UIImage]
+            var photoModel: [PhotoModel]?
+            var errorMessage: String?
         }
 
         struct ViewModel {
-            var photos: [UIImage]
+            var errorMessage: String?
+            var photoModel: [PhotoModel]?
         }
     }
 }

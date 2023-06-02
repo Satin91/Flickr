@@ -11,4 +11,5 @@ enum ConfiguratorLibrary {
     private static let sceneFactory = SceneFactory()
     
     static let mainScene = MainSceneConfigurator(sceneFactory: sceneFactory)
+    static let detailScene = DetailSceneConfigurator(sceneFactory: sceneFactory)
 }

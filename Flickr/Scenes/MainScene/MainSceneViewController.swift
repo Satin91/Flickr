@@ -13,25 +13,18 @@
 import UIKit
 
 protocol MainSceneDisplayLogic: AnyObject {
-    func updateUI(viewModel: MainScene.Properties.ViewModel)
+    func successFetchedData(viewModel: MainScene.FetchPhotos.ViewModel)
+    func errorFetchedData(viewModel: MainScene.FetchPhotos.ViewModel)
 }
 
 class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     var interactor: MainSceneInteractor?
     var router: (NSObjectProtocol & MainSceneRoutingLogic & MainSceneDataPassing)?
     let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout())
-    var textFieldText = ""
+    var textFieldText = "Minsk"
+    var callBack: ((Int) -> Void)?
     
     @IBOutlet private var collectionViewContainer: UIView!
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,20 +33,9 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         configureNavigationBar()
     }
     
-    func getPhotos(by text: String) {
-        let request = MainScene.Properties.Request(text: textFieldText)
-        Task {
-            try await interactor?.getPhotos(request: request)
-        }
-    }
-    
-    private func configureNavigationBar() {
-        guard let navigationBar = navigationController?.navigationBar else { return }
-        let textFieldeight: CGFloat = 30
-        let textFieldFrame = CGRect(x: .zero, y: .zero, width: navigationBar.bounds.width, height: textFieldeight)
-        let textField = createTextField(frame: textFieldFrame)
-        self.navigationItem.titleView = textField
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .plain, target: self, action: #selector(searchButtonTapped))
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchPhotos(by: "Minsk")
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -62,11 +44,48 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     }
     
     @objc func searchButtonTapped() {
-        getPhotos(by: textFieldText)
+        fetchPhotos(by: textFieldText)
     }
     
-    func configureProperties() {
-        ConfiguratorLibrary.mainScene.configure(self)
+    func successFetchedData(viewModel: MainScene.FetchPhotos.ViewModel) {
+        guard let photoModel = viewModel.photoModel else { return }
+        collectionView.photoArray = photoModel
+        DispatchQueue.main.async {
+            self.collectionView.collectionView.reloadData()
+        }
+    }
+    
+    func errorFetchedData(viewModel: MainScene.FetchPhotos.ViewModel) {
+        guard let message = viewModel.errorMessage else { return }
+        DispatchQueue.main.async {
+            AlertController().show(title: "Error", message: message, style: .alert, owner: self)
+        }
+    }
+    
+    private func didSelectPhoto() {
+        collectionView.onTapGesture = { [weak self] photo in
+            guard let self else { return }
+            self.interactor?.setPhoto(photoModel: photo)
+            self.router?.routeToDetailScene()
+        }
+    }
+    
+    private func fetchPhotos(by text: String) {
+        let request = MainScene.FetchPhotos.Request(text: text)
+        Task {
+            try await interactor?.getPhotos(request: request)
+        }
+    }
+}
+
+// MARK: Setup UI
+extension MainSceneViewController {
+    private func addCollectionView() {
+        addChild(collectionView)
+        collectionViewContainer.addSubview(collectionView.view)
+        collectionView.didMove(toParent: self)
+        collectionView.view.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.view.equalConstraint(to: collectionViewContainer)
     }
     
     private func createTextField(frame: CGRect) -> UITextField {
@@ -77,18 +96,16 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         return textField
     }
     
-    func updateUI(viewModel: MainScene.Properties.ViewModel) {
-        collectionView.photoArray = viewModel.photos
-        DispatchQueue.main.async {
-            self.collectionView.collectionView.reloadData()
-        }
+    func configureProperties() {
+        ConfiguratorLibrary.mainScene.configure(self)
     }
     
-    func addCollectionView() {
-        addChild(collectionView)
-        collectionViewContainer.addSubview(collectionView.view)
-        collectionView.didMove(toParent: self)
-        collectionView.view.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.view.equalConstraint(to: collectionViewContainer)
+    private func configureNavigationBar() {
+        guard let navigationBar = navigationController?.navigationBar else { return }
+        let textFieldeight: CGFloat = 30
+        let textFieldFrame = CGRect(x: .zero, y: .zero, width: navigationBar.bounds.width, height: textFieldeight)
+        let textField = createTextField(frame: textFieldFrame)
+        self.navigationItem.titleView = textField
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .plain, target: self, action: #selector(searchButtonTapped))
     }
 }

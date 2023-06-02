@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainSceneConfigurator: ConfiguratorProtocol {
-    private weak var sceneFactory: SceneFactoryProtocol?
+    private weak var sceneFactory: SceneFactoryProtocol!
     
     init(sceneFactory: SceneFactoryProtocol) {
         self.sceneFactory = sceneFactory
@@ -18,7 +18,7 @@ final class MainSceneConfigurator: ConfiguratorProtocol {
     @discardableResult
     func configure<T>(_ vc: T) -> T where T: UIViewController {
         let vc = vc as! MainSceneViewController
-        sceneFactory?.sceneConfigurator = self
+        sceneFactory.sceneConfigurator = self
         let networkService = NetworkService()
         let worker = MainSceneWorker(networkService: networkService)
         let presenter = MainScenePresenter()

@@ -13,14 +13,22 @@
 import UIKit
 
 protocol MainScenePresentationLogic {
-    func present(response: MainScene.Properties.Response)
+    func present(response: MainScene.FetchPhotos.Response)
 }
 
 class MainScenePresenter: MainScenePresentationLogic {
     weak var viewController: MainSceneDisplayLogic?
     
-    func present(response: MainScene.Properties.Response) {
-        let viewModel = MainScene.Properties.ViewModel(photos: response.photos)
-        viewController?.updateUI(viewModel: viewModel)
+    func present(response: MainScene.FetchPhotos.Response) {
+        let viewModel = MainScene.FetchPhotos.ViewModel(photoModel: response.photoModel)
+        viewController?.successFetchedData(viewModel: viewModel)
+        
+        if response.errorMessage != nil {
+            let viewModel = MainScene.FetchPhotos.ViewModel(errorMessage: response.errorMessage)
+            viewController?.errorFetchedData(viewModel: viewModel)
+        } else {
+            let viewModel = MainScene.FetchPhotos.ViewModel(photoModel: response.photoModel!)
+            viewController?.successFetchedData(viewModel: viewModel)
+        }
     }
 }

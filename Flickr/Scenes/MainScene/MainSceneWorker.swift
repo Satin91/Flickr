@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainSceneWorkerLogic {
-    func execute(request: MainScene.Properties.Request) async throws -> MainScene.Properties.Response
+    func execute(request: MainScene.FetchPhotos.Request) async throws -> MainScene.FetchPhotos.Response
 }
 
 class MainSceneWorker {
@@ -20,7 +20,7 @@ class MainSceneWorker {
 }
 
 extension MainSceneWorker: MainSceneWorkerLogic {
-    func execute(request: MainScene.Properties.Request) async throws -> MainScene.Properties.Response {
+    func execute(request: MainScene.FetchPhotos.Request) async throws -> MainScene.FetchPhotos.Response {
         let params = [
             "api_key": Constants.Api.flickrKey,
             "format": "json",
@@ -29,13 +29,32 @@ extension MainSceneWorker: MainSceneWorkerLogic {
             "text": request.text,
             "nojsoncallback": "1"
         ]
-        let flickr = try await networkService.parseJson(url: Constants.Api.baseURL, params: params, type: PhotoNetworkModel.self)
-        var images: [UIImage] = []
-        for photo in flickr.photos.photo {
-            let image = try await networkService.downloadImage(url: photo.photoUrl.absoluteString)
-            print("Download colpleted \(photo.photoUrl.absoluteString)")
-            images.append(image)
+        var photoNetworkModel: PhotoNetworkModel!
+        do {
+            photoNetworkModel = try await networkService.parseJson(url: Constants.Api.baseURL, params: params, type: PhotoNetworkModel.self)
+        } catch let error {
+            return MainScene.FetchPhotos.Response(errorMessage: error.localizedDescription)
         }
-        return MainScene.Properties.Response(photos: images)
+        
+        var photoModel: [PhotoModel] = []
+        
+        for photo in photoNetworkModel.photos.photo {
+            var image: UIImage?
+            do {
+                image = try await networkService.downloadImage(url: photo.photoUrl.absoluteString)
+            } catch let error {
+                return MainScene.FetchPhotos.Response(errorMessage: error.localizedDescription)
+            }
+            print("Download colpleted \(photo.photoUrl.absoluteString)")
+            photoModel.append(
+                PhotoModel(
+                    title: photo.title,
+                    owner: photo.owner,
+                    address: photo.photoUrl.absoluteString,
+                    image: (image ?? UIImage(systemName: "photo.fill"))!
+                )
+            )
+        }
+        return MainScene.FetchPhotos.Response(photoModel: photoModel)
     }
 }

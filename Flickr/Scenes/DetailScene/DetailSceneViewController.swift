@@ -13,67 +13,45 @@
 import UIKit
 
 protocol DetailSceneDisplayLogic: AnyObject {
-    func displaySomething(viewModel: DetailScene.Something.ViewModel)
+    func displaySomething(viewModel: DetailScene.InitialModel.ViewModel)
 }
 
 class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
     var interactor: DetailSceneBusinessLogic?
     var router: (NSObjectProtocol & DetailSceneRoutingLogic & DetailSceneDataPassing)?
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
     
-    private func setup() {
-        let viewController = self
-        let interactor = DetailSceneInteractor()
-        let presenter = DetailScenePresenter()
-        let router = DetailSceneRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
-    }
+    @IBOutlet private var imageView: UIImageView!
+    @IBOutlet private var titleText: UILabel!
+    @IBOutlet private var owner: UILabel!
+    @IBOutlet private var address: UITextView!
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
+    @IBAction private func shareButtonAction(_ sender: UIButton) {
+        let items = ["Text For Share"]
+        let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        self.present(avc, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         doSomething()
+        configureViews()
+        print("Detail scene did load")
     }
     
     func doSomething() {
-        let request = DetailScene.Something.Request()
-        interactor?.doSomething(request: request)
+        let request = DetailScene.InitialModel.Request()
+        interactor?.initialSetup(request: request)
     }
-    //
-    //    func doSomethingElse() {
-    //        let request = DetailScene.SomethingElse.Request()
-    //        interactor?.doSomethingElse(request: request)
-    //    }
-
-    // MARK: - display view model from DetailScenePresenter
-
-    func displaySomething(viewModel: DetailScene.Something.ViewModel) {
-        // nameTextField.text = viewModel.name
+    
+    func configureViews() {
+        address.isEditable = false
+        address.dataDetectorTypes = .link
     }
-    //
-    //    func displaySomethingElse(viewModel: DetailScene.SomethingElse.ViewModel) {
-    //        // do sometingElse with viewModel
-    //    }
+    
+    func displaySomething(viewModel: DetailScene.InitialModel.ViewModel) {
+        imageView.image = viewModel.photoModel.image
+        titleText.text = viewModel.photoModel.title
+        owner.text = viewModel.photoModel.owner
+        address.text = viewModel.photoModel.address
+    }
 }

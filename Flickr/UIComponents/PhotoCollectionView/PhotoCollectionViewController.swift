@@ -15,8 +15,9 @@ class PhotoCollectionViewController: UICollectionViewController {
     private var spacingCount: CGFloat {
         itemCount + 1
     }
+    var onTapGesture: ((PhotoModel) -> Void)?
     
-    var photoArray: [UIImage] = []
+    var photoArray: [PhotoModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,7 @@ class PhotoCollectionViewController: UICollectionViewController {
    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotosCollectionViewItem
-        let image = photoArray[indexPath.row]
+        let image = photoArray[indexPath.row].image
         cell.imageView.image = image
         return cell
     }
@@ -50,5 +51,9 @@ class PhotoCollectionViewController: UICollectionViewController {
         layout.itemSize = CGSize(width: itemSide, height: itemSide)
         layout.sectionInset = UIEdgeInsets(top: verticalSpacing, left: horizontalSpacing, bottom: verticalSpacing, right: horizontalSpacing)
         collectionView.collectionViewLayout = layout
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        onTapGesture!(photoArray[indexPath.row])
     }
 }

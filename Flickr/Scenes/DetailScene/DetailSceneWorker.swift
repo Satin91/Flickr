@@ -15,7 +15,4 @@ import UIKit
 class DetailSceneWorker {
     func doSomeWork() {
     }
-    //    func doSomeOtherWork() {
-    //
-    //    }
 }

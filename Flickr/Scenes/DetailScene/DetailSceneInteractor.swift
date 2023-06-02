@@ -13,34 +13,29 @@
 import UIKit
 
 protocol DetailSceneBusinessLogic {
-    func doSomething(request: DetailScene.Something.Request)
-//    func doSomethingElse(request: DetailScene.SomethingElse.Request)
+    func initialSetup(request: DetailScene.InitialModel.Request)
+    func shareLink(request: DetailScene.Share.Request)
 }
 
 protocol DetailSceneDataStore {
-    // var name: String { get set }
+    var photo: PhotoModel? { get set }
 }
 
 class DetailSceneInteractor: DetailSceneBusinessLogic, DetailSceneDataStore {
+    var photo: PhotoModel?
+    
     var presenter: DetailScenePresentationLogic?
     var worker: DetailSceneWorker?
-    // var name: String = ""
-
-    // MARK: Do something (and send response to DetailScenePresenter)
-
-    func doSomething(request: DetailScene.Something.Request) {
+    
+    func initialSetup(request: DetailScene.InitialModel.Request) {
         worker = DetailSceneWorker()
         worker?.doSomeWork()
-
-        let response = DetailScene.Something.Response()
-        presenter?.presentSomething(response: response)
+        guard let photo else { fatalError("Image not received") }
+        let response = DetailScene.InitialModel.Response(photoModel: photo)
+        presenter?.updateUI(response: response)
     }
-    //
-    //    func doSomethingElse(request: DetailScene.SomethingElse.Request) {
-    //        worker = DetailSceneWorker()
-    //        worker?.doSomeOtherWork()
-    //
-    //        let response = DetailScene.SomethingElse.Response()
-    //        presenter?.presentSomethingElse(response: response)
-    //    }
+    
+    func shareLink(request: DetailScene.Share.Request) {
+        
+    }
 }

@@ -13,7 +13,7 @@
 import UIKit
 
 protocol DetailScenePresentationLogic {
-    func presentSomething(response: DetailScene.Something.Response)
+    func updateUI(response: DetailScene.InitialModel.Response)
 }
 
 class DetailScenePresenter: DetailScenePresentationLogic {
@@ -21,13 +21,9 @@ class DetailScenePresenter: DetailScenePresentationLogic {
 
     // MARK: Parse and calc respnse from DetailSceneInteractor and send simple view model to DetailSceneViewController to be displayed
 
-    func presentSomething(response: DetailScene.Something.Response) {
-        let viewModel = DetailScene.Something.ViewModel()
+    func updateUI(response: DetailScene.InitialModel.Response) {
+        let viewModel = DetailScene.InitialModel.ViewModel(photoModel: response.photoModel)
         viewController?.displaySomething(viewModel: viewModel)
+        print("update")
     }
-//
-//    func presentSomethingElse(response: DetailScene.SomethingElse.Response) {
-//        let viewModel = DetailScene.SomethingElse.ViewModel()
-//        viewController?.displaySomethingElse(viewModel: viewModel)
-//    }
 }

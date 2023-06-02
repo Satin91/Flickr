@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DetaikSceneConfigurator: ConfiguratorProtocol {
+final class DetailSceneConfigurator: ConfiguratorProtocol {
     private weak var sceneFactory: SceneFactoryProtocol?
     
     init(sceneFactory: SceneFactoryProtocol) {
@@ -17,21 +17,17 @@ final class DetaikSceneConfigurator: ConfiguratorProtocol {
     // This attribute is needed so as not to bother with a warning that the method is not used
     @discardableResult
     func configure<T>(_ vc: T) -> T where T: UIViewController {
-        let vc = vc as! MainSceneViewController
+        let vc = vc as! DetailSceneViewController
         sceneFactory?.sceneConfigurator = self
-        let networkService = NetworkService()
-        let worker = MainSceneWorker(networkService: networkService)
-        let presenter = MainScenePresenter()
-        let interactor = MainSceneInteractor(worker: worker, presenter: presenter)
-        let router = MainSceneRouter()
+        let interactor = DetailSceneInteractor()
+        let presenter = DetailScenePresenter()
+        let router = DetailSceneRouter()
         vc.interactor = interactor
         vc.router = router
         interactor.presenter = presenter
         presenter.viewController = vc
         router.viewController = vc
         router.dataStore = interactor
-        vc.interactor = interactor
-        vc.router = router
         return vc as! T
     }
 }

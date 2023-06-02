@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol MainSceneRoutingLogic {
-    func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToDetailScene()
 }
 
 protocol MainSceneDataPassing {
@@ -21,38 +21,26 @@ protocol MainSceneDataPassing {
 }
 
 class MainSceneRouter: NSObject, MainSceneRoutingLogic, MainSceneDataPassing {
-    func routeToSomewhere(segue: UIStoryboardSegue?) {
-        print("Route to somewhere")
-    }
-    
     weak var viewController: MainSceneViewController?
     var dataStore: MainSceneDataStore?
     
     // MARK: Routing (navigating to other screens)
     
-    // func routeToSomewhere(segue: UIStoryboardSegue?) {
-    //    if let segue = segue {
-    //        let destinationVC = segue.destination as! SomewhereViewController
-    //        var destinationDS = destinationVC.router!.dataStore!
-    //        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    } else {
-    //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //        let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //        var destinationDS = destinationVC.router!.dataStore!
-    //        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //        navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //    }
-    // }
+    // MARK: Routing
     
-    // MARK: Navigation to other screen
+    func routeToDetailScene() {
+        let destinationVC = DetailSceneViewController().instantiate() as! DetailSceneViewController
+        ConfiguratorLibrary.detailScene.configure(destinationVC)
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToDetailScene(source: dataStore!, destination: &destinationDS)
+        navigateToDetailView(source: viewController!, destination: destinationVC)
+    }
     
-    // func navigateToSomewhere(source: MainSceneViewController, destination: SomewhereViewController) {
-    //    source.show(destination, sender: nil)
-    // }
-    
-    // MARK: Passing data to other screen
-    
-    // func passDataToSomewhere(source: MainSceneDataStore, destination: inout SomewhereDataStore) {
-    //     destination.name = source.name
-    // }
+    func navigateToDetailView(source: MainSceneViewController, destination: DetailSceneViewController) {
+        source.show(destination, sender: nil)
+    }
+
+    func passDataToDetailScene(source: MainSceneDataStore, destination: inout DetailSceneDataStore) {
+        destination.photo = source.selectedPhoto
+    }
 }
