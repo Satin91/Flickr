@@ -38,8 +38,6 @@ class FavoritesSceneInteractor: FavoritesSceneBusinessLogic, FavoritesSceneDataS
     
     func fetchObjectsFromDatabase(request: FavoritesScene.Database.Request) {
         let response = worker?.fetchObjectsFromDatabasse(request: request)
-        print("Objects \(response)")
-        print("Objects count \(response?.objects.count)")
         presenter?.handOverDatabaseObjects(response: response!)
     }
 }

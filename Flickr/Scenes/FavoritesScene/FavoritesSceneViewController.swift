@@ -33,7 +33,7 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
         super.init(coder: aDecoder)
         setup()
     }
-
+    
     private func setup() {
         let viewController = self
         let interactor = FavoritesSceneInteractor()
@@ -51,8 +51,12 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
         super.viewDidLoad()
         setupUI()
         doSomething()
-        startFetchPhotos()
 //        doSomethingElse()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startFetchingPhotos()
     }
 
     func doSomething() {
@@ -64,13 +68,14 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
         // nameTextField.text = viewModel.name
     }
     
-    func startFetchPhotos() {
+    func startFetchingPhotos() {
         interactor?.fetchObjectsFromDatabase(request: FavoritesScene.Database.Request(type: RealmPhotoModel.self))
     }
     
     func completeFetch(viewModel: FavoritesScene.Database.ViewModel) {
         let objects = viewModel.photos
         collectionView.photoArray = objects
+        collectionView.reloadData()
     }
 }
 
@@ -91,6 +96,6 @@ extension FavoritesSceneViewController {
         collectionView.view.translatesAutoresizingMaskIntoConstraints = false
         collectionView.view.equalConstraint(to: collectionViewContainer)
         collectionView.itemsPerLine = 1
-        collectionView.verticalSpacing = 22
+        collectionView.verticalSpacing = 46
     }
 }

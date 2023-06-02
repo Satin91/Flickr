@@ -24,10 +24,6 @@ class MainSceneRouter: NSObject, MainSceneRoutingLogic, MainSceneDataPassing {
     weak var viewController: MainSceneViewController?
     var dataStore: MainSceneDataStore?
     
-    // MARK: Routing (navigating to other screens)
-    
-    // MARK: Routing
-    
     func routeToDetailScene() {
         let destinationVC = DetailSceneViewController().instantiate() as! DetailSceneViewController
         ConfiguratorsLibrary.detailScene.configure(destinationVC)

@@ -38,7 +38,6 @@ class DetailSceneInteractor: DetailSceneBusinessLogic, DetailSceneDataStore {
         presenter?.showActivityView(response: response)
     }
     
-    @discardableResult
     func saveObjectToDatabase() {
         let realmModel = RealmPhotoModel()
         realmModel.title = photo.title

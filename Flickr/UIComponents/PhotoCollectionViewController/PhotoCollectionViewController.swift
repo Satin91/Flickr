@@ -24,10 +24,6 @@ class PhotoCollectionViewController: UICollectionViewController {
         self.itemsPerLine = itemsPerLine
     }
     
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCollectionViewItem()
@@ -50,6 +46,10 @@ class PhotoCollectionViewController: UICollectionViewController {
         return cell
     }
     
+    func reloadData() {
+        collectionView.reloadData()
+    }
+    
     private func registerCollectionViewItem() {
         collectionView.register(PhotosCollectionViewItem.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
@@ -58,6 +58,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         let layout = UICollectionViewFlowLayout()
         let itemSide = (self.collectionView.bounds.width - horizontalSpacing * spacingCount) / itemsPerLine
         layout.itemSize = CGSize(width: itemSide, height: itemSide)
+        layout.minimumLineSpacing = verticalSpacing
         layout.sectionInset = UIEdgeInsets(top: verticalSpacing, left: horizontalSpacing, bottom: verticalSpacing, right: horizontalSpacing)
         collectionView.collectionViewLayout = layout
     }
