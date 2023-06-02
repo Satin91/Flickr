@@ -28,18 +28,6 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
     
     let tableView = PhotoDescriptionTableView(style: .insetGrouped)
     
-    // Изза того что все данных хранятся в интеракторе, можно отправлять пустой запрос, или просто
-    @IBAction private func shareButtonAction(_ sender: UIButton) {
-        interactor?.shareLink()
-    }
-    
-    @IBAction private func saveToFavoritesButtonAction(_ sender: UIButton) {
-        saveToFavoritesButtonTapped()
-    }
-    
-    @IBAction private func menuButtonAction(_ sender: UIButton) {
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fillData()
@@ -51,8 +39,12 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
         interactor?.initialSetup(request: request)
     }
     
-    func saveToFavoritesButtonTapped() {
+    func saveToFavorites() {
         interactor?.saveObjectToDatabase()
+    }
+    
+    func sharePhoto() {
+        self.interactor?.shareLink()
     }
     
     func initialSetup(viewModel: DetailScene.InitialSetup.ViewModel) {
@@ -90,12 +82,16 @@ extension DetailSceneViewController {
     
     private func setupMenu(imageURL: String) {
         let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
-            self.interactor?.shareLink()
+            self.sharePhoto()
         }
         let openLink = UIAction(title: "Open Link", image: UIImage(systemName: "link")) { _ in
             UIApplication.shared.open(URL(string: imageURL)!)
         }
-        self.menu = UIMenu(title: "Options", children: [share, openLink])
+        let addToFavorites = UIAction(title: "Save to favorites", image: UIImage(systemName: "star")) { _ in
+            self.saveToFavorites()
+        }
+        
+        self.menu = UIMenu(children: [share, openLink, addToFavorites])
         menuButton.menu = menu
         menuButton.showsMenuAsPrimaryAction = true
     }
