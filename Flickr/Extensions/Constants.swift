@@ -23,6 +23,10 @@ enum Constants {
         }
     }
     
+    enum ViewIdentifiers {
+        static let photoDescriptionCell = "photoDescriptionCell"
+    }
+    
     enum Api {
         static let flickrKey = "2ce510bc4e5c8496d98918cbe75553c0"
         static let baseURL = "https://api.flickr.com/services/rest/"

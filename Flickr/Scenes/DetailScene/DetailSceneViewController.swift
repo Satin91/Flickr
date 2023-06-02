@@ -19,13 +19,14 @@ protocol DetailSceneDisplayLogic: AnyObject {
 }
 
 class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
+    @IBOutlet private var tableViewContainer: UIView!
+    @IBOutlet private var imageView: UIImageView!
+    @IBOutlet private var menuButton: UIButton!
     var interactor: DetailSceneBusinessLogic?
     var router: (DetailSceneRoutingLogic & DetailSceneDataPassing)?
+    var menu = UIMenu()
     
-    @IBOutlet private var imageView: UIImageView!
-    @IBOutlet private var titleText: UILabel!
-    @IBOutlet private var author: UILabel!
-    @IBOutlet private var address: UITextView!
+    let tableView = PhotoDescriptionTableView(style: .insetGrouped)
     
     // Изза того что все данных хранятся в интеракторе, можно отправлять пустой запрос, или просто
     @IBAction private func shareButtonAction(_ sender: UIButton) {
@@ -36,11 +37,13 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
         saveToFavoritesButtonTapped()
     }
     
+    @IBAction private func menuButtonAction(_ sender: UIButton) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fillData()
-        configureViews()
-        print("Detail scene did load")
+        setupUI()
     }
     
     func fillData() {
@@ -52,24 +55,48 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
         interactor?.saveObjectToDatabase()
     }
     
-    func configureViews() {
-        address.isEditable = false
-        address.dataDetectorTypes = .link
-    }
-    
     func initialSetup(viewModel: DetailScene.InitialSetup.ViewModel) {
         imageView.image = viewModel.photoModel.image
-        titleText.text = viewModel.photoModel.title
-        author.text = viewModel.photoModel.owner
-        address.text = viewModel.photoModel.imageURL
+        setupMenu(imageURL: viewModel.photoModel.imageURL)
+        tableView.display(
+            text: [
+                PhotoDescriptionTableView.TextPairs(title: "Title", body: viewModel.photoModel.title),
+                PhotoDescriptionTableView.TextPairs(title: "Author", body: viewModel.photoModel.owner)
+            ]
+        )
     }
     
     func showActivityView(viewModel: DetailScene.Share.ViewModel) {
         viewModel.activityView.showOn(self)
-        print("Debug: \(Thread.current)")
     }
     
     func savingToDBCompleted(viewModel: DetailScene.SaveToDB.ViewModel) {
         print("Save to database completed ? \(viewModel.isSaved)")
+    }
+}
+
+extension DetailSceneViewController {
+    private func setupUI() {
+        addTableView()
+    }
+    
+    private func addTableView() {
+        addChild(tableView)
+        tableViewContainer.addSubview(tableView.view)
+        tableView.didMove(toParent: self)
+        tableView.view.translatesAutoresizingMaskIntoConstraints = false
+        tableView.view.equalConstraint(to: tableViewContainer)
+    }
+    
+    private func setupMenu(imageURL: String) {
+        let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+            self.interactor?.shareLink()
+        }
+        let openLink = UIAction(title: "Open Link", image: UIImage(systemName: "link")) { _ in
+            UIApplication.shared.open(URL(string: imageURL)!)
+        }
+        self.menu = UIMenu(title: "Options", children: [share, openLink])
+        menuButton.menu = menu
+        menuButton.showsMenuAsPrimaryAction = true
     }
 }

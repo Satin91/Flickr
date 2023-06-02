@@ -21,7 +21,7 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
     var interactor: FavoritesSceneBusinessLogic?
     var router: (NSObjectProtocol & FavoritesSceneRoutingLogic & FavoritesSceneDataPassing)?
     
-    let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout())
+    let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout(), layoutSize: .large)
     @IBOutlet private var collectionViewContainer: UIView!
     
     override func viewDidLoad() {
@@ -70,7 +70,5 @@ extension FavoritesSceneViewController {
         collectionView.didMove(toParent: self)
         collectionView.view.translatesAutoresizingMaskIntoConstraints = false
         collectionView.view.equalConstraint(to: collectionViewContainer)
-        collectionView.itemsPerLine = 1
-        collectionView.verticalSpacing = 46
     }
 }

@@ -33,8 +33,10 @@ extension MainSceneInteractor: MainSceneBusinessLogic {
         self.selectedPhoto = photo
     }
     
-    func fetchPhotos(request: MainScene.LoadPhotos.Request) async throws {
-        let response = try await worker.downLoadPhotos(request: request)
-        presenter.handOverPhotos(response: response)
+    func fetchPhotos(request: MainScene.LoadPhotos.Request) {
+        Task {
+            let response = try await worker.downLoadPhotos(request: request)
+            presenter.handOverPhotos(response: response)
+        }
     }
 }

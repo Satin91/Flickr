@@ -49,7 +49,6 @@ extension MainSceneWorker: MainSceneWorkerLogic {
         try await networkService.parseJson(url: Constants.Api.baseURL, params: params, type: PhotoNetworkModel.self)
     }
     
-    
     private func downloadImages(from networkModel: PhotoNetworkModel) async throws -> [PhotoModel] {
         var photos: [PhotoModel] = []
         for photoInfo in networkModel.photos.photo {

@@ -7,21 +7,38 @@
 
 import UIKit
 
-class PhotoCollectionViewController: UICollectionViewController {
-    private let reuseIdentifier = "photosCollectionViewCell"
-    var horizontalSpacing: CGFloat = 12
-    var verticalSpacing: CGFloat = 12
-    var itemsPerLine: CGFloat = 3
-    private var spacingCount: CGFloat {
+private struct PhotoCollectionViewConfig {
+    let reuseIdentifier = "photosCollectionViewCell"
+    var horizontalSpacing: CGFloat
+    var verticalSpacing: CGFloat
+    var itemsPerLine: CGFloat
+    var minimumLineSpacing: CGFloat = 12
+    var spacingCount: CGFloat {
         itemsPerLine + 1
     }
+}
+
+class PhotoCollectionViewController: UICollectionViewController {
+    enum LayoutSize {
+        case small
+        case medium
+        case large
+    }
+    
+    private var config: PhotoCollectionViewConfig!
+    private var photoArray: [PhotoModel] = []
     var didSelectPhoto: ((PhotoModel) -> Void)?
     
-    var photoArray: [PhotoModel] = []
-    
-    convenience init(itemsPerLine: CGFloat) {
+    convenience init(collectionViewLayout layout: UICollectionViewLayout, layoutSize: LayoutSize) {
         self.init(collectionViewLayout: UICollectionViewLayout())
-        self.itemsPerLine = itemsPerLine
+        switch layoutSize {
+        case .small:
+            self.config = .init(horizontalSpacing: 12, verticalSpacing: 12, itemsPerLine: 5)
+        case .medium:
+            self.config = .init(horizontalSpacing: 12, verticalSpacing: 12, itemsPerLine: 3)
+        case .large:
+            self.config = .init(horizontalSpacing: 12, verticalSpacing: 12, itemsPerLine: 1, minimumLineSpacing: 40)
+        }
     }
     
     override func viewDidLoad() {
@@ -38,9 +55,9 @@ class PhotoCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         photoArray.count
     }
-   
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotosCollectionViewItem
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: config.reuseIdentifier, for: indexPath) as! PhotosCollectionViewItem
         let image = photoArray[indexPath.row].image
         cell.imageView.image = image
         return cell
@@ -54,15 +71,20 @@ class PhotoCollectionViewController: UICollectionViewController {
     }
     
     private func registerCollectionViewItem() {
-        collectionView.register(PhotosCollectionViewItem.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(PhotosCollectionViewItem.self, forCellWithReuseIdentifier: config.reuseIdentifier)
     }
     
     private func setupLayout() {
         let layout = UICollectionViewFlowLayout()
-        let itemSide = (self.collectionView.bounds.width - horizontalSpacing * spacingCount) / itemsPerLine
+        let itemSide = (self.collectionView.bounds.width - config.horizontalSpacing * config.spacingCount) / config.itemsPerLine
         layout.itemSize = CGSize(width: itemSide, height: itemSide)
-        layout.minimumLineSpacing = verticalSpacing
-        layout.sectionInset = UIEdgeInsets(top: verticalSpacing, left: horizontalSpacing, bottom: verticalSpacing, right: horizontalSpacing)
+        layout.minimumLineSpacing = config.minimumLineSpacing
+        layout.sectionInset = UIEdgeInsets(
+            top: config.verticalSpacing,
+            left: config.horizontalSpacing,
+            bottom: config.verticalSpacing,
+            right: config.horizontalSpacing
+        )
         collectionView.collectionViewLayout = layout
     }
     

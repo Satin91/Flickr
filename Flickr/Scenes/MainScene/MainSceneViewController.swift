@@ -18,7 +18,7 @@ protocol MainSceneDisplayLogic: AnyObject {
 }
 
 class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
-    let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout())
+    let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout(), layoutSize: .medium)
     
     var interactor: MainSceneInteractor?
     var router: (NSObjectProtocol & MainSceneRoutingLogic & MainSceneDataPassing)?
@@ -68,9 +68,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     
     private func loadPhotos(by text: String, withCount: Int) {
         let request = MainScene.LoadPhotos.Request(text: text, photosCount: withCount)
-        Task {
-            try await interactor?.fetchPhotos(request: request)
-        }
+        interactor?.fetchPhotos(request: request)
     }
 }
 
@@ -88,7 +86,6 @@ extension MainSceneViewController {
         collectionView.didMove(toParent: self)
         collectionView.view.translatesAutoresizingMaskIntoConstraints = false
         collectionView.view.equalConstraint(to: collectionViewContainer)
-        collectionView.itemsPerLine = 3
     }
     
     private func createTextField(frame: CGRect) -> UITextField {

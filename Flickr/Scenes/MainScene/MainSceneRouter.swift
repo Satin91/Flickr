@@ -33,6 +33,7 @@ class MainSceneRouter: NSObject, MainSceneRoutingLogic, MainSceneDataPassing {
     }
     
     func navigateToDetailView(source: MainSceneViewController, destination: DetailSceneViewController) {
+        source.modalPresentationStyle = .fullScreen
         source.present(destination, animated: true)
     }
 

@@ -18,6 +18,9 @@
 		8E3CE0C72A29BAC4007A3911 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0C62A29BAC4007A3911 /* DatabaseManager.swift */; };
 		8E3CE0C92A29BC2F007A3911 /* RealmPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0C82A29BC2F007A3911 /* RealmPhotoModel.swift */; };
 		8E3CE0CB2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0CA2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift */; };
+		8E5FB0CA2A2A952A00DFFA97 /* PhotoDescriptionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5FB0C92A2A952A00DFFA97 /* PhotoDescriptionTableView.swift */; };
+		8E5FB0CF2A2A973C00DFFA97 /* PhotoDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5FB0CD2A2A973C00DFFA97 /* PhotoDescriptionCell.swift */; };
+		8E5FB0D02A2A973C00DFFA97 /* PhotoDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E5FB0CE2A2A973C00DFFA97 /* PhotoDescriptionCell.xib */; };
 		8E8780B12A29045300EBE979 /* DetailScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AB2A29045300EBE979 /* DetailScenePresenter.swift */; };
 		8E8780B22A29045300EBE979 /* DetailSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AC2A29045300EBE979 /* DetailSceneWorker.swift */; };
 		8E8780B32A29045300EBE979 /* DetailSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AD2A29045300EBE979 /* DetailSceneRouter.swift */; };
@@ -65,6 +68,9 @@
 		8E3CE0C62A29BAC4007A3911 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		8E3CE0C82A29BC2F007A3911 /* RealmPhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhotoModel.swift; sourceTree = "<group>"; };
 		8E3CE0CA2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneConfigurator.swift; sourceTree = "<group>"; };
+		8E5FB0C92A2A952A00DFFA97 /* PhotoDescriptionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDescriptionTableView.swift; sourceTree = "<group>"; };
+		8E5FB0CD2A2A973C00DFFA97 /* PhotoDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDescriptionCell.swift; sourceTree = "<group>"; };
+		8E5FB0CE2A2A973C00DFFA97 /* PhotoDescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoDescriptionCell.xib; sourceTree = "<group>"; };
 		8E8780AB2A29045300EBE979 /* DetailScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScenePresenter.swift; sourceTree = "<group>"; };
 		8E8780AC2A29045300EBE979 /* DetailSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSceneWorker.swift; sourceTree = "<group>"; };
 		8E8780AD2A29045300EBE979 /* DetailSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSceneRouter.swift; sourceTree = "<group>"; };
@@ -150,6 +156,16 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		8E5FB0C82A2A950800DFFA97 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				8E5FB0C92A2A952A00DFFA97 /* PhotoDescriptionTableView.swift */,
+				8E5FB0CD2A2A973C00DFFA97 /* PhotoDescriptionCell.swift */,
+				8E5FB0CE2A2A973C00DFFA97 /* PhotoDescriptionCell.xib */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		8E8780A92A28E81F00EBE979 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +232,7 @@
 		8EC024392A28D98F0000F56B /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				8E5FB0C82A2A950800DFFA97 /* TableView */,
 				8E8780D42A29527000EBE979 /* AlertViewController */,
 				8ECDF9102A268683002DBF12 /* PhotoCollectionViewController */,
 				8E3CE0B32A29958B007A3911 /* ActivityView */,
@@ -386,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8ECDF8F72A2643EE002DBF12 /* LaunchScreen.storyboard in Resources */,
+				8E5FB0D02A2A973C00DFFA97 /* PhotoDescriptionCell.xib in Resources */,
 				8ECDF8F42A2643EE002DBF12 /* Assets.xcassets in Resources */,
 				8ECDF8F22A2643EC002DBF12 /* Main.storyboard in Resources */,
 			);
@@ -476,6 +494,7 @@
 				8ECDF9152A269A26002DBF12 /* Constants.swift in Sources */,
 				8EC024382A285FE10000F56B /* MainSceneViewController.swift in Sources */,
 				8E16A7902A2A507D00EABE10 /* StringExtensions.swift in Sources */,
+				8E5FB0CA2A2A952A00DFFA97 /* PhotoDescriptionTableView.swift in Sources */,
 				8ECDF8EB2A2643EC002DBF12 /* AppDelegate.swift in Sources */,
 				8E8780B32A29045300EBE979 /* DetailSceneRouter.swift in Sources */,
 				8E3CE0BE2A29B604007A3911 /* FavoritesScenePresenter.swift in Sources */,
@@ -487,6 +506,7 @@
 				8E8780D12A292B0500EBE979 /* DetailSceneConfigurator.swift in Sources */,
 				8E8780CF2A292A2A00EBE979 /* ConfiguratorsLibrary.swift in Sources */,
 				8E8780D62A29528F00EBE979 /* AlertController.swift in Sources */,
+				8E5FB0CF2A2A973C00DFFA97 /* PhotoDescriptionCell.swift in Sources */,
 				8E3CE0BF2A29B604007A3911 /* FavoritesSceneWorker.swift in Sources */,
 				8E8780B12A29045300EBE979 /* DetailScenePresenter.swift in Sources */,
 				8E3CE0C12A29B604007A3911 /* FavoritesSceneModels.swift in Sources */,
