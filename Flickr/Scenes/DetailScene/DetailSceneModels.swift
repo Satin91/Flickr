@@ -13,7 +13,7 @@
 import UIKit
 
 enum DetailScene {
-    enum InitialModel {
+    enum InitialSetup {
         struct Request {
         }
 
@@ -28,15 +28,15 @@ enum DetailScene {
     
     enum Share {
         struct Request {
-            var urlString: String
         }
 
         struct Response {
-            var photoModel: String
+            var isValidAddress: Bool
+            var urlString: String
         }
 
         struct ViewModel {
-            var activityController: UIActivityViewController
+            var activityView: ActivityView
         }
     }
 }

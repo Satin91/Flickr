@@ -28,6 +28,4 @@ enum MainScene {
             var photoModel: [PhotoModel]?
         }
     }
-    
-    
 }

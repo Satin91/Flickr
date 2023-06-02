@@ -29,6 +29,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        photoSelectionObserver()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,8 +61,8 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         }
     }
     
-    private func didSelectPhoto() {
-        collectionView.onTapGesture = { [weak self] photo in
+    private func photoSelectionObserver() {
+        collectionView.didSelectPhoto = { [weak self] photo in
             guard let self else { return }
             self.interactor?.putInDataStore(photoModel: photo)
             self.router?.routeToDetailScene()

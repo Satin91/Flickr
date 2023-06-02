@@ -10,6 +10,6 @@ import UIKit
 struct PhotoModel {
     var title: String
     var owner: String
-    var address: String
+    var imageURL: String
     var image: UIImage
 }

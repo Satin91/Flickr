@@ -13,17 +13,22 @@
 import UIKit
 
 protocol DetailScenePresentationLogic {
-    func updateUI(response: DetailScene.InitialModel.Response)
+    func initialSetup(response: DetailScene.InitialSetup.Response)
+    func showActivityView(response: DetailScene.Share.Response)
 }
 
 class DetailScenePresenter: DetailScenePresentationLogic {
     weak var viewController: DetailSceneDisplayLogic?
 
-    // MARK: Parse and calc respnse from DetailSceneInteractor and send simple view model to DetailSceneViewController to be displayed
-
-    func updateUI(response: DetailScene.InitialModel.Response) {
-        let viewModel = DetailScene.InitialModel.ViewModel(photoModel: response.photoModel)
-        viewController?.displaySomething(viewModel: viewModel)
-        print("update")
+    func initialSetup(response: DetailScene.InitialSetup.Response) {
+        let viewModel = DetailScene.InitialSetup.ViewModel(photoModel: response.photoModel)
+        viewController?.initialSetup(viewModel: viewModel)
+    }
+    
+    func showActivityView(response: DetailScene.Share.Response) {
+        guard response.isValidAddress else { return }
+        let activityView = ActivityView(activityItems: [response.urlString], applicationActivities: [])
+        let viewModel = DetailScene.Share.ViewModel(activityView: activityView)
+        viewController?.showActivityView(viewModel: viewModel)
     }
 }

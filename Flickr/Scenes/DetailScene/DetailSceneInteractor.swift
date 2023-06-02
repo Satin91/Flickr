@@ -13,29 +13,29 @@
 import UIKit
 
 protocol DetailSceneBusinessLogic {
-    func initialSetup(request: DetailScene.InitialModel.Request)
-    func shareLink(request: DetailScene.Share.Request)
+    func initialSetup(request: DetailScene.InitialSetup.Request)
+    func shareLink()
 }
 
 protocol DetailSceneDataStore {
-    var photo: PhotoModel? { get set }
+    var photo: PhotoModel! { get set }
 }
 
 class DetailSceneInteractor: DetailSceneBusinessLogic, DetailSceneDataStore {
-    var photo: PhotoModel?
-    
     var presenter: DetailScenePresentationLogic?
     var worker: DetailSceneWorker?
+    var photo: PhotoModel!
     
-    func initialSetup(request: DetailScene.InitialModel.Request) {
+    func initialSetup(request: DetailScene.InitialSetup.Request) {
         worker = DetailSceneWorker()
         worker?.doSomeWork()
         guard let photo else { fatalError("Image not received") }
-        let response = DetailScene.InitialModel.Response(photoModel: photo)
-        presenter?.updateUI(response: response)
+        let response = DetailScene.InitialSetup.Response(photoModel: photo)
+        presenter?.initialSetup(response: response)
     }
     
-    func shareLink(request: DetailScene.Share.Request) {
-        
+    func shareLink() {
+        let response = DetailScene.Share.Response(isValidAddress: true, urlString: photo.imageURL)
+        presenter?.showActivityView(response: response)
     }
 }

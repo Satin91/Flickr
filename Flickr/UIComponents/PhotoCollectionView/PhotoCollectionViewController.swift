@@ -15,13 +15,13 @@ class PhotoCollectionViewController: UICollectionViewController {
     private var spacingCount: CGFloat {
         itemCount + 1
     }
-    var onTapGesture: ((PhotoModel) -> Void)?
+    var didSelectPhoto: ((PhotoModel) -> Void)?
     
     var photoArray: [PhotoModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerItem()
+        registerCollectionViewItem()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +41,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    private func registerItem() {
+    private func registerCollectionViewItem() {
         collectionView.register(PhotosCollectionViewItem.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
@@ -54,6 +54,6 @@ class PhotoCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        onTapGesture!(photoArray[indexPath.row])
+        didSelectPhoto?(photoArray[indexPath.row])
     }
 }

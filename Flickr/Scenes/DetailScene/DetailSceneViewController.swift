@@ -13,33 +13,33 @@
 import UIKit
 
 protocol DetailSceneDisplayLogic: AnyObject {
-    func displaySomething(viewModel: DetailScene.InitialModel.ViewModel)
+    func initialSetup(viewModel: DetailScene.InitialSetup.ViewModel)
+    func showActivityView(viewModel: DetailScene.Share.ViewModel)
 }
 
 class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
     var interactor: DetailSceneBusinessLogic?
-    var router: (NSObjectProtocol & DetailSceneRoutingLogic & DetailSceneDataPassing)?
+    var router: (DetailSceneRoutingLogic & DetailSceneDataPassing)?
     
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var titleText: UILabel!
-    @IBOutlet private var owner: UILabel!
+    @IBOutlet private var author: UILabel!
     @IBOutlet private var address: UITextView!
     
+    // Изза того что все данных хранятся в интеракторе, можно отправлять пустой запрос, или просто
     @IBAction private func shareButtonAction(_ sender: UIButton) {
-        let items = ["Text For Share"]
-        let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        self.present(avc, animated: true)
+        interactor?.shareLink()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
+        fillData()
         configureViews()
         print("Detail scene did load")
     }
     
-    func doSomething() {
-        let request = DetailScene.InitialModel.Request()
+    func fillData() {
+        let request = DetailScene.InitialSetup.Request()
         interactor?.initialSetup(request: request)
     }
     
@@ -48,10 +48,16 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
         address.dataDetectorTypes = .link
     }
     
-    func displaySomething(viewModel: DetailScene.InitialModel.ViewModel) {
+    func initialSetup(viewModel: DetailScene.InitialSetup.ViewModel) {
         imageView.image = viewModel.photoModel.image
         titleText.text = viewModel.photoModel.title
-        owner.text = viewModel.photoModel.owner
-        address.text = viewModel.photoModel.address
+        author.text = viewModel.photoModel.owner
+        address.text = viewModel.photoModel.imageURL
+    }
+    
+    func showActivityView(viewModel: DetailScene.Share.ViewModel) {
+        DispatchQueue.main.async {
+            viewModel.activityView.showOn(self)
+        }
     }
 }

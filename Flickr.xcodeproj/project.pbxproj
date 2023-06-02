@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B3BCF9CA79A0C86F3D1EE71 /* libPods-Flickr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA0DA61B1FBE3CC96E9AE53 /* libPods-Flickr.a */; };
+		8E3CE0B22A299587007A3911 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0B12A299587007A3911 /* ActivityView.swift */; };
 		8E8780B12A29045300EBE979 /* DetailScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AB2A29045300EBE979 /* DetailScenePresenter.swift */; };
 		8E8780B22A29045300EBE979 /* DetailSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AC2A29045300EBE979 /* DetailSceneWorker.swift */; };
 		8E8780B32A29045300EBE979 /* DetailSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AD2A29045300EBE979 /* DetailSceneRouter.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		5BA0DA61B1FBE3CC96E9AE53 /* libPods-Flickr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Flickr.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B9ADF893EA70A92D963ECD /* Pods-Flickr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flickr.debug.xcconfig"; path = "Target Support Files/Pods-Flickr/Pods-Flickr.debug.xcconfig"; sourceTree = "<group>"; };
+		8E3CE0B12A299587007A3911 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		8E8780AB2A29045300EBE979 /* DetailScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScenePresenter.swift; sourceTree = "<group>"; };
 		8E8780AC2A29045300EBE979 /* DetailSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSceneWorker.swift; sourceTree = "<group>"; };
 		8E8780AD2A29045300EBE979 /* DetailSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSceneRouter.swift; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E3CE0B32A29958B007A3911 /* ActivityView */ = {
+			isa = PBXGroup;
+			children = (
+				8E3CE0B12A299587007A3911 /* ActivityView.swift */,
+			);
+			path = ActivityView;
+			sourceTree = "<group>";
+		};
 		8E8780A92A28E81F00EBE979 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +175,7 @@
 			children = (
 				8E8780D42A29527000EBE979 /* AlertViewController */,
 				8ECDF9102A268683002DBF12 /* PhotoCollectionView */,
+				8E3CE0B32A29958B007A3911 /* ActivityView */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -407,6 +418,7 @@
 				8E8780D62A29528F00EBE979 /* AlertController.swift in Sources */,
 				8E8780B12A29045300EBE979 /* DetailScenePresenter.swift in Sources */,
 				8ECDF8ED2A2643EC002DBF12 /* SceneDelegate.swift in Sources */,
+				8E3CE0B22A299587007A3911 /* ActivityView.swift in Sources */,
 				8E8780D32A2949FF00EBE979 /* PhotoModel.swift in Sources */,
 				8E8780B62A29045300EBE979 /* DetailSceneInteractor.swift in Sources */,
 			);

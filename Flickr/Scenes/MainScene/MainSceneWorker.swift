@@ -50,7 +50,7 @@ extension MainSceneWorker: MainSceneWorkerLogic {
                 PhotoModel(
                     title: photo.title,
                     owner: photo.owner,
-                    address: photo.photoUrl.absoluteString,
+                    imageURL: photo.photoUrl.absoluteString,
                     image: (image ?? UIImage(systemName: "photo.fill"))!
                 )
             )
