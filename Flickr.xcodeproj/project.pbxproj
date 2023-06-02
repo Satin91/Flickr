@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B3BCF9CA79A0C86F3D1EE71 /* libPods-Flickr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA0DA61B1FBE3CC96E9AE53 /* libPods-Flickr.a */; };
 		8E3CE0B22A299587007A3911 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0B12A299587007A3911 /* ActivityView.swift */; };
 		8E3CE0BE2A29B604007A3911 /* FavoritesScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0B82A29B604007A3911 /* FavoritesScenePresenter.swift */; };
 		8E3CE0BF2A29B604007A3911 /* FavoritesSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0B92A29B604007A3911 /* FavoritesSceneWorker.swift */; };
@@ -15,6 +14,9 @@
 		8E3CE0C12A29B604007A3911 /* FavoritesSceneModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0BB2A29B604007A3911 /* FavoritesSceneModels.swift */; };
 		8E3CE0C22A29B604007A3911 /* FavoritesSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0BC2A29B604007A3911 /* FavoritesSceneViewController.swift */; };
 		8E3CE0C32A29B604007A3911 /* FavoritesSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0BD2A29B604007A3911 /* FavoritesSceneInteractor.swift */; };
+		8E3CE0C72A29BAC4007A3911 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0C62A29BAC4007A3911 /* DataBaseManager.swift */; };
+		8E3CE0C92A29BC2F007A3911 /* RealmPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0C82A29BC2F007A3911 /* RealmPhotoModel.swift */; };
+		8E3CE0CB2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0CA2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift */; };
 		8E8780B12A29045300EBE979 /* DetailScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AB2A29045300EBE979 /* DetailScenePresenter.swift */; };
 		8E8780B22A29045300EBE979 /* DetailSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AC2A29045300EBE979 /* DetailSceneWorker.swift */; };
 		8E8780B32A29045300EBE979 /* DetailSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AD2A29045300EBE979 /* DetailSceneRouter.swift */; };
@@ -45,10 +47,11 @@
 		8ECDF9072A2683D4002DBF12 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9062A2683D4002DBF12 /* NetworkService.swift */; };
 		8ECDF90E2A2685A4002DBF12 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF90D2A2685A4002DBF12 /* PhotoCollectionViewController.swift */; };
 		8ECDF9152A269A26002DBF12 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9142A269A26002DBF12 /* Constants.swift */; };
+		B481665D29A152ED17437228 /* Pods_Flickr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2628180DFA95803D9EE392E5 /* Pods_Flickr.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5BA0DA61B1FBE3CC96E9AE53 /* libPods-Flickr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Flickr.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2628180DFA95803D9EE392E5 /* Pods_Flickr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flickr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B9ADF893EA70A92D963ECD /* Pods-Flickr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flickr.debug.xcconfig"; path = "Target Support Files/Pods-Flickr/Pods-Flickr.debug.xcconfig"; sourceTree = "<group>"; };
 		8E3CE0B12A299587007A3911 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		8E3CE0B82A29B604007A3911 /* FavoritesScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesScenePresenter.swift; sourceTree = "<group>"; };
@@ -57,6 +60,9 @@
 		8E3CE0BB2A29B604007A3911 /* FavoritesSceneModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneModels.swift; sourceTree = "<group>"; };
 		8E3CE0BC2A29B604007A3911 /* FavoritesSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneViewController.swift; sourceTree = "<group>"; };
 		8E3CE0BD2A29B604007A3911 /* FavoritesSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneInteractor.swift; sourceTree = "<group>"; };
+		8E3CE0C62A29BAC4007A3911 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
+		8E3CE0C82A29BC2F007A3911 /* RealmPhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhotoModel.swift; sourceTree = "<group>"; };
+		8E3CE0CA2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneConfigurator.swift; sourceTree = "<group>"; };
 		8E8780AB2A29045300EBE979 /* DetailScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScenePresenter.swift; sourceTree = "<group>"; };
 		8E8780AC2A29045300EBE979 /* DetailSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSceneWorker.swift; sourceTree = "<group>"; };
 		8E8780AD2A29045300EBE979 /* DetailSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSceneRouter.swift; sourceTree = "<group>"; };
@@ -97,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B3BCF9CA79A0C86F3D1EE71 /* libPods-Flickr.a in Frameworks */,
+				B481665D29A152ED17437228 /* Pods_Flickr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,14 +121,31 @@
 		8E3CE0B72A29B59F007A3911 /* FavoritesScene */ = {
 			isa = PBXGroup;
 			children = (
+				8E3CE0BC2A29B604007A3911 /* FavoritesSceneViewController.swift */,
 				8E3CE0B82A29B604007A3911 /* FavoritesScenePresenter.swift */,
 				8E3CE0B92A29B604007A3911 /* FavoritesSceneWorker.swift */,
 				8E3CE0BA2A29B604007A3911 /* FavoritesSceneRouter.swift */,
 				8E3CE0BB2A29B604007A3911 /* FavoritesSceneModels.swift */,
-				8E3CE0BC2A29B604007A3911 /* FavoritesSceneViewController.swift */,
 				8E3CE0BD2A29B604007A3911 /* FavoritesSceneInteractor.swift */,
+				8E3CE0CA2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift */,
 			);
 			path = FavoritesScene;
+			sourceTree = "<group>";
+		};
+		8E3CE0C42A29BA97007A3911 /* DatabaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				8E3CE0C62A29BAC4007A3911 /* DataBaseManager.swift */,
+			);
+			path = DatabaseManager;
+			sourceTree = "<group>";
+		};
+		8E3CE0C52A29BAAE007A3911 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8E3CE0C42A29BA97007A3911 /* DatabaseManager */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		8E8780A92A28E81F00EBE979 /* Network */ = {
@@ -223,6 +246,7 @@
 				8E8780CD2A2929F200EBE979 /* Factory */,
 				8EC0242C2A2859060000F56B /* Scenes */,
 				8ECDF9052A2683C5002DBF12 /* Services */,
+				8E3CE0C52A29BAAE007A3911 /* Managers */,
 				8ECDF90F2A268666002DBF12 /* Models */,
 				8EC024392A28D98F0000F56B /* UIComponents */,
 				8ECDF9132A2699E4002DBF12 /* Extensions */,
@@ -256,6 +280,7 @@
 			children = (
 				8ECDF9002A26681E002DBF12 /* PhotoNetworkModel.swift */,
 				8E8780D22A2949FF00EBE979 /* PhotoModel.swift */,
+				8E3CE0C82A29BC2F007A3911 /* RealmPhotoModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -282,7 +307,7 @@
 		D0BE03D56DC88AF2CC2CA0A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5BA0DA61B1FBE3CC96E9AE53 /* libPods-Flickr.a */,
+				2628180DFA95803D9EE392E5 /* Pods_Flickr.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -308,6 +333,7 @@
 				8ECDF8E42A2643EC002DBF12 /* Frameworks */,
 				8ECDF8E52A2643EC002DBF12 /* Resources */,
 				8EC0242B2A2855740000F56B /* ShellScript */,
+				8C8620F4FFBA82DAC57A4754 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -365,6 +391,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8C8620F4FFBA82DAC57A4754 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Flickr/Pods-Flickr-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Flickr/Pods-Flickr-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Flickr/Pods-Flickr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8EC0242B2A2855740000F56B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -415,9 +458,12 @@
 				8EC024362A285FE10000F56B /* MainSceneRouter.swift in Sources */,
 				8E8780B52A29045300EBE979 /* DetailSceneViewController.swift in Sources */,
 				8ECDF9072A2683D4002DBF12 /* NetworkService.swift in Sources */,
+				8E3CE0C72A29BAC4007A3911 /* DataBaseManager.swift in Sources */,
 				8E8780C22A290CB400EBE979 /* MainSceneConfigurator.swift in Sources */,
 				8ECDF9042A268323002DBF12 /* MainSceneInteractor.swift in Sources */,
+				8E3CE0CB2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift in Sources */,
 				8EC024372A285FE10000F56B /* MainSceneModels.swift in Sources */,
+				8E3CE0C92A29BC2F007A3911 /* RealmPhotoModel.swift in Sources */,
 				8E8780C42A2911D300EBE979 /* UIViewControllerInstantiate.swift in Sources */,
 				8E3CE0C22A29B604007A3911 /* FavoritesSceneViewController.swift in Sources */,
 				8ECDF8FF2A2667AC002DBF12 /* PhotosCollectionViewItem.swift in Sources */,

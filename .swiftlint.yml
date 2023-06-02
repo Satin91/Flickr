@@ -23,6 +23,7 @@ disabled_rules: # rule identifiers turned on by default to exclude from running
 - prohibited_interface_builder
 - implicitly_unwrapped_optional
 - no_magic_numbers
+- force_try
 
 opt_in_rules: # some rules are turned off by default, so you need to opt-in
 - anonymous_argument_in_multiline_closure
@@ -78,7 +79,6 @@ opt_in_rules: # some rules are turned off by default, so you need to opt-in
 - first_where
 - flatmap_over_map_reduce
 - for_where
-- force_try
 - function_parameter_count
 - generic_type_name
 - ibinspectable_in_extension

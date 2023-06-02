@@ -35,7 +35,6 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        fetchPhotos(by: "Minsk")
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -81,7 +80,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
 // MARK: Setup UI
 extension MainSceneViewController {
     func setupUI() {
-        configureProperties()
+        configureDependencies()
         addCollectionView()
         configureNavigationBar()
     }
@@ -103,7 +102,7 @@ extension MainSceneViewController {
         return textField
     }
     
-    func configureProperties() {
+    func configureDependencies() {
         ConfiguratorsLibrary.mainScene.configure(self)
     }
     

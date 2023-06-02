@@ -26,10 +26,12 @@ class FavoritesSceneInteractor: FavoritesSceneBusinessLogic, FavoritesSceneDataS
     var worker: FavoritesSceneWorker?
     // var name: String = ""
     
+    init(presenter: FavoritesScenePresentationLogic? = nil, worker: FavoritesSceneWorker? = nil) {
+        self.presenter = presenter
+        self.worker = worker
+    }
+    
     func doSomething(request: FavoritesScene.Something.Request) {
-        worker = FavoritesSceneWorker()
-        worker?.doSomeWork()
-
         let response = FavoritesScene.Something.Response()
         presenter?.presentSomething(response: response)
     }

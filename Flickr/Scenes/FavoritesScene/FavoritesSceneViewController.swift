@@ -48,6 +48,7 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         doSomething()
 //        doSomethingElse()
     }
@@ -64,7 +65,12 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
 
 extension FavoritesSceneViewController {
     func setupUI() {
+        configureDependencies()
         addCollectionView()
+    }
+    
+    func configureDependencies() {
+        ConfiguratorsLibrary.favoritesScene.configure(self)
     }
     
     private func addCollectionView() {

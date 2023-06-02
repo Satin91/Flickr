@@ -13,10 +13,12 @@
 import UIKit
 
 class FavoritesSceneWorker {
+    var databaseManager: DatabaseManagerProtocol
+    
+    init(databaseManager: DatabaseManagerProtocol) {
+        self.databaseManager = databaseManager
+    }
+    
     func doSomeWork() {
     }
-    //
-    //    func doSomeOtherWork() {
-    //
-    //    }
 }

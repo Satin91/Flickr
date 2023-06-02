@@ -1,13 +1,13 @@
 //
-//  Configurator.swift
+//  FavoritesSceneConfigurator.swift
 //  Flickr
 //
-//  Created by Артур Кулик on 01.06.2023.
+//  Created by Артур Кулик on 02.06.2023.
 //
 
 import UIKit
 
-final class MainSceneConfigurator: ConfiguratorProtocol {
+final class FavoritesSceneConfigurator: ConfiguratorProtocol {
     private weak var sceneFactory: SceneFactoryProtocol!
     
     init(sceneFactory: SceneFactoryProtocol) {
@@ -17,14 +17,13 @@ final class MainSceneConfigurator: ConfiguratorProtocol {
     // This attribute is needed so as not to bother with a warning that the method is not used
     @discardableResult
     func configure<T>(_ vc: T) -> T where T: UIViewController {
-        let vc = vc as! MainSceneViewController
+        let vc = vc as! FavoritesSceneViewController
         sceneFactory.sceneConfigurator = self
-        let networkService = NetworkService()
         let databaseManager = DatabaseManager()
-        let worker = MainSceneWorker(networkService: networkService, databaseManager: databaseManager)
-        let presenter = MainScenePresenter()
-        let interactor = MainSceneInteractor(worker: worker, presenter: presenter)
-        let router = MainSceneRouter()
+        let worker = FavoritesSceneWorker(databaseManager: databaseManager)
+        let presenter = FavoritesScenePresenter()
+        let interactor = FavoritesSceneInteractor(presenter: presenter, worker: worker)
+        let router = FavoritesSceneRouter()
         vc.interactor = interactor
         vc.router = router
         interactor.presenter = presenter
