@@ -5,21 +5,21 @@
 //  Created by Артур Кулик on 30.05.2023.
 //
 
-import Foundation
+import UIKit
 
 struct PhotoNetworkModel: Decodable {
-    let photos: Photos
+    let photos: PageDescription
 }
 
-struct Photos: Decodable {
+struct PageDescription: Decodable {
     let page: Int
     let pages: Int
     let perpage: Int
     let total: Int
-    let photo: [Photo]
+    let photo: [PhotoInfo]
 }
 
-struct Photo: Decodable {
+struct PhotoInfo: Decodable {
     let id: String
     let owner: String
     let secret: String

@@ -27,7 +27,6 @@ class DetailScenePresenter: DetailScenePresentationLogic {
     }
     
     func showActivityView(response: DetailScene.Share.Response) {
-        print("Debug: \(Thread.current)")
         guard response.isValidAddress else { return }
         let activityView = ActivityView(activityItems: [response.urlString], applicationActivities: [])
         let viewModel = DetailScene.Share.ViewModel(activityView: activityView)

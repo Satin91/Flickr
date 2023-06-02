@@ -14,7 +14,7 @@ import UIKit
 
 protocol FavoritesSceneDisplayLogic: AnyObject {
     func displaySomething(viewModel: FavoritesScene.Database.ViewModel)
-    func completeFetch(viewModel: FavoritesScene.Database.ViewModel)
+    func fetchCompleted(viewModel: FavoritesScene.Database.ViewModel)
 }
 
 class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic {
@@ -23,29 +23,6 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
     
     let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout())
     @IBOutlet private var collectionViewContainer: UIView!
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    private func setup() {
-        let viewController = self
-        let interactor = FavoritesSceneInteractor()
-        let presenter = FavoritesScenePresenter()
-        let router = FavoritesSceneRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,10 +49,8 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
         interactor?.fetchObjectsFromDatabase(request: FavoritesScene.Database.Request(type: RealmPhotoModel.self))
     }
     
-    func completeFetch(viewModel: FavoritesScene.Database.ViewModel) {
-        let objects = viewModel.photos
-        collectionView.photoArray = objects
-        collectionView.reloadData()
+    func fetchCompleted(viewModel: FavoritesScene.Database.ViewModel) {
+        collectionView.display(photos: viewModel.photos)
     }
 }
 

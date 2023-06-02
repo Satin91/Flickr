@@ -7,8 +7,14 @@
 
 import UIKit
 
+enum ImageLoadError: Error {
+    case timeout
+    case invalidURL
+    case noInternetConnection
+}
+
 protocol MainSceneWorkerLogic {
-    func parse(request: MainScene.FetchPhotos.Request) async throws -> MainScene.FetchPhotos.Response
+    func downLoadPhotos(request: MainScene.LoadPhotos.Request) async throws -> MainScene.LoadPhotos.Response
 }
 
 class MainSceneWorker {
@@ -20,41 +26,42 @@ class MainSceneWorker {
 }
 
 extension MainSceneWorker: MainSceneWorkerLogic {
-    func parse(request: MainScene.FetchPhotos.Request) async throws -> MainScene.FetchPhotos.Response {
-        let params = [
-            "api_key": Constants.Api.flickrKey,
-            "format": "json",
-            "method": "flickr.photos.search",
-            "per_page": "5",
-            "text": request.text,
-            "nojsoncallback": "1"
-        ]
-        var photoNetworkModel: PhotoNetworkModel!
+    func downLoadPhotos(request: MainScene.LoadPhotos.Request) async throws -> MainScene.LoadPhotos.Response {
+        var photoNetworkModel: PhotoNetworkModel
         do {
-            photoNetworkModel = try await networkService.parseJson(url: Constants.Api.baseURL, params: params, type: PhotoNetworkModel.self)
+            photoNetworkModel = try await parseJson(params: request.params)
         } catch let error {
-            return MainScene.FetchPhotos.Response(errorMessage: error.localizedDescription)
+            let errorText = error.asAFError?.localizedDescription.removeTo(symbol: ":")
+            return MainScene.LoadPhotos.Response(errorMessage: errorText)
         }
         
-        var photoModel: [PhotoModel] = []
-        
-        for photo in photoNetworkModel.photos.photo {
+        var photos: [PhotoModel] = []
+        do {
+            photos = try await downloadImages(from: photoNetworkModel)
+        } catch let error {
+            let errorText = error.asAFError?.localizedDescription.removeTo(symbol: ":")
+            return MainScene.LoadPhotos.Response(errorMessage: errorText)
+        }
+        return MainScene.LoadPhotos.Response(photos: photos)
+    }
+    
+    private func parseJson(params: [String: Any]) async throws -> PhotoNetworkModel {
+        try await networkService.parseJson(url: Constants.Api.baseURL, params: params, type: PhotoNetworkModel.self)
+    }
+    
+    
+    private func downloadImages(from networkModel: PhotoNetworkModel) async throws -> [PhotoModel] {
+        var photos: [PhotoModel] = []
+        for photoInfo in networkModel.photos.photo {
             var image: UIImage?
             do {
-                image = try await networkService.downloadImage(url: photo.photoUrl.absoluteString)
+                image = try await networkService.downloadImage(url: photoInfo.photoUrl.absoluteString)
             } catch let error {
-                return MainScene.FetchPhotos.Response(errorMessage: error.localizedDescription)
+                throw error
             }
-            print("Download colpleted \(photo.photoUrl.absoluteString)")
-            photoModel.append(
-                PhotoModel(
-                    title: photo.title,
-                    owner: photo.owner,
-                    imageURL: photo.photoUrl.absoluteString,
-                    image: (image ?? UIImage(systemName: "photo.fill"))!
-                )
-            )
+            let photo = PhotoModel(from: photoInfo, with: image)
+            photos.append(photo)
         }
-        return MainScene.FetchPhotos.Response(photoModel: photoModel)
+        return photos
     }
 }

@@ -37,7 +37,7 @@ class FavoritesScenePresenter: FavoritesScenePresentationLogic {
             )
             return photoModel
         }
-        viewController?.completeFetch(viewModel: FavoritesScene.Database.ViewModel(photos: viewModel))
+        viewController?.fetchCompleted(viewModel: FavoritesScene.Database.ViewModel(photos: viewModel))
     }
 //
 //    func presentSomethingElse(response: FavoritesScene.SomethingElse.Response) {

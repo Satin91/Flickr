@@ -12,4 +12,18 @@ struct PhotoModel {
     var owner: String
     var imageURL: String
     var image: UIImage
+    
+    init(title: String, owner: String, imageURL: String, image: UIImage) {
+        self.title = title
+        self.owner = owner
+        self.imageURL = imageURL
+        self.image = image
+    }
+    
+    init(from photo: PhotoInfo, with image: UIImage?) {
+        self.title = photo.title
+        self.owner = photo.owner
+        self.imageURL = photo.photoUrl.absoluteString
+        self.image = (image ?? UIImage(systemName: "photo.fill"))!
+    }
 }

@@ -13,8 +13,8 @@
 import UIKit
 
 protocol MainSceneDisplayLogic: AnyObject {
-    func successFetchHandler(viewModel: MainScene.FetchPhotos.ViewModel)
-    func errorFetchHandler(viewModel: MainScene.FetchPhotos.ViewModel)
+    func loadSuccess(viewModel: MainScene.LoadPhotos.ViewModel)
+    func loadError(viewModel: MainScene.LoadPhotos.ViewModel)
 }
 
 class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
@@ -43,18 +43,15 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     }
     
     @objc func searchButtonTapped() {
-        fetchPhotos(by: textFieldText)
+        loadPhotos(by: textFieldText, withCount: 15)
     }
     
-    func successFetchHandler(viewModel: MainScene.FetchPhotos.ViewModel) {
-        guard let photoModel = viewModel.photoModel else { return }
-        collectionView.photoArray = photoModel
-        DispatchQueue.main.async {
-            self.collectionView.collectionView.reloadData()
-        }
+    func loadSuccess(viewModel: MainScene.LoadPhotos.ViewModel) {
+        guard let photos = viewModel.photos else { return }
+        collectionView.display(photos: photos)
     }
     
-    func errorFetchHandler(viewModel: MainScene.FetchPhotos.ViewModel) {
+    func loadError(viewModel: MainScene.LoadPhotos.ViewModel) {
         guard let message = viewModel.errorMessage else { return }
         DispatchQueue.main.async {
             AlertController.show(title: "Error", message: message, style: .alert, showOn: self)
@@ -64,13 +61,13 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     private func photoSelectionObserver() {
         collectionView.didSelectPhoto = { [weak self] photo in
             guard let self else { return }
-            self.interactor?.putInDataStore(photoModel: photo)
+            self.interactor?.putInDataStore(photo: photo)
             self.router?.routeToDetailScene()
         }
     }
     
-    private func fetchPhotos(by text: String) {
-        let request = MainScene.FetchPhotos.Request(text: text)
+    private func loadPhotos(by text: String, withCount: Int) {
+        let request = MainScene.LoadPhotos.Request(text: text, photosCount: withCount)
         Task {
             try await interactor?.fetchPhotos(request: request)
         }

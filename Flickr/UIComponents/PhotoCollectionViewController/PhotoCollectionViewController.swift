@@ -46,8 +46,11 @@ class PhotoCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    func reloadData() {
-        collectionView.reloadData()
+    func display(photos: [PhotoModel]) {
+        photoArray = photos
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
     private func registerCollectionViewItem() {

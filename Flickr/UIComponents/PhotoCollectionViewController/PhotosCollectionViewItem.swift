@@ -18,6 +18,7 @@ class PhotosCollectionViewItem: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        createImageView()
     }
     
     func createImageView() {
