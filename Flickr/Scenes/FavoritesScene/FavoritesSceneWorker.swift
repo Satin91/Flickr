@@ -27,7 +27,7 @@ class FavoritesSceneWorker: FavoritesSceneWorkerLogic {
         let objects = databaseManager.fetch(type: RealmPhotoModel.self)
         print("Objects \(objects)")
         print("Objects Count \(objects.count)")
-        let response = FavoritesScene.Database.Response(objects: [])
+        let response = FavoritesScene.Database.Response(objects: Array(objects))
         return response
     }
     

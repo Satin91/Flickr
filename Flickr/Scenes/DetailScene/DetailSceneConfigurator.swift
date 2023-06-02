@@ -22,6 +22,9 @@ final class DetailSceneConfigurator: ConfiguratorProtocol {
         let interactor = DetailSceneInteractor()
         let presenter = DetailScenePresenter()
         let router = DetailSceneRouter()
+        let database = DatabaseManager()
+        let worker = DetailSceneWorker(databaseManager: database)
+        interactor.worker = worker
         vc.interactor = interactor
         vc.router = router
         interactor.presenter = presenter

@@ -14,7 +14,7 @@
 		8E3CE0C12A29B604007A3911 /* FavoritesSceneModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0BB2A29B604007A3911 /* FavoritesSceneModels.swift */; };
 		8E3CE0C22A29B604007A3911 /* FavoritesSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0BC2A29B604007A3911 /* FavoritesSceneViewController.swift */; };
 		8E3CE0C32A29B604007A3911 /* FavoritesSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0BD2A29B604007A3911 /* FavoritesSceneInteractor.swift */; };
-		8E3CE0C72A29BAC4007A3911 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0C62A29BAC4007A3911 /* DataBaseManager.swift */; };
+		8E3CE0C72A29BAC4007A3911 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0C62A29BAC4007A3911 /* DatabaseManager.swift */; };
 		8E3CE0C92A29BC2F007A3911 /* RealmPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0C82A29BC2F007A3911 /* RealmPhotoModel.swift */; };
 		8E3CE0CB2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0CA2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift */; };
 		8E8780B12A29045300EBE979 /* DetailScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AB2A29045300EBE979 /* DetailScenePresenter.swift */; };
@@ -60,7 +60,7 @@
 		8E3CE0BB2A29B604007A3911 /* FavoritesSceneModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneModels.swift; sourceTree = "<group>"; };
 		8E3CE0BC2A29B604007A3911 /* FavoritesSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneViewController.swift; sourceTree = "<group>"; };
 		8E3CE0BD2A29B604007A3911 /* FavoritesSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneInteractor.swift; sourceTree = "<group>"; };
-		8E3CE0C62A29BAC4007A3911 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
+		8E3CE0C62A29BAC4007A3911 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		8E3CE0C82A29BC2F007A3911 /* RealmPhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhotoModel.swift; sourceTree = "<group>"; };
 		8E3CE0CA2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneConfigurator.swift; sourceTree = "<group>"; };
 		8E8780AB2A29045300EBE979 /* DetailScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScenePresenter.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		8E3CE0C42A29BA97007A3911 /* DatabaseManager */ = {
 			isa = PBXGroup;
 			children = (
-				8E3CE0C62A29BAC4007A3911 /* DataBaseManager.swift */,
+				8E3CE0C62A29BAC4007A3911 /* DatabaseManager.swift */,
 			);
 			path = DatabaseManager;
 			sourceTree = "<group>";
@@ -458,7 +458,7 @@
 				8EC024362A285FE10000F56B /* MainSceneRouter.swift in Sources */,
 				8E8780B52A29045300EBE979 /* DetailSceneViewController.swift in Sources */,
 				8ECDF9072A2683D4002DBF12 /* NetworkService.swift in Sources */,
-				8E3CE0C72A29BAC4007A3911 /* DataBaseManager.swift in Sources */,
+				8E3CE0C72A29BAC4007A3911 /* DatabaseManager.swift in Sources */,
 				8E8780C22A290CB400EBE979 /* MainSceneConfigurator.swift in Sources */,
 				8ECDF9042A268323002DBF12 /* MainSceneInteractor.swift in Sources */,
 				8E3CE0CB2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift in Sources */,

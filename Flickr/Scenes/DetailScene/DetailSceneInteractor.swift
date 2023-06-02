@@ -37,17 +37,17 @@ class DetailSceneInteractor: DetailSceneBusinessLogic, DetailSceneDataStore {
         let response = DetailScene.Share.Response(isValidAddress: true, urlString: photo.imageURL)
         presenter?.showActivityView(response: response)
     }
+    
+    @discardableResult
     func saveObjectToDatabase() {
         let realmModel = RealmPhotoModel()
         realmModel.title = photo.title
         realmModel.owner = photo.owner
         realmModel.imageURL = photo.imageURL
         realmModel.image = photo.image.pngData()
+        print("RealmModel \(realmModel)")
         let request = DetailScene.SaveToDB.Request(realmModel: realmModel)
-        Task {
-            try await worker?.saveObjectToDatabase(request: request)
-        }
-        let response = DetailScene.SaveToDB.Response(isSaved: true)
-        presenter?.saveObjectToDatabaseCompleted(response: response)
+        let response = worker?.saveObjectToDatabase(request: request)
+        presenter?.saveObjectToDatabaseCompleted(response: response!)
     }
 }

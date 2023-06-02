@@ -25,7 +25,7 @@ extension MainSceneWorker: MainSceneWorkerLogic {
             "api_key": Constants.Api.flickrKey,
             "format": "json",
             "method": "flickr.photos.search",
-            "per_page": "40",
+            "per_page": "5",
             "text": request.text,
             "nojsoncallback": "1"
         ]

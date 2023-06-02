@@ -51,6 +51,7 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
         super.viewDidLoad()
         setupUI()
         doSomething()
+        startFetchPhotos()
 //        doSomethingElse()
     }
 
