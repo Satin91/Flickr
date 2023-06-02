@@ -8,16 +8,25 @@
 import UIKit
 
 class PhotoCollectionViewController: UICollectionViewController {
-    private let itemCount: CGFloat = 3
     private let horizontalSpacing: CGFloat = 12
     private let verticalSpacing: CGFloat = 12
     private let reuseIdentifier = "photosCollectionViewCell"
+    var itemsPerLine: CGFloat = 3
     private var spacingCount: CGFloat {
-        itemCount + 1
+        itemsPerLine + 1
     }
     var didSelectPhoto: ((PhotoModel) -> Void)?
     
     var photoArray: [PhotoModel] = []
+    
+    convenience init(itemsPerLine: CGFloat) {
+        self.init(collectionViewLayout: UICollectionViewLayout())
+        self.itemsPerLine = itemsPerLine
+    }
+    
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +56,7 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     private func setupLayout() {
         let layout = UICollectionViewFlowLayout()
-        let itemSide = (self.collectionView.bounds.width - horizontalSpacing * spacingCount) / itemCount
+        let itemSide = (self.collectionView.bounds.width - horizontalSpacing * spacingCount) / itemsPerLine
         layout.itemSize = CGSize(width: itemSide, height: itemSide)
         layout.sectionInset = UIEdgeInsets(top: verticalSpacing, left: horizontalSpacing, bottom: verticalSpacing, right: horizontalSpacing)
         collectionView.collectionViewLayout = layout

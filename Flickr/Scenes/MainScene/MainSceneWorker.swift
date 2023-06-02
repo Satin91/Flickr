@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainSceneWorkerLogic {
-    func execute(request: MainScene.FetchPhotos.Request) async throws -> MainScene.FetchPhotos.Response
+    func parse(request: MainScene.FetchPhotos.Request) async throws -> MainScene.FetchPhotos.Response
 }
 
 class MainSceneWorker {
@@ -20,12 +20,12 @@ class MainSceneWorker {
 }
 
 extension MainSceneWorker: MainSceneWorkerLogic {
-    func execute(request: MainScene.FetchPhotos.Request) async throws -> MainScene.FetchPhotos.Response {
+    func parse(request: MainScene.FetchPhotos.Request) async throws -> MainScene.FetchPhotos.Response {
         let params = [
             "api_key": Constants.Api.flickrKey,
             "format": "json",
             "method": "flickr.photos.search",
-            "per_page": "25",
+            "per_page": "40",
             "text": request.text,
             "nojsoncallback": "1"
         ]

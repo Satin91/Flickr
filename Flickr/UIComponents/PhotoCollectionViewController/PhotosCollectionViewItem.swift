@@ -24,16 +24,18 @@ class PhotosCollectionViewItem: UICollectionViewCell {
         self.addSubview(imageView)
         addImageConstraints()
         self.layer.cornerCurve = .continuous
-        self.layer.cornerRadius = imageRadius
+        self.layer.cornerRadius = self.bounds.height * 0.07
         self.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
     }
     
     func addImageConstraints() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        imageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            imageView.topAnchor.constraint(equalTo: self.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3B3BCF9CA79A0C86F3D1EE71 /* libPods-Flickr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA0DA61B1FBE3CC96E9AE53 /* libPods-Flickr.a */; };
 		8E3CE0B22A299587007A3911 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0B12A299587007A3911 /* ActivityView.swift */; };
+		8E3CE0B62A29AF88007A3911 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0B52A29AF88007A3911 /* TabBarController.swift */; };
 		8E8780B12A29045300EBE979 /* DetailScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AB2A29045300EBE979 /* DetailScenePresenter.swift */; };
 		8E8780B22A29045300EBE979 /* DetailSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AC2A29045300EBE979 /* DetailSceneWorker.swift */; };
 		8E8780B32A29045300EBE979 /* DetailSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AD2A29045300EBE979 /* DetailSceneRouter.swift */; };
@@ -45,6 +46,7 @@
 		5BA0DA61B1FBE3CC96E9AE53 /* libPods-Flickr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Flickr.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B9ADF893EA70A92D963ECD /* Pods-Flickr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flickr.debug.xcconfig"; path = "Target Support Files/Pods-Flickr/Pods-Flickr.debug.xcconfig"; sourceTree = "<group>"; };
 		8E3CE0B12A299587007A3911 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		8E3CE0B52A29AF88007A3911 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8E8780AB2A29045300EBE979 /* DetailScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScenePresenter.swift; sourceTree = "<group>"; };
 		8E8780AC2A29045300EBE979 /* DetailSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSceneWorker.swift; sourceTree = "<group>"; };
 		8E8780AD2A29045300EBE979 /* DetailSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSceneRouter.swift; sourceTree = "<group>"; };
@@ -100,6 +102,14 @@
 			path = ActivityView;
 			sourceTree = "<group>";
 		};
+		8E3CE0B42A29AF4B007A3911 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				8E3CE0B52A29AF88007A3911 /* TabBarController.swift */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
 		8E8780A92A28E81F00EBE979 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,14 +130,6 @@
 				8E8780B02A29045300EBE979 /* DetailSceneInteractor.swift */,
 			);
 			path = DetailScene;
-			sourceTree = "<group>";
-		};
-		8E8780CA2A29234500EBE979 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				8E8780CD2A2929F200EBE979 /* Factory */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		8E8780CD2A2929F200EBE979 /* Factory */ = {
@@ -173,8 +175,9 @@
 		8EC024392A28D98F0000F56B /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				8E3CE0B42A29AF4B007A3911 /* TabBarController */,
 				8E8780D42A29527000EBE979 /* AlertViewController */,
-				8ECDF9102A268683002DBF12 /* PhotoCollectionView */,
+				8ECDF9102A268683002DBF12 /* PhotoCollectionViewController */,
 				8E3CE0B32A29958B007A3911 /* ActivityView */,
 			);
 			path = UIComponents;
@@ -202,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				8ECDF9082A268449002DBF12 /* App */,
-				8E8780CA2A29234500EBE979 /* Utilities */,
+				8E8780CD2A2929F200EBE979 /* Factory */,
 				8EC0242C2A2859060000F56B /* Scenes */,
 				8ECDF9052A2683C5002DBF12 /* Services */,
 				8ECDF90F2A268666002DBF12 /* Models */,
@@ -242,13 +245,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		8ECDF9102A268683002DBF12 /* PhotoCollectionView */ = {
+		8ECDF9102A268683002DBF12 /* PhotoCollectionViewController */ = {
 			isa = PBXGroup;
 			children = (
 				8ECDF90D2A2685A4002DBF12 /* PhotoCollectionViewController.swift */,
 				8ECDF8FE2A2667AC002DBF12 /* PhotosCollectionViewItem.swift */,
 			);
-			path = PhotoCollectionView;
+			path = PhotoCollectionViewController;
 			sourceTree = "<group>";
 		};
 		8ECDF9132A2699E4002DBF12 /* Extensions */ = {
@@ -416,6 +419,7 @@
 				8E8780D12A292B0500EBE979 /* DetailSceneConfigurator.swift in Sources */,
 				8E8780CF2A292A2A00EBE979 /* ConfiguratorsLibrary.swift in Sources */,
 				8E8780D62A29528F00EBE979 /* AlertController.swift in Sources */,
+				8E3CE0B62A29AF88007A3911 /* TabBarController.swift in Sources */,
 				8E8780B12A29045300EBE979 /* DetailScenePresenter.swift in Sources */,
 				8ECDF8ED2A2643EC002DBF12 /* SceneDelegate.swift in Sources */,
 				8E3CE0B22A299587007A3911 /* ActivityView.swift in Sources */,

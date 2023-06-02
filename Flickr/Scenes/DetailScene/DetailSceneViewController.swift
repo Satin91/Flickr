@@ -56,8 +56,7 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
     }
     
     func showActivityView(viewModel: DetailScene.Share.ViewModel) {
-        DispatchQueue.main.async {
-            viewModel.activityView.showOn(self)
-        }
+        viewModel.activityView.showOn(self)
+        print("Debug: \(Thread.current)")
     }
 }

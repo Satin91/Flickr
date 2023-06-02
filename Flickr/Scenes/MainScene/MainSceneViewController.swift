@@ -19,7 +19,6 @@ protocol MainSceneDisplayLogic: AnyObject {
 
 class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout())
-    
     var interactor: MainSceneInteractor?
     var router: (NSObjectProtocol & MainSceneRoutingLogic & MainSceneDataPassing)?
     private var textFieldText = "Minsk"
@@ -57,7 +56,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     func errorFetchHandler(viewModel: MainScene.FetchPhotos.ViewModel) {
         guard let message = viewModel.errorMessage else { return }
         DispatchQueue.main.async {
-            AlertController().show(title: "Error", message: message, style: .alert, showOn: self)
+            AlertController.show(title: "Error", message: message, style: .alert, showOn: self)
         }
     }
     
@@ -91,6 +90,7 @@ extension MainSceneViewController {
         collectionView.didMove(toParent: self)
         collectionView.view.translatesAutoresizingMaskIntoConstraints = false
         collectionView.view.equalConstraint(to: collectionViewContainer)
+        collectionView.itemsPerLine = 1
     }
     
     private func createTextField(frame: CGRect) -> UITextField {
@@ -111,6 +111,11 @@ extension MainSceneViewController {
         let textFieldFrame = CGRect(x: .zero, y: .zero, width: navigationBar.bounds.width, height: textFieldeight)
         let textField = createTextField(frame: textFieldFrame)
         self.navigationItem.titleView = textField
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .plain, target: self, action: #selector(searchButtonTapped))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "magnifyingglass"),
+            style: .plain,
+            target: self,
+            action: #selector(searchButtonTapped)
+        )
     }
 }

@@ -34,7 +34,7 @@ extension MainSceneInteractor: MainSceneBusinessLogic {
     }
     
     func fetchPhotos(request: MainScene.FetchPhotos.Request) async throws {
-        let response = try await worker.execute(request: request)
+        let response = try await worker.parse(request: request)
         presenter.present(response: response)
     }
 }

@@ -37,7 +37,7 @@ class MainSceneRouter: NSObject, MainSceneRoutingLogic, MainSceneDataPassing {
     }
     
     func navigateToDetailView(source: MainSceneViewController, destination: DetailSceneViewController) {
-        source.show(destination, sender: nil)
+        source.present(destination, animated: true)
     }
 
     func passDataToDetailScene(source: MainSceneDataStore, destination: inout DetailSceneDataStore) {

@@ -13,7 +13,7 @@ class AlertController: UIAlertController {
         case interactive
     }
 
-    func show(title: String, message: String, style: AlertStyle, showOn controller: UIViewController) {
+    static func show(title: String, message: String, style: AlertStyle, showOn controller: UIViewController) {
         let alert = UIAlertController(
             title: title,
             message: message,
