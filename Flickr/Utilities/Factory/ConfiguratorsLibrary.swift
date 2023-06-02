@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ConfiguratorLibrary {
+enum ConfiguratorsLibrary {
     private static let sceneFactory = SceneFactory()
     
     static let mainScene = MainSceneConfigurator(sceneFactory: sceneFactory)

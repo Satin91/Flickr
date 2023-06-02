@@ -13,24 +13,22 @@
 import UIKit
 
 protocol MainSceneDisplayLogic: AnyObject {
-    func successFetchedData(viewModel: MainScene.FetchPhotos.ViewModel)
-    func errorFetchedData(viewModel: MainScene.FetchPhotos.ViewModel)
+    func successFetchHandler(viewModel: MainScene.FetchPhotos.ViewModel)
+    func errorFetchHandler(viewModel: MainScene.FetchPhotos.ViewModel)
 }
 
 class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
+    let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout())
+    
     var interactor: MainSceneInteractor?
     var router: (NSObjectProtocol & MainSceneRoutingLogic & MainSceneDataPassing)?
-    let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout())
-    var textFieldText = "Minsk"
-    var callBack: ((Int) -> Void)?
+    private var textFieldText = "Minsk"
     
     @IBOutlet private var collectionViewContainer: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureProperties()
-        addCollectionView()
-        configureNavigationBar()
+        setupUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,7 +45,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         fetchPhotos(by: textFieldText)
     }
     
-    func successFetchedData(viewModel: MainScene.FetchPhotos.ViewModel) {
+    func successFetchHandler(viewModel: MainScene.FetchPhotos.ViewModel) {
         guard let photoModel = viewModel.photoModel else { return }
         collectionView.photoArray = photoModel
         DispatchQueue.main.async {
@@ -55,17 +53,17 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         }
     }
     
-    func errorFetchedData(viewModel: MainScene.FetchPhotos.ViewModel) {
+    func errorFetchHandler(viewModel: MainScene.FetchPhotos.ViewModel) {
         guard let message = viewModel.errorMessage else { return }
         DispatchQueue.main.async {
-            AlertController().show(title: "Error", message: message, style: .alert, owner: self)
+            AlertController().show(title: "Error", message: message, style: .alert, showOn: self)
         }
     }
     
     private func didSelectPhoto() {
         collectionView.onTapGesture = { [weak self] photo in
             guard let self else { return }
-            self.interactor?.setPhoto(photoModel: photo)
+            self.interactor?.putInDataStore(photoModel: photo)
             self.router?.routeToDetailScene()
         }
     }
@@ -73,13 +71,19 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     private func fetchPhotos(by text: String) {
         let request = MainScene.FetchPhotos.Request(text: text)
         Task {
-            try await interactor?.getPhotos(request: request)
+            try await interactor?.fetchPhotos(request: request)
         }
     }
 }
 
 // MARK: Setup UI
 extension MainSceneViewController {
+    func setupUI() {
+        configureProperties()
+        addCollectionView()
+        configureNavigationBar()
+    }
+    
     private func addCollectionView() {
         addChild(collectionView)
         collectionViewContainer.addSubview(collectionView.view)
@@ -97,7 +101,7 @@ extension MainSceneViewController {
     }
     
     func configureProperties() {
-        ConfiguratorLibrary.mainScene.configure(self)
+        ConfiguratorsLibrary.mainScene.configure(self)
     }
     
     private func configureNavigationBar() {

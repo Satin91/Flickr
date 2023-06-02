@@ -30,7 +30,7 @@ class MainSceneRouter: NSObject, MainSceneRoutingLogic, MainSceneDataPassing {
     
     func routeToDetailScene() {
         let destinationVC = DetailSceneViewController().instantiate() as! DetailSceneViewController
-        ConfiguratorLibrary.detailScene.configure(destinationVC)
+        ConfiguratorsLibrary.detailScene.configure(destinationVC)
         var destinationDS = destinationVC.router!.dataStore!
         passDataToDetailScene(source: dataStore!, destination: &destinationDS)
         navigateToDetailView(source: viewController!, destination: destinationVC)

@@ -13,7 +13,7 @@ class AlertController: UIAlertController {
         case interactive
     }
 
-    func show(title: String, message: String, style: AlertStyle, owner: UIViewController) {
+    func show(title: String, message: String, style: AlertStyle, showOn controller: UIViewController) {
         let alert = UIAlertController(
             title: title,
             message: message,
@@ -38,6 +38,6 @@ class AlertController: UIAlertController {
                 )
             )
         }
-        owner.present(alert, animated: true, completion: nil)
+        controller.present(alert, animated: true, completion: nil)
     }
 }

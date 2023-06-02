@@ -21,14 +21,14 @@ class MainScenePresenter: MainScenePresentationLogic {
     
     func present(response: MainScene.FetchPhotos.Response) {
         let viewModel = MainScene.FetchPhotos.ViewModel(photoModel: response.photoModel)
-        viewController?.successFetchedData(viewModel: viewModel)
+        viewController?.successFetchHandler(viewModel: viewModel)
         
         if response.errorMessage != nil {
             let viewModel = MainScene.FetchPhotos.ViewModel(errorMessage: response.errorMessage)
-            viewController?.errorFetchedData(viewModel: viewModel)
+            viewController?.errorFetchHandler(viewModel: viewModel)
         } else {
             let viewModel = MainScene.FetchPhotos.ViewModel(photoModel: response.photoModel!)
-            viewController?.successFetchedData(viewModel: viewModel)
+            viewController?.successFetchHandler(viewModel: viewModel)
         }
     }
 }
