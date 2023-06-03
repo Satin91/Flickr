@@ -30,6 +30,7 @@ class NetworkService: NetworkServiceProtocol {
     
     func downloadImage(url: String) async throws -> UIImage {
         try await withCheckedThrowingContinuation { continuation in
+            print("Test: Start download \(url) \n in \(Thread.current)")
             AF.request(url).responseImage { response in
                 switch response.result {
                 case .success(let image):

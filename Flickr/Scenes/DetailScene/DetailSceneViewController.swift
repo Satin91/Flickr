@@ -68,6 +68,10 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
     private func openLink() {
         interactor?.openLink()
     }
+    
+    @objc func send() {
+        print("Touch")
+    }
 }
 
 extension DetailSceneViewController {

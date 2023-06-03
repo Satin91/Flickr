@@ -65,6 +65,7 @@
                     <connections>
                         <outlet property="collectionViewContainer" destination="VNs-Lu-i4G" id="78A-jg-DXl"/>
                         <outlet property="tabBarViewItem" destination="ivj-0S-vEh" id="pV3-cz-ZTV"/>
+                        <segue destination="z1h-2n-ng2" kind="show" identifier="toDetailView" id="Flw-Ax-OBi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjp-0e-m8g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -86,24 +87,13 @@
                                     <constraint firstAttribute="height" constant="385" id="grO-3A-IOp"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Bl-x1-R1S">
-                                <rect key="frame" x="333" y="119" width="44" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="A8o-o4-se4"/>
-                                    <constraint firstAttribute="height" constant="44" id="jnV-xQ-hfi"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <imageReference key="image" image="ellipsis.circle.fill" catalog="system" renderingMode="original"/>
-                                </buttonConfiguration>
-                            </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5Z-2u-cKe">
                                 <rect key="frame" x="0.0" y="489.66666666666674" width="393" height="362.33333333333326"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b3x-E4-1Ve"/>
-                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="x5Z-2u-cKe" firstAttribute="leading" secondItem="b3x-E4-1Ve" secondAttribute="leading" id="3HY-bY-FmC"/>
                             <constraint firstItem="jg0-CM-Lsm" firstAttribute="top" secondItem="b3x-E4-1Ve" secondAttribute="top" id="C57-xq-vwG"/>
@@ -111,12 +101,22 @@
                             <constraint firstAttribute="bottom" secondItem="x5Z-2u-cKe" secondAttribute="bottom" id="P40-AN-ohJ"/>
                             <constraint firstItem="jg0-CM-Lsm" firstAttribute="leading" secondItem="b3x-E4-1Ve" secondAttribute="leading" id="P7N-fi-Ecz"/>
                             <constraint firstItem="x5Z-2u-cKe" firstAttribute="top" secondItem="jg0-CM-Lsm" secondAttribute="bottom" constant="1.6666666666666288" id="PMo-k7-cCe"/>
-                            <constraint firstItem="b3x-E4-1Ve" firstAttribute="trailing" secondItem="9Bl-x1-R1S" secondAttribute="trailing" constant="16" id="ak3-yI-9xR"/>
                             <constraint firstItem="jg0-CM-Lsm" firstAttribute="trailing" secondItem="b3x-E4-1Ve" secondAttribute="trailing" id="jDN-5Z-H8A"/>
-                            <constraint firstItem="9Bl-x1-R1S" firstAttribute="top" secondItem="b3x-E4-1Ve" secondAttribute="top" constant="16" id="rg2-cl-b4B"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="MbB-nR-ntl"/>
+                    <navigationItem key="navigationItem" id="Fr8-gV-l4n">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="mjc-Vi-AAn">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="9Bl-x1-R1S">
+                                <rect key="frame" x="327" y="0.0" width="50" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="ellipsis.circle" catalog="system" renderingMode="original"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="medium"/>
+                                </buttonConfiguration>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="jg0-CM-Lsm" id="V9y-e1-Nws"/>
                         <outlet property="menuButton" destination="9Bl-x1-R1S" id="kar-Me-UBC"/>
@@ -125,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GUc-mX-EaU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2878.6259541984732" y="674.64788732394368"/>
+            <point key="canvasLocation" x="3805.3435114503814" y="674.64788732394368"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="OGV-NN-FRh">
@@ -176,38 +176,7 @@
                             </hierarchicalColors>
                         </imageReference>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Favorites" id="Bm3-0B-1qD">
-                        <leftBarButtonItems>
-                            <barButtonItem style="plain" id="USR-Xc-EhQ">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="TDB-52-KN9">
-                                    <rect key="frame" x="16" y="5" width="87" height="34.333333333333336"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="list.bullet" catalog="system"/>
-                                    <connections>
-                                        <action selector="leftBarButtonItemAction:" destination="tvp-3m-Y7F" eventType="touchUpInside" id="DTc-Vw-lMk"/>
-                                    </connections>
-                                </button>
-                                <connections>
-                                    <action selector="leftBarButtonItemTapped:" destination="tvp-3m-Y7F" id="fi3-XU-hK4"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Item" style="plain" id="Ula-oh-Skz">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="XKM-0l-3nC">
-                                    <rect key="frame" x="111" y="5" width="87" height="34.333333333333336"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="rectangle.grid.3x2" catalog="system"/>
-                                    <connections>
-                                        <action selector="centerBarButtonItemAction:" destination="tvp-3m-Y7F" eventType="touchUpInside" id="zbZ-zx-TqM"/>
-                                    </connections>
-                                </button>
-                                <connections>
-                                    <action selector="centerBarButtonItemAction:" destination="tvp-3m-Y7F" id="BUB-hS-Isr"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Favorites" id="Bm3-0B-1qD"/>
                     <connections>
                         <outlet property="collectionViewContainer" destination="oPE-1s-LDo" id="qUp-FB-BeO"/>
                     </connections>
@@ -235,31 +204,11 @@
             </objects>
             <point key="canvasLocation" x="2493.8931297709923" y="3.5211267605633805"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="c18-ii-jpQ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MF0-z4-jkl" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZFK-2T-Cpo">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="z1h-2n-ng2" kind="relationship" relationship="rootViewController" id="1fU-RL-epu"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5td-ps-ROr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1953.4351145038167" y="674.64788732394368"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="ellipsis.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="list.bullet" catalog="system" width="128" height="87"/>
+        <image name="ellipsis.circle" catalog="system" width="128" height="123"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="123"/>
         <image name="photo.fill" catalog="system" width="128" height="93"/>
-        <image name="rectangle.grid.3x2" catalog="system" width="128" height="100"/>
         <image name="star.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -272,9 +221,6 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -27,7 +27,6 @@ class PhotoCollectionViewItem: UICollectionViewCell {
         imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.equalConstraint(to: self)
-        print("Configure")
     }
 
     private func createImageView() {

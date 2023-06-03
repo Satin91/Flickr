@@ -24,16 +24,6 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
     let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout(), layoutSize: .large)
     @IBOutlet private var collectionViewContainer: UIView!
     
-    @IBAction private func leftBarButtonItemAction(_ sender: UIButton) {
-        print("Change layout to large")
-        collectionView.changeLayout(to: .large)
-    }
-    
-    @IBAction private func centerBarButtonItemAction(_ sender: UIButton) {
-        print("Change layout to medium")
-        collectionView.changeLayout(to: .medium)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -62,12 +52,33 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
     func fetchCompleted(viewModel: FavoritesScene.Database.ViewModel) {
         collectionView.display(photos: viewModel.photos)
     }
+    
+    @objc private func leftBarButtonItemAction(_ sender: UIButton) {
+        collectionView.changeLayout(to: .large)
+    }
+    
+    @objc private func leftSecondaryBarButtonItemAction(_ sender: UIButton) {
+        collectionView.changeLayout(to: .medium)
+    }
 }
 
 extension FavoritesSceneViewController {
     func setupUI() {
         configureDependencies()
         addCollectionView()
+        setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        let leftBarButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        leftBarButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
+        let leftSecondarytBarButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        leftSecondarytBarButton.setImage(UIImage(systemName: "rectangle.grid.3x2"), for: .normal)
+        let barButton = UIBarButtonItem(customView: leftBarButton)
+        let secondarybarButton = UIBarButtonItem(customView: leftSecondarytBarButton)
+        leftBarButton.addTarget(self, action: #selector(leftBarButtonItemAction), for: .touchUpInside)
+        leftSecondarytBarButton.addTarget(self, action: #selector(leftSecondaryBarButtonItemAction), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItems = [barButton, secondarybarButton]
     }
     
     func configureDependencies() {
