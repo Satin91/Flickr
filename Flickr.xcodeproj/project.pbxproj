@@ -45,7 +45,7 @@
 		8ECDF8F22A2643EC002DBF12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ECDF8F02A2643EC002DBF12 /* Main.storyboard */; };
 		8ECDF8F42A2643EE002DBF12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ECDF8F32A2643EE002DBF12 /* Assets.xcassets */; };
 		8ECDF8F72A2643EE002DBF12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ECDF8F52A2643EE002DBF12 /* LaunchScreen.storyboard */; };
-		8ECDF8FF2A2667AC002DBF12 /* PhotosCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF8FE2A2667AC002DBF12 /* PhotosCollectionViewItem.swift */; };
+		8ECDF8FF2A2667AC002DBF12 /* PhotoCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF8FE2A2667AC002DBF12 /* PhotoCollectionViewItem.swift */; };
 		8ECDF9012A26681E002DBF12 /* PhotoNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9002A26681E002DBF12 /* PhotoNetworkModel.swift */; };
 		8ECDF9042A268323002DBF12 /* MainSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9032A268323002DBF12 /* MainSceneInteractor.swift */; };
 		8ECDF9072A2683D4002DBF12 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9062A2683D4002DBF12 /* NetworkService.swift */; };
@@ -97,7 +97,7 @@
 		8ECDF8F32A2643EE002DBF12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8ECDF8F62A2643EE002DBF12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8ECDF8F82A2643EE002DBF12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8ECDF8FE2A2667AC002DBF12 /* PhotosCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewItem.swift; sourceTree = "<group>"; };
+		8ECDF8FE2A2667AC002DBF12 /* PhotoCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewItem.swift; sourceTree = "<group>"; };
 		8ECDF9002A26681E002DBF12 /* PhotoNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoNetworkModel.swift; sourceTree = "<group>"; };
 		8ECDF9032A268323002DBF12 /* MainSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneInteractor.swift; sourceTree = "<group>"; };
 		8ECDF9062A2683D4002DBF12 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -308,7 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				8ECDF90D2A2685A4002DBF12 /* PhotoCollectionViewController.swift */,
-				8ECDF8FE2A2667AC002DBF12 /* PhotosCollectionViewItem.swift */,
+				8ECDF8FE2A2667AC002DBF12 /* PhotoCollectionViewItem.swift */,
 			);
 			path = PhotoCollectionViewController;
 			sourceTree = "<group>";
@@ -487,7 +487,7 @@
 				8E3CE0C92A29BC2F007A3911 /* RealmPhotoModel.swift in Sources */,
 				8E8780C42A2911D300EBE979 /* UIViewControllerInstantiate.swift in Sources */,
 				8E3CE0C22A29B604007A3911 /* FavoritesSceneViewController.swift in Sources */,
-				8ECDF8FF2A2667AC002DBF12 /* PhotosCollectionViewItem.swift in Sources */,
+				8ECDF8FF2A2667AC002DBF12 /* PhotoCollectionViewItem.swift in Sources */,
 				8EC024352A285FE10000F56B /* MainScenePresenter.swift in Sources */,
 				8E3CE0C32A29B604007A3911 /* FavoritesSceneInteractor.swift in Sources */,
 				8ECDF90E2A2685A4002DBF12 /* PhotoCollectionViewController.swift in Sources */,

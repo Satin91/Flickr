@@ -13,7 +13,7 @@
 import UIKit
 
 protocol DetailSceneDisplayLogic: AnyObject {
-    func initialSetup(viewModel: DetailScene.InitialSetup.ViewModel)
+    func fillData(viewModel: DetailScene.InitialSetup.ViewModel)
     func showActivityView(viewModel: DetailScene.Share.ViewModel)
     func savingToDBCompleted(viewModel: DetailScene.SaveToDB.ViewModel)
 }
@@ -30,33 +30,21 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fillData()
+        getData()
         setupUI()
     }
     
-    func fillData() {
+    func getData() {
         let request = DetailScene.InitialSetup.Request()
         interactor?.initialSetup(request: request)
     }
     
-    func saveToFavorites() {
-        interactor?.saveObjectToDatabase()
-    }
-    
-    func sharePhoto() {
-        self.interactor?.shareLink()
-    }
-    
-    func openLink() {
-        interactor?.openLink()
-    }
-    
-    func initialSetup(viewModel: DetailScene.InitialSetup.ViewModel) {
+    func fillData(viewModel: DetailScene.InitialSetup.ViewModel) {
         imageView.image = viewModel.photoModel.image
         tableView.display(
             text: [
-                PhotoDescriptionTableView.TextPairs(title: "Title", body: viewModel.photoModel.title),
-                PhotoDescriptionTableView.TextPairs(title: "Author", body: viewModel.photoModel.owner)
+                .init(title: "Title", body: viewModel.photoModel.title),
+                .init(title: "Author", body: viewModel.photoModel.owner)
             ]
         )
     }
@@ -67,6 +55,18 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
     
     func savingToDBCompleted(viewModel: DetailScene.SaveToDB.ViewModel) {
         print("Save to database completed ? \(viewModel.isSaved)")
+    }
+    
+    private func saveToFavorites() {
+        interactor?.saveObjectToDatabase()
+    }
+    
+    private func sharePhoto() {
+        self.interactor?.shareLink()
+    }
+    
+    private func openLink() {
+        interactor?.openLink()
     }
 }
 

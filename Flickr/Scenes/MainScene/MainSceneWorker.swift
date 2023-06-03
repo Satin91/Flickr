@@ -55,6 +55,7 @@ extension MainSceneWorker: MainSceneWorkerLogic {
             var image: UIImage?
             do {
                 image = try await networkService.downloadImage(url: photoInfo.photoUrl.absoluteString)
+                print("Download completed \(photoInfo.photoUrl.absoluteString)")
             } catch let error {
                 throw error
             }

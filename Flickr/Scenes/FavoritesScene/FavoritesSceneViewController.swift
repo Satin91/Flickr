@@ -24,28 +24,38 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
     let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout(), layoutSize: .large)
     @IBOutlet private var collectionViewContainer: UIView!
     
+    @IBAction private func leftBarButtonItemAction(_ sender: UIButton) {
+        print("Change layout to large")
+        collectionView.changeLayout(to: .large)
+    }
+    
+    @IBAction private func centerBarButtonItemAction(_ sender: UIButton) {
+        print("Change layout to medium")
+        collectionView.changeLayout(to: .medium)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         doSomething()
-//        doSomethingElse()
+        //        doSomethingElse()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        startFetchingPhotos()
+        loadPhotos()
     }
-
+    
     func doSomething() {
         let request = FavoritesScene.Database.Request(type: RealmPhotoModel.self)
         interactor?.doSomething(request: request)
     }
-
+    
     func displaySomething(viewModel: FavoritesScene.Database.ViewModel) {
         // nameTextField.text = viewModel.name
     }
     
-    func startFetchingPhotos() {
+    func loadPhotos() {
         interactor?.fetchObjectsFromDatabase(request: FavoritesScene.Database.Request(type: RealmPhotoModel.self))
     }
     

@@ -24,7 +24,7 @@ class DetailScenePresenter: DetailScenePresentationLogic {
 
     func initialSetup(response: DetailScene.InitialSetup.Response) {
         let viewModel = DetailScene.InitialSetup.ViewModel(photoModel: response.photoModel)
-        viewController?.initialSetup(viewModel: viewModel)
+        viewController?.fillData(viewModel: viewModel)
     }
     
     func showActivityView(response: DetailScene.Share.Response) {

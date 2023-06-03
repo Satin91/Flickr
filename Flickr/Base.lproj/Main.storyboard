@@ -98,7 +98,8 @@
                                 </buttonConfiguration>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5Z-2u-cKe">
-                                <rect key="frame" x="0.0" y="490" width="393" height="362"/>
+                                <rect key="frame" x="0.0" y="489.66666666666674" width="393" height="362.33333333333326"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b3x-E4-1Ve"/>
@@ -177,21 +178,33 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Favorites" id="Bm3-0B-1qD">
                         <leftBarButtonItems>
-                            <barButtonItem style="plain" id="2eB-oU-BoP">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="WKM-zx-s8d">
+                            <barButtonItem style="plain" id="USR-Xc-EhQ">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="TDB-52-KN9">
                                     <rect key="frame" x="16" y="5" width="87" height="34.333333333333336"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="n"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="list.bullet" catalog="system"/>
+                                    <connections>
+                                        <action selector="leftBarButtonItemAction:" destination="tvp-3m-Y7F" eventType="touchUpInside" id="DTc-Vw-lMk"/>
+                                    </connections>
                                 </button>
+                                <connections>
+                                    <action selector="leftBarButtonItemTapped:" destination="tvp-3m-Y7F" id="fi3-XU-hK4"/>
+                                </connections>
                             </barButtonItem>
-                            <barButtonItem style="plain" id="wHe-Uw-awP">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="fha-Wb-vpa">
-                                    <rect key="frame" x="-37" y="-17" width="87" height="33"/>
+                            <barButtonItem title="Item" style="plain" id="Ula-oh-Skz">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="XKM-0l-3nC">
+                                    <rect key="frame" x="111" y="5" width="87" height="34.333333333333336"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="n"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="rectangle.grid.3x2" catalog="system"/>
+                                    <connections>
+                                        <action selector="centerBarButtonItemAction:" destination="tvp-3m-Y7F" eventType="touchUpInside" id="zbZ-zx-TqM"/>
+                                    </connections>
                                 </button>
+                                <connections>
+                                    <action selector="centerBarButtonItemAction:" destination="tvp-3m-Y7F" id="BUB-hS-Isr"/>
+                                </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
                     </navigationItem>
@@ -243,8 +256,10 @@
     </scenes>
     <resources>
         <image name="ellipsis.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="123"/>
         <image name="photo.fill" catalog="system" width="128" height="93"/>
+        <image name="rectangle.grid.3x2" catalog="system" width="128" height="100"/>
         <image name="star.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
