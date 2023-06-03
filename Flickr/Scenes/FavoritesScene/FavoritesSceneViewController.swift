@@ -28,7 +28,7 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
         super.viewDidLoad()
         setupUI()
         doSomething()
-        //        doSomethingElse()
+        photoSelectionObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +42,6 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
     }
     
     func displaySomething(viewModel: FavoritesScene.Database.ViewModel) {
-        // nameTextField.text = viewModel.name
     }
     
     func loadPhotos() {
@@ -59,6 +58,14 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
     
     @objc private func leftSecondaryBarButtonItemAction(_ sender: UIButton) {
         collectionView.changeLayout(to: .medium)
+    }
+    
+    private func photoSelectionObserver() {
+        collectionView.didSelectPhoto = { [weak self] photo in
+            guard let self else { return }
+            self.interactor?.putInDataStore(photo: photo)
+            self.router?.routeToPhotoEditorScene()
+        }
     }
 }
 

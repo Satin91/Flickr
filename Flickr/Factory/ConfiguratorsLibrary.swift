@@ -13,4 +13,5 @@ enum ConfiguratorsLibrary {
     static let mainScene = MainSceneConfigurator(sceneFactory: sceneFactory)
     static let detailScene = DetailSceneConfigurator(sceneFactory: sceneFactory)
     static let favoritesScene = FavoritesSceneConfigurator(sceneFactory: sceneFactory)
+    static let photoEditorScene = PhotoEditorSceneConfigurator(sceneFactory: sceneFactory)
 }

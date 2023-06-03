@@ -22,9 +22,8 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     
     var interactor: MainSceneInteractor?
     var router: (NSObjectProtocol & MainSceneRoutingLogic & MainSceneDataPassing)?
-    private var textFieldText = ""
+    private var searchText = ""
     
-    @IBOutlet private var tabBarViewItem: UITabBarItem!
     @IBOutlet private var collectionViewContainer: UIView!
     
     override func viewDidLoad() {
@@ -33,17 +32,17 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         photoSelectionObserver()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        textFieldText = text
-    }
-    
-    @objc func searchButtonTapped() {
-        loadPhotos(by: textFieldText, withCount: 15)
+    func searchButtonTapped() {
+        loadPhotos(by: searchText, withCount: 35)
     }
     
     func loadSuccess(viewModel: MainScene.LoadPhotos.ViewModel) {
@@ -88,29 +87,34 @@ extension MainSceneViewController {
         collectionView.view.equalConstraint(to: collectionViewContainer)
     }
     
-    private func createTextField(frame: CGRect) -> UITextField {
-        let textField = UITextField(frame: frame)
-        textField.borderStyle = .roundedRect
-        textField.placeholder = "Search photo by text"
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        return textField
-    }
-    
     func configureDependencies() {
         ConfiguratorsLibrary.mainScene.configure(self)
     }
     
     private func configureNavigationBar() {
-        guard let navigationBar = navigationController?.navigationBar else { return }
-        let textFieldeight: CGFloat = 30
-        let textFieldFrame = CGRect(x: .zero, y: .zero, width: navigationBar.bounds.width, height: textFieldeight)
-        let textField = createTextField(frame: textFieldFrame)
-        self.navigationItem.titleView = textField
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "magnifyingglass"),
-            style: .plain,
-            target: self,
-            action: #selector(searchButtonTapped)
-        )
+        navigationItem.searchController = createSearchController()
+    }
+    
+    private func createSearchController() -> UISearchController {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Enter text"
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        definesPresentationContext = true
+        return searchController
+    }
+}
+
+extension MainSceneViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        searchText = text
+    }
+}
+
+extension MainSceneViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchButtonTapped()
     }
 }

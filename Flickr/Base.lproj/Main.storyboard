@@ -59,13 +59,10 @@
                             </hierarchicalColors>
                         </imageReference>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" id="74h-gN-lpS">
-                        <nil key="title"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Search" id="74h-gN-lpS"/>
                     <connections>
                         <outlet property="collectionViewContainer" destination="VNs-Lu-i4G" id="78A-jg-DXl"/>
-                        <outlet property="tabBarViewItem" destination="ivj-0S-vEh" id="pV3-cz-ZTV"/>
-                        <segue destination="z1h-2n-ng2" kind="show" identifier="toDetailView" id="Flw-Ax-OBi"/>
+                        <segue destination="z1h-2n-ng2" kind="show" id="hQk-zK-ahw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjp-0e-m8g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -125,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GUc-mX-EaU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3805.3435114503814" y="674.64788732394368"/>
+            <point key="canvasLocation" x="1027" y="747"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="OGV-NN-FRh">
@@ -179,11 +176,44 @@
                     <navigationItem key="navigationItem" title="Favorites" id="Bm3-0B-1qD"/>
                     <connections>
                         <outlet property="collectionViewContainer" destination="oPE-1s-LDo" id="qUp-FB-BeO"/>
+                        <segue destination="KIa-Wu-Txq" kind="show" id="OUh-lN-NWm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXy-4a-aDy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3420.6106870229005" y="3.5211267605633805"/>
+        </scene>
+        <!--Photo editor-->
+        <scene sceneID="5X4-wz-ajh">
+            <objects>
+                <viewController storyboardIdentifier="PhotoEditorSceneViewController" id="KIa-Wu-Txq" customClass="PhotoEditorSceneViewController" customModule="Flickr" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oxt-wd-I90">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ajP-eG-C2d">
+                                <rect key="frame" x="0.0" y="103" width="393" height="385"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="385" id="ebX-kp-wnu"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="A5p-Ht-LE3"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ajP-eG-C2d" firstAttribute="top" secondItem="A5p-Ht-LE3" secondAttribute="top" id="0sF-JX-Buy"/>
+                            <constraint firstItem="ajP-eG-C2d" firstAttribute="trailing" secondItem="A5p-Ht-LE3" secondAttribute="trailing" id="Xcz-ZQ-htQ"/>
+                            <constraint firstItem="ajP-eG-C2d" firstAttribute="leading" secondItem="A5p-Ht-LE3" secondAttribute="leading" id="qW8-IV-JEZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Photo editor" id="MdL-s7-5WM"/>
+                    <connections>
+                        <outlet property="imageView" destination="ajP-eG-C2d" id="1gf-J5-l3o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Amd-eA-NyA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4347.3282442748086" y="773.94366197183103"/>
         </scene>
         <!--Item-->
         <scene sceneID="tbQ-VF-iCH">

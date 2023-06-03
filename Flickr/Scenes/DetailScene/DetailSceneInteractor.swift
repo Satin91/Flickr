@@ -13,7 +13,7 @@
 import UIKit
 
 protocol DetailSceneBusinessLogic {
-    func initialSetup(request: DetailScene.InitialSetup.Request)
+    func loadData(request: DetailScene.InitialSetup.Request)
     func saveObjectToDatabase()
     func shareLink()
     func openLink()
@@ -28,10 +28,10 @@ class DetailSceneInteractor: DetailSceneBusinessLogic, DetailSceneDataStore {
     var worker: DetailSceneWorker?
     var photo: PhotoModel!
     
-    func initialSetup(request: DetailScene.InitialSetup.Request) {
+    func loadData(request: DetailScene.InitialSetup.Request) {
         guard let photo else { fatalError("Image not received") }
         let response = DetailScene.InitialSetup.Response(photoModel: photo)
-        presenter?.initialSetup(response: response)
+        presenter?.presentInitialSetup(response: response)
     }
     
     func shareLink() {

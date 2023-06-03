@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol FavoritesSceneRoutingLogic {
-    // func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToPhotoEditorScene()
 }
 
 protocol FavoritesSceneDataPassing {
@@ -24,31 +24,19 @@ class FavoritesSceneRouter: NSObject, FavoritesSceneRoutingLogic, FavoritesScene
     weak var viewController: FavoritesSceneViewController?
     var dataStore: FavoritesSceneDataStore?
     
-    // MARK: Routing (navigating to other screens)
+    func routeToPhotoEditorScene() {
+        let destinationVC = PhotoEditorSceneViewController().instantiate() as! PhotoEditorSceneViewController
+        ConfiguratorsLibrary.photoEditorScene.configure(destinationVC)
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToPhotoEditorScene(source: dataStore!, destination: &destinationDS)
+        navigateToPhotoEditorScene(source: viewController!, destination: destinationVC)
+    }
     
-    // func routeToSomewhere(segue: UIStoryboardSegue?) {
-    //    if let segue = segue {
-    //        let destinationVC = segue.destination as! SomewhereViewController
-    //        var destinationDS = destinationVC.router!.dataStore!
-    //        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    } else {
-    //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //        let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //        var destinationDS = destinationVC.router!.dataStore!
-    //        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //        navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //    }
-    // }
-    
-    // MARK: Navigation to other screen
-    
-    // func navigateToSomewhere(source: FavoritesSceneViewController, destination: SomewhereViewController) {
-    //    source.show(destination, sender: nil)
-    // }
-    
-    // MARK: Passing data to other screen
-    
-    //    func passDataToSomewhere(source: FavoritesSceneDataStore, destination: inout SomewhereDataStore) {
-    //        destination.name = source.name
-    //    }
+    func navigateToPhotoEditorScene(source: FavoritesSceneViewController, destination: PhotoEditorSceneViewController) {
+        source.navigationController?.pushViewController(destination, animated: true)
+    }
+
+    func passDataToPhotoEditorScene(source: FavoritesSceneDataStore, destination: inout PhotoEditorSceneDataStore) {
+        destination.photo = source.selectedPhoto
+    }
 }

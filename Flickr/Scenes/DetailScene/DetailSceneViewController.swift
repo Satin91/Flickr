@@ -30,13 +30,13 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
+        initialUISetup()
         setupUI()
     }
     
-    func getData() {
+    func initialUISetup() {
         let request = DetailScene.InitialSetup.Request()
-        interactor?.initialSetup(request: request)
+        interactor?.loadData(request: request)
     }
     
     func fillData(viewModel: DetailScene.InitialSetup.ViewModel) {
@@ -78,6 +78,7 @@ extension DetailSceneViewController {
     private func setupUI() {
         addTableView()
         setupMenu()
+        configureNavigationBar()
     }
     
     private func addTableView() {
@@ -86,6 +87,7 @@ extension DetailSceneViewController {
         tableView.didMove(toParent: self)
         tableView.view.translatesAutoresizingMaskIntoConstraints = false
         tableView.view.equalConstraint(to: tableViewContainer)
+        tableView.tableView.isScrollEnabled = false
     }
     
     private func setupMenu() {
@@ -102,5 +104,9 @@ extension DetailSceneViewController {
         self.menu = UIMenu(children: [share, openLink, addToFavorites])
         menuButton.menu = menu
         menuButton.showsMenuAsPrimaryAction = true
+    }
+    
+    func configureNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
 }

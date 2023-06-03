@@ -13,7 +13,7 @@
 import UIKit
 
 protocol DetailScenePresentationLogic {
-    func initialSetup(response: DetailScene.InitialSetup.Response)
+    func presentInitialSetup(response: DetailScene.InitialSetup.Response)
     func showActivityView(response: DetailScene.Share.Response)
     func saveObjectToDatabaseCompleted(response: DetailScene.SaveToDB.Response)
     func openLinkInBrowser(request: DetailScene.OpenLink.Request)
@@ -22,7 +22,7 @@ protocol DetailScenePresentationLogic {
 class DetailScenePresenter: DetailScenePresentationLogic {
     weak var viewController: DetailSceneDisplayLogic?
 
-    func initialSetup(response: DetailScene.InitialSetup.Response) {
+    func presentInitialSetup(response: DetailScene.InitialSetup.Response) {
         let viewModel = DetailScene.InitialSetup.ViewModel(photoModel: response.photoModel)
         viewController?.fillData(viewModel: viewModel)
     }

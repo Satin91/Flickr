@@ -25,8 +25,6 @@ class FavoritesSceneWorker: FavoritesSceneWorkerLogic {
     
     func fetchObjectsFromDatabasse(request: FavoritesScene.Database.Request) -> FavoritesScene.Database.Response {
         let objects = databaseManager.fetch(type: RealmPhotoModel.self)
-        print("Objects \(objects)")
-        print("Objects Count \(objects.count)")
         let response = FavoritesScene.Database.Response(objects: Array(objects))
         return response
     }

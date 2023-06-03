@@ -15,13 +15,16 @@ import UIKit
 protocol FavoritesSceneBusinessLogic {
     func doSomething(request: FavoritesScene.Database.Request)
     func fetchObjectsFromDatabase(request: FavoritesScene.Database.Request)
+    func putInDataStore(photo: PhotoModel)
 }
 
 protocol FavoritesSceneDataStore {
-    // var name: String { get set }
+    var selectedPhoto: PhotoModel { get set }
 }
 
 class FavoritesSceneInteractor: FavoritesSceneBusinessLogic, FavoritesSceneDataStore {
+    var selectedPhoto = PhotoModel(title: "", owner: "", imageURL: "", image: UIImage())
+    
     var presenter: FavoritesScenePresentationLogic?
     var worker: FavoritesSceneWorker?
     // var name: String = ""
@@ -39,5 +42,9 @@ class FavoritesSceneInteractor: FavoritesSceneBusinessLogic, FavoritesSceneDataS
     func fetchObjectsFromDatabase(request: FavoritesScene.Database.Request) {
         let response = worker?.fetchObjectsFromDatabasse(request: request)
         presenter?.handOverDatabaseObjects(response: response!)
+    }
+    
+    func putInDataStore(photo: PhotoModel) {
+        self.selectedPhoto = photo
     }
 }
