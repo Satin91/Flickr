@@ -4,11 +4,11 @@
 * Библиотеки: UIKit, Realm, Alamofire, AlamofireImage
 
 * *Приложение еще в разработке. Проекту требуется рефакторинг, расширение функционала (Добавление детальной настройки фильтров)*
-
-![Simulator Screen Shot - iPhone 14 Pro - 2023-06-04 at 19 28 45](https://github.com/Satin91/Flickr/assets/65672952/081afdf2-d593-4f8e-b5d4-9b0970f6612d)
-![Simulator Screen Shot - iPhone 14 Pro - 2023-06-04 at 19 29 04](https://github.com/Satin91/Flickr/assets/65672952/f4b3a23b-3b82-4f76-a867-78149dfcd803)
-![Simulator Screen Shot - iPhone 14 Pro - 2023-06-04 at 19 29 41](https://github.com/Satin91/Flickr/assets/65672952/e7bbe3ff-f480-4842-8ca2-3b5891c96f11)
-![Simulator Screen Shot - iPhone 14 Pro - 2023-06-04 at 19 30 53](https://github.com/Satin91/Flickr/assets/65672952/9a0f73e1-7b9d-45c7-8267-80f120a5aafe)
-
 Видео:
 https://youtu.be/WpXNJ_qng9k
+
+![Simulator Screen Shot - iPhone 14 Pro 4](https://github.com/Satin91/Flickr/assets/65672952/5e03fbb6-c486-4ff6-a817-950c4b646844)
+![Simulator Screen Shot - iPhone 14 3](https://github.com/Satin91/Flickr/assets/65672952/52da8518-d96e-42db-8bdd-18cc7abf656c)
+![Simulator Screen Shot - iPhone 14 Pro 2](https://github.com/Satin91/Flickr/assets/65672952/695c4387-7918-4950-8a6d-118f1e7acd40)
+![Simulator Screen Shot - iPhone 14 Pro 1](https://github.com/Satin91/Flickr/assets/65672952/7afc59e0-8339-4012-b1a1-d1f9e89810c3)
+
