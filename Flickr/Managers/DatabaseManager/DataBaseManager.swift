@@ -10,7 +10,7 @@ import RealmSwift
 protocol DatabaseManagerProtocol {
     func save(object: Object)
     func update(object: Object)
-    func delete(object: Object)
+    func delete<T: Object>(id: String, object: T.Type)
     func deleteAll()
     func fetch<T>(type: T.Type) -> RealmSwift.Results<T> where T: Object
 }
@@ -30,12 +30,11 @@ class DatabaseManager: DatabaseManagerProtocol {
         }
     }
     
-    func delete(object: RealmSwift.Object) {
+    func delete<T: Object>(id: String, object: T.Type) {
         DispatchQueue.main.async {
-            let object = object as! RealmPhotoModel
-            let obj = self.realm.object(ofType: RealmPhotoModel.self, forPrimaryKey: object.id)!
+            let object = self.realm.objects(T.self).filter("id=%@", id)
             try! self.realm.write {
-                self.realm.delete(obj)
+                self.realm.delete(object)
             }
         }
     }

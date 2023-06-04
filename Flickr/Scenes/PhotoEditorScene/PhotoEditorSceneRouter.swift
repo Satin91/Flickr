@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol PhotoEditorSceneRoutingLogic {
-    // func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeBack()
 }
 
 protocol PhotoEditorSceneDataPassing {
@@ -24,31 +24,9 @@ class PhotoEditorSceneRouter: NSObject, PhotoEditorSceneRoutingLogic, PhotoEdito
     weak var viewController: PhotoEditorSceneViewController?
     var dataStore: PhotoEditorSceneDataStore?
     
-    // MARK: Routing (navigating to other screens)
-    
-    // func routeToSomewhere(segue: UIStoryboardSegue?) {
-    //    if let segue = segue {
-    //        let destinationVC = segue.destination as! SomewhereViewController
-    //        var destinationDS = destinationVC.router!.dataStore!
-    //        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    } else {
-    //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //        let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //        var destinationDS = destinationVC.router!.dataStore!
-    //        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //        navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //    }
-    // }
-
-    // MARK: Navigation to other screen
-
-    // func navigateToSomewhere(source: PhotoEditorSceneViewController, destination: SomewhereViewController) {
-    //    source.show(destination, sender: nil)
-    // }
-
-    // MARK: Passing data to other screen
-    
-    //    func passDataToSomewhere(source: PhotoEditorSceneDataStore, destination: inout SomewhereDataStore) {
-    //        destination.name = source.name
-    //    }
+    func routeBack() {
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.navigationController?.popViewController(animated: true)
+        }
+    }
 }

@@ -62,7 +62,7 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
     }
     
     func receiveRemovingResult(viewModel: PhotoEditorScene.Database.ViewModel) {
-        self.dismiss(animated: true)
+        router?.routeBack()
     }
     
     // MARK: Requests to the interactor

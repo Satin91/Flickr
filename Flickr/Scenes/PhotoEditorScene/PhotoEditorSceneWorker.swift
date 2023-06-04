@@ -49,7 +49,7 @@ class PhotoEditorSceneWorker {
         realmObject.imageURL = object.imageURL
         realmObject.owner = object.owner
         realmObject.title = object.title
-        databaseManager.delete(object: realmObject)
+        databaseManager.delete(id: realmObject.id, object: RealmPhotoModel.self)
         return PhotoEditorScene.Database.Response(success: true)
     }
 }
