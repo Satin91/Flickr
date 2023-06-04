@@ -26,7 +26,7 @@ class PhotoEditorScenePresenter: PhotoEditorScenePresentationLogic {
 
     func presentInitialSetup(response: PhotoEditorScene.InitialSetup.Response) {
         let viewModel = PhotoEditorScene.InitialSetup.ViewModel(photoModel: response.photoModel)
-        viewController?.fillData(viewModel: viewModel)
+        viewController?.displayData(viewModel: viewModel)
     }
     
     func presentPhotoFilter(response: PhotoEditorScene.PhotoEditor.Response) {

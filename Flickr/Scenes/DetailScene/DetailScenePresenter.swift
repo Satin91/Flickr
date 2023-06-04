@@ -24,7 +24,7 @@ class DetailScenePresenter: DetailScenePresentationLogic {
 
     func presentInitialSetup(response: DetailScene.InitialSetup.Response) {
         let viewModel = DetailScene.InitialSetup.ViewModel(photoModel: response.photoModel)
-        viewController?.fillData(viewModel: viewModel)
+        viewController?.displayData(viewModel: viewModel)
     }
     
     func showActivityView(response: DetailScene.Share.Response) {
@@ -36,7 +36,7 @@ class DetailScenePresenter: DetailScenePresentationLogic {
     
     func saveObjectToDatabaseCompleted(response: DetailScene.SaveToDB.Response) {
         let viewModel = DetailScene.SaveToDB.ViewModel(isSaved: true)
-        viewController?.savingToDBCompleted(viewModel: viewModel)
+        viewController?.receiveSavingToDB(viewModel: viewModel)
     }
     
     func openLinkInBrowser(request: DetailScene.OpenLink.Request) {

@@ -83,6 +83,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         reloadItems()
     }
     
+    // method needed to update item radius
     private func reloadItems() {
         for (index, imageModel) in photoArray.enumerated() {
             guard let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? PhotoCollectionViewItem else { return }

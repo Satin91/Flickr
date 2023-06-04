@@ -13,7 +13,7 @@
 import UIKit
 
 protocol PhotoEditorSceneDisplayLogic: AnyObject {
-    func fillData(viewModel: PhotoEditorScene.InitialSetup.ViewModel)
+    func displayData(viewModel: PhotoEditorScene.InitialSetup.ViewModel)
     func displayFilter(viewModel: PhotoEditorScene.PhotoEditor.ViewModel)
     func displayFilters(viewModel: PhotoEditorScene.LoadFilters.ViewModel)
     func receiveSavingResult(viewModel: PhotoEditorScene.Gallery.ViewModel)
@@ -50,9 +50,9 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
         showTabBar()
     }
     
-    // MARK: Protocol methods
+    // MARK: - Protocol methods
     
-    func fillData(viewModel: PhotoEditorScene.InitialSetup.ViewModel) {
+    func displayData(viewModel: PhotoEditorScene.InitialSetup.ViewModel) {
         imageView.image = viewModel.photoModel.image
     }
     
@@ -82,44 +82,44 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
         }
     }
     
-    // MARK: Requests to the interactor
+    // MARK: - Requests to the interactor
     
-    func initialUISetup() {
+    private func initialUISetup() {
         let request = PhotoEditorScene.InitialSetup.Request()
         interactor?.initialSetup(request: request)
     }
     
-    func loadFilters() {
+    private func loadFilters() {
         interactor?.fetchFilters(request: PhotoEditorScene.LoadFilters.Request(image: UIImage(), filters: []))
     }
     
-    func savePhotoToGallery() {
+    private func savePhotoToGallery() {
         guard let image = imageView.image else { return }
         let request = PhotoEditorScene.Gallery.Request(image: image)
         interactor?.uploadToGallery(request: request)
     }
     
-    func applyChanges() {
+    private func applyPhotoChanges() {
         guard let image = imageView.image else { return }
         let request = PhotoEditorScene.Database.Request(image: image)
         interactor?.updatePhoto(request: request)
     }
     
-    // MARK: Menu actions
+    // MARK: - Menu actions
     
-    private func applyChangesAction() {
-        applyChanges()
+    private func applyPhotoChangesAction() {
+        applyPhotoChanges()
     }
     
     private func savePhotoToGalleryAction() {
         savePhotoToGallery()
     }
     
-    func removePhotoAction() {
+    private func removePhotoAction() {
         interactor?.removePhoto(request: PhotoEditorScene.Gallery.Request(image: UIImage()))
     }
     
-    // MARK: Other
+    // MARK: - Other
     
     private func filterSelectionObserver() {
         collectionView.didSelectFilter = { [weak self] index in
@@ -167,7 +167,7 @@ extension PhotoEditorSceneViewController {
     
     private func setupMenu() {
         let applyChanges = UIAction(title: "Apply changes", image: UIImage(systemName: "checkmark.circle")!) { _ in
-            self.applyChangesAction()
+            self.applyPhotoChangesAction()
         }
         
         let saveToGallery = UIAction(title: "Save to photos", image: UIImage(systemName: "square.and.arrow.down")) { _ in

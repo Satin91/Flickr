@@ -13,22 +13,21 @@
 import UIKit
 
 protocol FavoritesSceneDisplayLogic: AnyObject {
-    func displaySomething(viewModel: FavoritesScene.Database.ViewModel)
-    func fetchCompleted(viewModel: FavoritesScene.Database.ViewModel)
+    func receivePhotos(viewModel: FavoritesScene.Database.ViewModel)
 }
 
 class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic {
     var interactor: FavoritesSceneBusinessLogic?
     var router: (NSObjectProtocol & FavoritesSceneRoutingLogic & FavoritesSceneDataPassing)?
+    @IBOutlet private var collectionViewContainer: UIView!
     
     let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout(), layoutSize: .large)
-    @IBOutlet private var collectionViewContainer: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureDependencies()
         setupUI()
-        doSomething()
-        photoSelectionObserver()
+        photoSelectionCallbackObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,21 +35,19 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
         loadPhotos()
     }
     
-    func doSomething() {
-        let request = FavoritesScene.Database.Request(type: RealmPhotoModel.self)
-        interactor?.doSomething(request: request)
-    }
+    // MARK: - Protocol methods
     
-    func displaySomething(viewModel: FavoritesScene.Database.ViewModel) {
-    }
-    
-    func loadPhotos() {
-        interactor?.fetchObjectsFromDatabase(request: FavoritesScene.Database.Request(type: RealmPhotoModel.self))
-    }
-    
-    func fetchCompleted(viewModel: FavoritesScene.Database.ViewModel) {
+    func receivePhotos(viewModel: FavoritesScene.Database.ViewModel) {
         collectionView.display(photos: viewModel.photos)
     }
+    
+    // MARK: - Requests to the interactor
+    
+    func loadPhotos() {
+        interactor?.fetchPhotos()
+    }
+    
+    // MARK: - Bar button actions
     
     @objc private func leftBarButtonItemAction(_ sender: UIButton) {
         collectionView.changeLayout(to: .large)
@@ -60,18 +57,23 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
         collectionView.changeLayout(to: .small)
     }
     
-    private func photoSelectionObserver() {
+    // MARK: - Other
+    
+    private func photoSelectionCallbackObserver() {
         collectionView.didSelectPhoto = { [weak self] photo in
             guard let self else { return }
             self.interactor?.putInDataStore(photo: photo)
             self.router?.routeToPhotoEditorScene()
         }
     }
+    
+    func configureDependencies() {
+        ConfiguratorsLibrary.favoritesScene.configure(self)
+    }
 }
 
 extension FavoritesSceneViewController {
     func setupUI() {
-        configureDependencies()
         addCollectionView()
         setupNavigationBar()
     }
@@ -79,17 +81,16 @@ extension FavoritesSceneViewController {
     func setupNavigationBar() {
         let leftBarButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         leftBarButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
+        
         let leftSecondarytBarButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         leftSecondarytBarButton.setImage(UIImage(systemName: "rectangle.grid.3x2"), for: .normal)
+        
         let barButton = UIBarButtonItem(customView: leftBarButton)
         let secondarybarButton = UIBarButtonItem(customView: leftSecondarytBarButton)
         leftBarButton.addTarget(self, action: #selector(leftBarButtonItemAction), for: .touchUpInside)
         leftSecondarytBarButton.addTarget(self, action: #selector(leftSecondaryBarButtonItemAction), for: .touchUpInside)
+        
         self.navigationItem.leftBarButtonItems = [barButton, secondarybarButton]
-    }
-    
-    func configureDependencies() {
-        ConfiguratorsLibrary.favoritesScene.configure(self)
     }
     
     private func addCollectionView() {

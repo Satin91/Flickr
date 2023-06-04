@@ -13,8 +13,7 @@
 import UIKit
 
 protocol FavoritesSceneBusinessLogic {
-    func doSomething(request: FavoritesScene.Database.Request)
-    func fetchObjectsFromDatabase(request: FavoritesScene.Database.Request)
+    func fetchPhotos()
     func putInDataStore(photo: PhotoModel)
 }
 
@@ -32,14 +31,10 @@ class FavoritesSceneInteractor: FavoritesSceneBusinessLogic, FavoritesSceneDataS
         self.worker = worker
     }
     
-    func doSomething(request: FavoritesScene.Database.Request) {
-        let response = FavoritesScene.Database.Response(objects: [])
-        presenter?.presentSomething(response: response)
-    }
-    
-    func fetchObjectsFromDatabase(request: FavoritesScene.Database.Request) {
+    func fetchPhotos() {
+        let request = FavoritesScene.Database.Request(type: RealmPhotoModel.self)
         let response = worker?.fetchObjectsFromDatabasse(request: request)
-        presenter?.handOverDatabaseObjects(response: response!)
+        presenter?.presentPhotos(response: response!)
     }
     
     func putInDataStore(photo: PhotoModel) {

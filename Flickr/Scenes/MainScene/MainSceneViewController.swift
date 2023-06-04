@@ -18,18 +18,18 @@ protocol MainSceneDisplayLogic: AnyObject {
 }
 
 class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
-    let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout(), layoutSize: .medium)
-    
     var interactor: MainSceneInteractor?
     var router: (NSObjectProtocol & MainSceneRoutingLogic & MainSceneDataPassing)?
     private var searchText = ""
-    
     @IBOutlet private var collectionViewContainer: UIView!
+    
+    let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout(), layoutSize: .medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        photoSelectionObserver()
+        configureDependencies()
+        photoSelectionCallbackObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,9 +41,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         super.viewDidAppear(animated)
     }
     
-    func searchButtonTapped() {
-        loadPhotos(by: searchText, withCount: 35)
-    }
+    // MARK: - Protocol methods
     
     func loadSuccess(viewModel: MainScene.LoadPhotos.ViewModel) {
         guard let photos = viewModel.photos else { return }
@@ -57,24 +55,25 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
         }
     }
     
-    private func photoSelectionObserver() {
+    // MARK: - Requests to interactor
+    
+    private func loadPhotos(by text: String, withCount: Int) {
+        let request = MainScene.LoadPhotos.Request(text: text, photosCount: withCount)
+        interactor?.fetchPhotos(request: request)
+    }
+    
+    // MARK: Other
+    private func photoSelectionCallbackObserver() {
         collectionView.didSelectPhoto = { [weak self] photo in
             guard let self else { return }
             self.interactor?.putInDataStore(photo: photo)
             self.router?.routeToDetailScene()
         }
     }
-    
-    private func loadPhotos(by text: String, withCount: Int) {
-        let request = MainScene.LoadPhotos.Request(text: text, photosCount: withCount)
-        interactor?.fetchPhotos(request: request)
-    }
 }
 
-// MARK: Setup UI
 extension MainSceneViewController {
     func setupUI() {
-        configureDependencies()
         addCollectionView()
         configureNavigationBar()
     }
@@ -115,6 +114,7 @@ extension MainSceneViewController: UISearchResultsUpdating {
 
 extension MainSceneViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchButtonTapped()
+        guard let text = searchBar.text else { return }
+        loadPhotos(by: text, withCount: 35)
     }
 }

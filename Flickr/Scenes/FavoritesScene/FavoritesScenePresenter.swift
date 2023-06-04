@@ -13,21 +13,13 @@
 import UIKit
 
 protocol FavoritesScenePresentationLogic {
-    func presentSomething(response: FavoritesScene.Database.Response)
-    func handOverDatabaseObjects(response: FavoritesScene.Database.Response)
+    func presentPhotos(response: FavoritesScene.Database.Response)
 }
 
 class FavoritesScenePresenter: FavoritesScenePresentationLogic {
     weak var viewController: FavoritesSceneDisplayLogic?
     
-    // MARK: Parse and calc respnse from FavoritesSceneInteractor and send simple view model to FavoritesSceneViewController to be displayed
-    
-    func presentSomething(response: FavoritesScene.Database.Response) {
-        //        let viewModel = FavoritesScene.Database.ViewModel()
-        //        viewController?.displaySomething(viewModel: viewModel)
-    }
-    
-    func handOverDatabaseObjects(response: FavoritesScene.Database.Response) {
+    func presentPhotos(response: FavoritesScene.Database.Response) {
         let viewModel = response.objects.map { realmModel in
             let photoModel = PhotoModel(
                 id: realmModel.id,
@@ -38,11 +30,6 @@ class FavoritesScenePresenter: FavoritesScenePresentationLogic {
             )
             return photoModel
         }
-        viewController?.fetchCompleted(viewModel: FavoritesScene.Database.ViewModel(photos: viewModel))
+        viewController?.receivePhotos(viewModel: FavoritesScene.Database.ViewModel(photos: viewModel))
     }
-    //
-    //    func presentSomethingElse(response: FavoritesScene.SomethingElse.Response) {
-    //        let viewModel = FavoritesScene.SomethingElse.ViewModel()
-    //        viewController?.displaySomethingElse(viewModel: viewModel)
-    //    }
 }

@@ -13,9 +13,9 @@
 import UIKit
 
 protocol DetailSceneDisplayLogic: AnyObject {
-    func fillData(viewModel: DetailScene.InitialSetup.ViewModel)
+    func displayData(viewModel: DetailScene.InitialSetup.ViewModel)
     func showActivityView(viewModel: DetailScene.Share.ViewModel)
-    func savingToDBCompleted(viewModel: DetailScene.SaveToDB.ViewModel)
+    func receiveSavingToDB(viewModel: DetailScene.SaveToDB.ViewModel)
 }
 
 class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
@@ -34,12 +34,9 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
         setupUI()
     }
     
-    func initialUISetup() {
-        let request = DetailScene.InitialSetup.Request()
-        interactor?.loadData(request: request)
-    }
+    // MARK: - Protocol methods
     
-    func fillData(viewModel: DetailScene.InitialSetup.ViewModel) {
+    func displayData(viewModel: DetailScene.InitialSetup.ViewModel) {
         imageView.image = viewModel.photoModel.image
         tableView.display(
             text: [
@@ -49,13 +46,22 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
         )
     }
     
+    func receiveSavingToDB(viewModel: DetailScene.SaveToDB.ViewModel) {
+        print("Save to database completed ? \(viewModel.isSaved)")
+    }
+    
     func showActivityView(viewModel: DetailScene.Share.ViewModel) {
         viewModel.activityView.showOn(self)
     }
     
-    func savingToDBCompleted(viewModel: DetailScene.SaveToDB.ViewModel) {
-        print("Save to database completed ? \(viewModel.isSaved)")
+    // MARK: - Requests to the interactor
+    
+    func initialUISetup() {
+        let request = DetailScene.InitialSetup.Request()
+        interactor?.loadData(request: request)
     }
+    
+    // MARK: - Menu actions
     
     private func saveToFavorites() {
         interactor?.saveObjectToDatabase()
@@ -67,10 +73,6 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
     
     private func openLink() {
         interactor?.openLink()
-    }
-    
-    @objc func send() {
-        print("Touch")
     }
 }
 
