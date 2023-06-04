@@ -17,7 +17,7 @@ protocol MainSceneDataStore {
 }
 
 final class MainSceneInteractor: MainSceneDataStore {
-    var selectedPhoto = PhotoModel(title: "", owner: "", imageURL: "", image: UIImage())
+    var selectedPhoto = PhotoModel(id: "", title: "", owner: "", imageURL: "", image: UIImage())
     
     var worker: MainSceneWorkerLogic
     var presenter: MainScenePresentationLogic

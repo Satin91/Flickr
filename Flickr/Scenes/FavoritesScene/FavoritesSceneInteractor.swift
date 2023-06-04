@@ -23,10 +23,9 @@ protocol FavoritesSceneDataStore {
 }
 
 class FavoritesSceneInteractor: FavoritesSceneBusinessLogic, FavoritesSceneDataStore {
-    var selectedPhoto = PhotoModel(title: "", owner: "", imageURL: "", image: UIImage())
+    var selectedPhoto = PhotoModel(id: "", title: "", owner: "", imageURL: "", image: UIImage())
     var presenter: FavoritesScenePresentationLogic?
     var worker: FavoritesSceneWorker?
-    // var name: String = ""
     
     init(presenter: FavoritesScenePresentationLogic? = nil, worker: FavoritesSceneWorker? = nil) {
         self.presenter = presenter

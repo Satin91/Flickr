@@ -31,8 +31,12 @@ class DatabaseManager: DatabaseManagerProtocol {
     }
     
     func delete(object: RealmSwift.Object) {
-        try! realm.write {
-            realm.delete(object)
+        DispatchQueue.main.async {
+            let object = object as! RealmPhotoModel
+            let obj = self.realm.object(ofType: RealmPhotoModel.self, forPrimaryKey: object.id)!
+            try! self.realm.write {
+                self.realm.delete(obj)
+            }
         }
     }
     

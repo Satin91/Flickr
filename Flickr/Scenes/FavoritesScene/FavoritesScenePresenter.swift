@@ -19,9 +19,9 @@ protocol FavoritesScenePresentationLogic {
 
 class FavoritesScenePresenter: FavoritesScenePresentationLogic {
     weak var viewController: FavoritesSceneDisplayLogic?
-
+    
     // MARK: Parse and calc respnse from FavoritesSceneInteractor and send simple view model to FavoritesSceneViewController to be displayed
-
+    
     func presentSomething(response: FavoritesScene.Database.Response) {
         //        let viewModel = FavoritesScene.Database.ViewModel()
         //        viewController?.displaySomething(viewModel: viewModel)
@@ -30,6 +30,7 @@ class FavoritesScenePresenter: FavoritesScenePresentationLogic {
     func handOverDatabaseObjects(response: FavoritesScene.Database.Response) {
         let viewModel = response.objects.map { realmModel in
             let photoModel = PhotoModel(
+                id: realmModel.id,
                 title: realmModel.title,
                 owner: realmModel.owner,
                 imageURL: realmModel.imageURL,
@@ -39,9 +40,9 @@ class FavoritesScenePresenter: FavoritesScenePresentationLogic {
         }
         viewController?.fetchCompleted(viewModel: FavoritesScene.Database.ViewModel(photos: viewModel))
     }
-//
-//    func presentSomethingElse(response: FavoritesScene.SomethingElse.Response) {
-//        let viewModel = FavoritesScene.SomethingElse.ViewModel()
-//        viewController?.displaySomethingElse(viewModel: viewModel)
-//    }
+    //
+    //    func presentSomethingElse(response: FavoritesScene.SomethingElse.Response) {
+    //        let viewModel = FavoritesScene.SomethingElse.ViewModel()
+    //        viewController?.displaySomethingElse(viewModel: viewModel)
+    //    }
 }

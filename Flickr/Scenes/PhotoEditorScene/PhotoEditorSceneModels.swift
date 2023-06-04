@@ -70,4 +70,18 @@ enum PhotoEditorScene {
             var success: Bool
         }
     }
+    
+    enum Database {
+        struct Request {
+            var image: UIImage
+        }
+
+        struct Response {
+            var success: Bool
+        }
+
+        struct ViewModel {
+            var success: Bool
+        }
+    }
 }

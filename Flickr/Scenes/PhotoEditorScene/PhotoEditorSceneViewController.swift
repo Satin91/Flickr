@@ -17,6 +17,7 @@ protocol PhotoEditorSceneDisplayLogic: AnyObject {
     func displayFilter(viewModel: PhotoEditorScene.PhotoEditor.ViewModel)
     func displayFilters(viewModel: PhotoEditorScene.LoadFilters.ViewModel)
     func receiveSavingResult(viewModel: PhotoEditorScene.Gallery.ViewModel)
+    func receiveRemovingResult(viewModel: PhotoEditorScene.Database.ViewModel)
 }
 
 class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayLogic {
@@ -60,6 +61,10 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
         print("Saving result \(viewModel.success)")
     }
     
+    func receiveRemovingResult(viewModel: PhotoEditorScene.Database.ViewModel) {
+        self.dismiss(animated: true)
+    }
+    
     // MARK: Requests to the interactor
     
     func initialUISetup() {
@@ -81,6 +86,10 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
     
     private func savePhotoToGalleryAction() {
         savePhotoToGallery()
+    }
+    
+    func removePhotoAction() {
+        interactor?.removePhoto(request: PhotoEditorScene.Gallery.Request(image: UIImage()))
     }
     
     // MARK: Other
@@ -125,7 +134,11 @@ extension PhotoEditorSceneViewController {
             self.savePhotoToGalleryAction()
         }
         
-        let menu = UIMenu(children: [saveToGallery])
+        let removePhoto = UIAction(title: "Remove", image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
+            self.removePhotoAction()
+        }
+        
+        let menu = UIMenu(children: [saveToGallery, removePhoto])
         menuButton.menu = menu
         menuButton.showsMenuAsPrimaryAction = true
     }

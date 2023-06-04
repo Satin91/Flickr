@@ -15,10 +15,12 @@ import UIKit
 class PhotoEditorSceneWorker {
     var photoEditorService: PhotoEditorServiceProtocol!
     var photoGalleryManager: PhotoGalleryManager!
+    var databaseManager: DatabaseManager!
     
-    init(photoEditorService: PhotoEditorServiceProtocol!, photoGalleryService: PhotoGalleryManager!) {
+    init(photoEditorService: PhotoEditorServiceProtocol!, photoGalleryManager: PhotoGalleryManager!, databaseManager: DatabaseManager!) {
         self.photoEditorService = photoEditorService
-        self.photoGalleryManager = photoGalleryService
+        self.photoGalleryManager = photoGalleryManager
+        self.databaseManager = databaseManager
     }
     
     func applyFilter(to image: UIImage, type: PhotoFilterType?) async -> PhotoEditorScene.PhotoEditor.Response {
@@ -38,5 +40,16 @@ class PhotoEditorSceneWorker {
     func upload(image: UIImage) async throws -> PhotoEditorScene.Gallery.Response {
         let success = try await photoGalleryManager.saveToPhotos(photo: image)
         return PhotoEditorScene.Gallery.Response(success: success)
+    }
+    
+    func removeFromDB(object: PhotoModel) async throws -> PhotoEditorScene.Database.Response {
+        let realmObject = RealmPhotoModel()
+        realmObject.id = object.id
+        realmObject.image = object.image.pngData()
+        realmObject.imageURL = object.imageURL
+        realmObject.owner = object.owner
+        realmObject.title = object.title
+        databaseManager.delete(object: realmObject)
+        return PhotoEditorScene.Database.Response(success: true)
     }
 }

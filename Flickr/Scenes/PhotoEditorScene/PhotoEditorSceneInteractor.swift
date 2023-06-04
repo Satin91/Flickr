@@ -12,6 +12,7 @@ protocol PhotoEditorSceneBusinessLogic {
     func applyFilter(request: PhotoEditorScene.PhotoEditor.Request)
     func fetchFilters(request: PhotoEditorScene.LoadFilters.Request)
     func uploadToGallery(request: PhotoEditorScene.Gallery.Request)
+    func removePhoto(request: PhotoEditorScene.Gallery.Request)
 }
 
 protocol PhotoEditorSceneDataStore {
@@ -19,7 +20,7 @@ protocol PhotoEditorSceneDataStore {
 }
 
 class PhotoEditorSceneInteractor: PhotoEditorSceneBusinessLogic, PhotoEditorSceneDataStore {
-    var photo = PhotoModel(title: "", owner: "", imageURL: "", image: UIImage())
+    var photo = PhotoModel(id: "", title: "", owner: "", imageURL: "", image: UIImage())
     let filterArray: [
         PhotoFilterType?] = [
             nil,
@@ -59,6 +60,13 @@ class PhotoEditorSceneInteractor: PhotoEditorSceneBusinessLogic, PhotoEditorScen
     func uploadToGallery(request: PhotoEditorScene.Gallery.Request) {
         Task {
             try await worker?.upload(image: request.image)
+        }
+    }
+    
+    func removePhoto(request: PhotoEditorScene.Gallery.Request) {
+        Task {
+            let response = try await worker?.removeFromDB(object: photo)
+            presenter?.presentRemovingResult(response: response!)
         }
     }
 }

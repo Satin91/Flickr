@@ -46,6 +46,7 @@ class DetailSceneInteractor: DetailSceneBusinessLogic, DetailSceneDataStore {
     
     func saveObjectToDatabase() {
         let realmModel = RealmPhotoModel()
+        realmModel.id = photo.id
         realmModel.title = photo.title
         realmModel.owner = photo.owner
         realmModel.imageURL = photo.imageURL

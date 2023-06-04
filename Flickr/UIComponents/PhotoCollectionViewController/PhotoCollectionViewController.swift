@@ -17,6 +17,9 @@ private struct PhotoCollectionViewConfig {
     var spacingCount: CGFloat {
         itemsPerLine + 1
     }
+    var isLarge: Bool {
+        itemsPerLine == 1
+    }
 }
 
 class PhotoCollectionViewController: UICollectionViewController {
@@ -59,9 +62,8 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     func changeLayout(to newSize: LayoutSize) {
         setLayoutSize(newSize)
-        UIView.animate(withDuration: 0.5, delay: .zero) { [weak self] in
-            self?.applyLayout()
-        }
+        applyLayout()
+        scrollToFirstItemIfNeed(layout: newSize)
     }
     
     private func setLayoutSize(_ layoutSize: LayoutSize) {
@@ -90,7 +92,7 @@ class PhotoCollectionViewController: UICollectionViewController {
     private func applyLayout() {
         let layout = UICollectionViewFlowLayout()
         let itemSide = (self.collectionView.bounds.width - config.horizontalSpacing * config.spacingCount) / config.itemsPerLine
-        layout.itemSize = CGSize(width: itemSide, height: itemSide / 2)
+        layout.itemSize = CGSize(width: itemSide, height: config.isLarge ? itemSide / 2 : itemSide)
         layout.minimumLineSpacing = config.minimumLineSpacing
         layout.sectionInset = UIEdgeInsets(
             top: config.verticalSpacing,
@@ -99,6 +101,12 @@ class PhotoCollectionViewController: UICollectionViewController {
             right: config.horizontalSpacing
         )
         collectionView.collectionViewLayout = layout
+    }
+    
+    private func scrollToFirstItemIfNeed(layout: LayoutSize) {
+        if layout == .large {
+            collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
