@@ -49,14 +49,18 @@ class PhotoCollectionViewController: UICollectionViewController {
     }
     
     func setupUI() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
         applyLayout()
         collectionView.backgroundColor = .clear
     }
     
     func display(photos: [PhotoModel]) {
-        photoArray = photos
         DispatchQueue.main.async {
+            self.photoArray = photos
             self.collectionView.reloadData()
+            self.applyLayout()
         }
     }
     
@@ -90,6 +94,7 @@ class PhotoCollectionViewController: UICollectionViewController {
     }
     
     private func applyLayout() {
+        guard !photoArray.isEmpty else { return }
         let layout = UICollectionViewFlowLayout()
         let itemSide = (self.collectionView.bounds.width - config.horizontalSpacing * config.spacingCount) / config.itemsPerLine
         layout.itemSize = CGSize(width: itemSide, height: config.isLarge ? itemSide / 2 : itemSide)
