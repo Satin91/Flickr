@@ -20,19 +20,16 @@ class PhotoFilterCollectionViewItem: UICollectionViewCell {
         super.init(coder: coder)
     }
     
-    func makeAsSelect(isSelected: Bool) {
-        var borderColor: CGColor! = UIColor.clear.cgColor
-        var borderWidth: CGFloat = 0
-        
-        if isSelected {
-            borderColor = UIColor.systemGray2.cgColor
-            borderWidth = 2
+    func makeSelected(condition: Bool) {
+        if condition {
+            UIView.animate(withDuration: 0.1, delay: .zero) {
+                self.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+            }
         } else {
-            borderColor = UIColor.clear.cgColor
-            borderWidth = 0
+            UIView.animate(withDuration: 0.1, delay: .zero) {
+                self.transform = CGAffineTransform(scaleX: 1, y: 1)
+            }
         }
-        imageView.layer.borderWidth = borderWidth
-        imageView.layer.borderColor = borderColor
     }
     
     func createImageView() {

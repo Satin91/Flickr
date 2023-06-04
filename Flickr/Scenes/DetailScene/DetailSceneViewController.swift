@@ -22,9 +22,9 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
     @IBOutlet private var tableViewContainer: UIView!
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var menuButton: UIButton!
+    
     var interactor: DetailSceneBusinessLogic?
     var router: (DetailSceneRoutingLogic & DetailSceneDataPassing)?
-    var menu = UIMenu()
     
     let tableView = PhotoDescriptionTableView(style: .insetGrouped)
     
@@ -101,7 +101,7 @@ extension DetailSceneViewController {
             self.saveToFavorites()
         }
         
-        self.menu = UIMenu(children: [share, openLink, addToFavorites])
+        let menu = UIMenu(children: [share, openLink, addToFavorites])
         menuButton.menu = menu
         menuButton.showsMenuAsPrimaryAction = true
     }

@@ -16,6 +16,7 @@ protocol PhotoEditorScenePresentationLogic {
     func presentInitialSetup(response: PhotoEditorScene.InitialSetup.Response)
     func presentPhotoFilter(response: PhotoEditorScene.PhotoEditor.Response)
     func presentFilteredArray(response: PhotoEditorScene.LoadFilters.Response)
+    func presentSavingResult(response: PhotoEditorScene.Gallery.Response)
 }
 
 class PhotoEditorScenePresenter: PhotoEditorScenePresentationLogic {
@@ -34,5 +35,9 @@ class PhotoEditorScenePresenter: PhotoEditorScenePresentationLogic {
     func presentFilteredArray(response: PhotoEditorScene.LoadFilters.Response) {
         let viewModel = PhotoEditorScene.LoadFilters.ViewModel(images: response.images)
         viewController?.displayFilters(viewModel: viewModel)
+    }
+    func presentSavingResult(response: PhotoEditorScene.Gallery.Response) {
+        let viewModel = PhotoEditorScene.Gallery.ViewModel(success: response.success)
+        viewController?.receiveSavingResult(viewModel: viewModel)
     }
 }

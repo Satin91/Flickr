@@ -91,7 +91,7 @@ class PhotoFilterCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: config.reuseIdentifier, for: indexPath) as! PhotoFilterCollectionViewItem
         cell.configure(image: imageArray[indexPath.row], radius: config.radius)
-        cell.makeAsSelect(isSelected: selectedIndexPath == indexPath)
+        cell.makeSelected(condition: selectedIndexPath == indexPath)
         return cell
     }
     

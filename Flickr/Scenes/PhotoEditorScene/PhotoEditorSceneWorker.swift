@@ -14,22 +14,29 @@ import UIKit
 
 class PhotoEditorSceneWorker {
     var photoEditorService: PhotoEditorServiceProtocol!
+    var photoGalleryManager: PhotoGalleryManager!
     
-    init(photoEditorService: PhotoEditorServiceProtocol!) {
+    init(photoEditorService: PhotoEditorServiceProtocol!, photoGalleryService: PhotoGalleryManager!) {
         self.photoEditorService = photoEditorService
+        self.photoGalleryManager = photoGalleryService
     }
     
-    func applyFIlterToImage(image: UIImage, filterType: PhotoFilterType?) async -> PhotoEditorScene.PhotoEditor.Response {
-        let image = await photoEditorService.applyBuiltInEffect(image: image, effectType: filterType)
+    func applyFilter(to image: UIImage, type: PhotoFilterType?) async -> PhotoEditorScene.PhotoEditor.Response {
+        let image = await photoEditorService.applyBuiltInEffect(image: image, effectType: type)
         return PhotoEditorScene.PhotoEditor.Response(image: image)
     }
     
-    func applyFilterToImageArray(image: UIImage, filterArray: [PhotoFilterType?]) async -> PhotoEditorScene.LoadFilters.Response {
+    func applyFilters(to image: UIImage, from filterArray: [PhotoFilterType?]) async -> PhotoEditorScene.LoadFilters.Response {
         var filteredImages: [UIImage] = []
         for filter in filterArray {
             let image = await photoEditorService.applyBuiltInEffect(image: image, effectType: filter)
             filteredImages.append(image)
         }
         return PhotoEditorScene.LoadFilters.Response(images: filteredImages)
+    }
+    
+    func upload(image: UIImage) async throws -> PhotoEditorScene.Gallery.Response {
+        let success = try await photoGalleryManager.saveToPhotos(photo: image)
+        return PhotoEditorScene.Gallery.Response(success: success)
     }
 }

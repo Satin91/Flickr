@@ -61,6 +61,7 @@
 		8EE7DC9F2A2BB6D200B2CD93 /* PhotoEditorSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7DC992A2BB6D200B2CD93 /* PhotoEditorSceneInteractor.swift */; };
 		8EE7DCA12A2BB8B700B2CD93 /* PhotoEditorSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7DCA02A2BB8B700B2CD93 /* PhotoEditorSceneConfigurator.swift */; };
 		8EE7DCA42A2BBA1D00B2CD93 /* PhotoEditorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7DCA32A2BBA1D00B2CD93 /* PhotoEditorService.swift */; };
+		8EF932912A2C5776002D14B1 /* PhotoGalleryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF932902A2C5776002D14B1 /* PhotoGalleryManager.swift */; };
 		B481665D29A152ED17437228 /* Pods_Flickr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2628180DFA95803D9EE392E5 /* Pods_Flickr.framework */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +124,7 @@
 		8EE7DC992A2BB6D200B2CD93 /* PhotoEditorSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditorSceneInteractor.swift; sourceTree = "<group>"; };
 		8EE7DCA02A2BB8B700B2CD93 /* PhotoEditorSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditorSceneConfigurator.swift; sourceTree = "<group>"; };
 		8EE7DCA32A2BBA1D00B2CD93 /* PhotoEditorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditorService.swift; sourceTree = "<group>"; };
+		8EF932902A2C5776002D14B1 /* PhotoGalleryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryManager.swift; sourceTree = "<group>"; };
 		E68D6ADA318433C2B037A4C8 /* Pods-Flickr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flickr.release.xcconfig"; path = "Target Support Files/Pods-Flickr/Pods-Flickr.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,6 +189,7 @@
 		8E3CE0C52A29BAAE007A3911 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				8EF932922A2C5780002D14B1 /* PhotoGallery */,
 				8E3CE0C42A29BA97007A3911 /* DatabaseManager */,
 			);
 			path = Managers;
@@ -368,12 +371,12 @@
 			isa = PBXGroup;
 			children = (
 				8EE7DC982A2BB6D200B2CD93 /* PhotoEditorSceneViewController.swift */,
-				8EE7DC942A2BB6D200B2CD93 /* PhotoEditorScenePresenter.swift */,
+				8EE7DC992A2BB6D200B2CD93 /* PhotoEditorSceneInteractor.swift */,
 				8EE7DC952A2BB6D200B2CD93 /* PhotoEditorSceneWorker.swift */,
+				8EE7DC942A2BB6D200B2CD93 /* PhotoEditorScenePresenter.swift */,
 				8EE7DCA02A2BB8B700B2CD93 /* PhotoEditorSceneConfigurator.swift */,
 				8EE7DC962A2BB6D200B2CD93 /* PhotoEditorSceneRouter.swift */,
 				8EE7DC972A2BB6D200B2CD93 /* PhotoEditorSceneModels.swift */,
-				8EE7DC992A2BB6D200B2CD93 /* PhotoEditorSceneInteractor.swift */,
 			);
 			path = PhotoEditorScene;
 			sourceTree = "<group>";
@@ -384,6 +387,14 @@
 				8EE7DCA32A2BBA1D00B2CD93 /* PhotoEditorService.swift */,
 			);
 			path = PhotoEditor;
+			sourceTree = "<group>";
+		};
+		8EF932922A2C5780002D14B1 /* PhotoGallery */ = {
+			isa = PBXGroup;
+			children = (
+				8EF932902A2C5776002D14B1 /* PhotoGalleryManager.swift */,
+			);
+			path = PhotoGallery;
 			sourceTree = "<group>";
 		};
 		D0BE03D56DC88AF2CC2CA0A6 /* Frameworks */ = {
@@ -549,6 +560,7 @@
 				8ECDF9042A268323002DBF12 /* MainSceneInteractor.swift in Sources */,
 				8E3CE0CB2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift in Sources */,
 				8EC024372A285FE10000F56B /* MainSceneModels.swift in Sources */,
+				8EF932912A2C5776002D14B1 /* PhotoGalleryManager.swift in Sources */,
 				8EE7DCA12A2BB8B700B2CD93 /* PhotoEditorSceneConfigurator.swift in Sources */,
 				8E3CE0C92A29BC2F007A3911 /* RealmPhotoModel.swift in Sources */,
 				8E8780C42A2911D300EBE979 /* UIViewControllerInstantiate.swift in Sources */,
@@ -736,6 +748,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Flickr/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We will use your gallery access to save photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -764,6 +777,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Flickr/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We will use your gallery access to save photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -16,6 +16,7 @@ protocol PhotoEditorSceneDisplayLogic: AnyObject {
     func fillData(viewModel: PhotoEditorScene.InitialSetup.ViewModel)
     func displayFilter(viewModel: PhotoEditorScene.PhotoEditor.ViewModel)
     func displayFilters(viewModel: PhotoEditorScene.LoadFilters.ViewModel)
+    func receiveSavingResult(viewModel: PhotoEditorScene.Gallery.ViewModel)
 }
 
 class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayLogic {
@@ -23,21 +24,21 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
     var router: (NSObjectProtocol & PhotoEditorSceneRoutingLogic & PhotoEditorSceneDataPassing)?
     var collectionView: PhotoFilterCollectionViewController!
     
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private var collectionViewContainer: UIView!
     @IBOutlet private var imageView: UIImageView!
-
+    @IBOutlet private var menuButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        animateActivityIndicator()
         initialUISetup()
         setupUI()
         loadFilters()
         filterSelectionObserver()
     }
     
-    func initialUISetup() {
-        let request = PhotoEditorScene.InitialSetup.Request()
-        interactor?.initialSetup(request: request)
-    }
+    // MARK: Protocol methods
     
     func fillData(viewModel: PhotoEditorScene.InitialSetup.ViewModel) {
         imageView.image = viewModel.photoModel.image
@@ -46,17 +47,43 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
     func displayFilter(viewModel: PhotoEditorScene.PhotoEditor.ViewModel) {
         let image = viewModel.image
         DispatchQueue.main.async {
-            self.imageView.image = image
+            self.changeFiltered(image: image)
         }
+    }
+    
+    func displayFilters(viewModel: PhotoEditorScene.LoadFilters.ViewModel) {
+        collectionView.display(filters: viewModel.images)
+        stopAnimateActivityIndicator()
+    }
+    
+    func receiveSavingResult(viewModel: PhotoEditorScene.Gallery.ViewModel) {
+        print("Saving result \(viewModel.success)")
+    }
+    
+    // MARK: Requests to the interactor
+    
+    func initialUISetup() {
+        let request = PhotoEditorScene.InitialSetup.Request()
+        interactor?.initialSetup(request: request)
     }
     
     func loadFilters() {
         interactor?.fetchFilters(request: PhotoEditorScene.LoadFilters.Request(image: UIImage(), filters: []))
     }
     
-    func displayFilters(viewModel: PhotoEditorScene.LoadFilters.ViewModel) {
-        collectionView.display(filters: viewModel.images)
+    func savePhotoToGallery() {
+        guard let image = imageView.image else { return }
+        let request = PhotoEditorScene.Gallery.Request(image: image)
+        interactor?.uploadToGallery(request: request)
     }
+    
+    // MARK: Menu actions
+    
+    private func savePhotoToGalleryAction() {
+        savePhotoToGallery()
+    }
+    
+    // MARK: Other
     
     private func filterSelectionObserver() {
         collectionView.didSelectFilter = { [weak self] index in
@@ -67,8 +94,9 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
 }
 
 extension PhotoEditorSceneViewController {
-    func setupUI() {
+    private func setupUI() {
         addCollectionView()
+        setupMenu()
     }
     
     private func addCollectionView() {
@@ -78,5 +106,37 @@ extension PhotoEditorSceneViewController {
         collectionView.didMove(toParent: self)
         collectionView.view.translatesAutoresizingMaskIntoConstraints = false
         collectionView.view.equalConstraint(to: collectionViewContainer)
+    }
+    
+    private func animateActivityIndicator() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    private func stopAnimateActivityIndicator() {
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func setupMenu() {
+        let saveToGallery = UIAction(title: "Save to photos", image: UIImage(systemName: "square.and.arrow.down")) { _ in
+            self.savePhotoToGalleryAction()
+        }
+        
+        let menu = UIMenu(children: [saveToGallery])
+        menuButton.menu = menu
+        menuButton.showsMenuAsPrimaryAction = true
+    }
+    
+    private func changeFiltered(image: UIImage) {
+        UIView.transition(
+            with: imageView,
+            duration: 0.25,
+            options: .transitionCrossDissolve,
+            animations: { self.imageView.image = image },
+            completion: nil
+        )
     }
 }

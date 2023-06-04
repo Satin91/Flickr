@@ -11,6 +11,7 @@ protocol PhotoEditorSceneBusinessLogic {
     func initialSetup(request: PhotoEditorScene.InitialSetup.Request)
     func applyFilter(request: PhotoEditorScene.PhotoEditor.Request)
     func fetchFilters(request: PhotoEditorScene.LoadFilters.Request)
+    func uploadToGallery(request: PhotoEditorScene.Gallery.Request)
 }
 
 protocol PhotoEditorSceneDataStore {
@@ -42,7 +43,7 @@ class PhotoEditorSceneInteractor: PhotoEditorSceneBusinessLogic, PhotoEditorScen
     func fetchFilters(request: PhotoEditorScene.LoadFilters.Request) {
         Task { [weak self] in
             guard let self else { return }
-            let respose = await self.worker?.applyFilterToImageArray(image: self.photo.image, filterArray: filterArray)
+            let respose = await self.worker?.applyFilters(to: self.photo.image, from: filterArray)
             presenter?.presentFilteredArray(response: respose!)
         }
     }
@@ -50,8 +51,14 @@ class PhotoEditorSceneInteractor: PhotoEditorSceneBusinessLogic, PhotoEditorScen
     func applyFilter(request: PhotoEditorScene.PhotoEditor.Request) {
         Task { [weak self] in
             guard let self else { return }
-            let response = await worker?.applyFIlterToImage(image: self.photo.image, filterType: filterArray[request.filterIndex])
+            let response = await worker?.applyFilter(to: self.photo.image, type: filterArray[request.filterIndex])
             presenter?.presentPhotoFilter(response: response!)
+        }
+    }
+    
+    func uploadToGallery(request: PhotoEditorScene.Gallery.Request) {
+        Task {
+            try await worker?.upload(image: request.image)
         }
     }
 }

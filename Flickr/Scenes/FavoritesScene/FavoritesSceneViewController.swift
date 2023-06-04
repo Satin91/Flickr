@@ -57,7 +57,7 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
     }
     
     @objc private func leftSecondaryBarButtonItemAction(_ sender: UIButton) {
-        collectionView.changeLayout(to: .medium)
+        collectionView.changeLayout(to: .small)
     }
     
     private func photoSelectionObserver() {

@@ -56,4 +56,18 @@ enum PhotoEditorScene {
             var images: [UIImage]
         }
     }
+    
+    enum Gallery {
+        struct Request {
+            var image: UIImage
+        }
+
+        struct Response {
+            var success: Bool
+        }
+
+        struct ViewModel {
+            var success: Bool
+        }
+    }
 }

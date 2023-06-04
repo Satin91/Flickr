@@ -23,7 +23,8 @@ final class PhotoEditorSceneConfigurator: ConfiguratorProtocol {
         let presenter = PhotoEditorScenePresenter()
         let router = PhotoEditorSceneRouter()
         let photoEditorService = PhotoEditorService()
-        let worker = PhotoEditorSceneWorker(photoEditorService: photoEditorService)
+        let photoGalleryManager = PhotoGalleryManager()
+        let worker = PhotoEditorSceneWorker(photoEditorService: photoEditorService, photoGalleryService: photoGalleryManager)
         interactor.worker = worker
         vc.interactor = interactor
         vc.router = router

@@ -67,11 +67,11 @@ class PhotoCollectionViewController: UICollectionViewController {
     private func setLayoutSize(_ layoutSize: LayoutSize) {
         switch layoutSize {
         case .small:
-            self.config = .init(horizontalSpacing: 12, verticalSpacing: 12, itemsPerLine: 5, radius: 8)
+            self.config = .init(horizontalSpacing: 10, verticalSpacing: 10, itemsPerLine: 4, minimumLineSpacing: 8, radius: 12)
         case .medium:
             self.config = .init(horizontalSpacing: 12, verticalSpacing: 12, itemsPerLine: 3, radius: 12)
         case .large:
-            self.config = .init(horizontalSpacing: 12, verticalSpacing: 12, itemsPerLine: 1, minimumLineSpacing: 40, radius: 30)
+            self.config = .init(horizontalSpacing: 12, verticalSpacing: 12, itemsPerLine: 1, minimumLineSpacing: 16, radius: 24)
         }
         reloadItems()
     }
@@ -90,7 +90,7 @@ class PhotoCollectionViewController: UICollectionViewController {
     private func applyLayout() {
         let layout = UICollectionViewFlowLayout()
         let itemSide = (self.collectionView.bounds.width - config.horizontalSpacing * config.spacingCount) / config.itemsPerLine
-        layout.itemSize = CGSize(width: itemSide, height: itemSide)
+        layout.itemSize = CGSize(width: itemSide, height: itemSide / 2)
         layout.minimumLineSpacing = config.minimumLineSpacing
         layout.sectionInset = UIEdgeInsets(
             top: config.verticalSpacing,
