@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8E16A7902A2A507D00EABE10 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E16A78F2A2A507D00EABE10 /* StringExtensions.swift */; };
+		8E2493712A2C1A52001324BE /* PhotoFilterCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2493702A2C1A52001324BE /* PhotoFilterCollectionViewController.swift */; };
+		8E2493732A2C1A7C001324BE /* PhotoFilterCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2493722A2C1A7C001324BE /* PhotoFilterCollectionViewItem.swift */; };
 		8E3CE0B22A299587007A3911 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0B12A299587007A3911 /* ActivityView.swift */; };
 		8E3CE0BE2A29B604007A3911 /* FavoritesScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0B82A29B604007A3911 /* FavoritesScenePresenter.swift */; };
 		8E3CE0BF2A29B604007A3911 /* FavoritesSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3CE0B92A29B604007A3911 /* FavoritesSceneWorker.swift */; };
@@ -66,6 +68,8 @@
 		2628180DFA95803D9EE392E5 /* Pods_Flickr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flickr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B9ADF893EA70A92D963ECD /* Pods-Flickr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flickr.debug.xcconfig"; path = "Target Support Files/Pods-Flickr/Pods-Flickr.debug.xcconfig"; sourceTree = "<group>"; };
 		8E16A78F2A2A507D00EABE10 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		8E2493702A2C1A52001324BE /* PhotoFilterCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFilterCollectionViewController.swift; sourceTree = "<group>"; };
+		8E2493722A2C1A7C001324BE /* PhotoFilterCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFilterCollectionViewItem.swift; sourceTree = "<group>"; };
 		8E3CE0B12A299587007A3911 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		8E3CE0B82A29B604007A3911 /* FavoritesScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesScenePresenter.swift; sourceTree = "<group>"; };
 		8E3CE0B92A29B604007A3911 /* FavoritesSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneWorker.swift; sourceTree = "<group>"; };
@@ -139,6 +143,15 @@
 			children = (
 			);
 			path = TextField;
+			sourceTree = "<group>";
+		};
+		8E24936F2A2C1A24001324BE /* PhotoFilterCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8E2493702A2C1A52001324BE /* PhotoFilterCollectionViewController.swift */,
+				8E2493722A2C1A7C001324BE /* PhotoFilterCollectionViewItem.swift */,
+			);
+			path = PhotoFilterCollectionViewController;
 			sourceTree = "<group>";
 		};
 		8E3CE0B32A29958B007A3911 /* ActivityView */ = {
@@ -256,6 +269,7 @@
 		8EC024392A28D98F0000F56B /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				8E24936F2A2C1A24001324BE /* PhotoFilterCollectionViewController */,
 				8E24936C2A2BDE05001324BE /* TextField */,
 				8E5FB0C82A2A950800DFFA97 /* TableView */,
 				8E8780D42A29527000EBE979 /* AlertViewController */,
@@ -531,6 +545,7 @@
 				8EE7DCA42A2BBA1D00B2CD93 /* PhotoEditorService.swift in Sources */,
 				8E3CE0C72A29BAC4007A3911 /* DatabaseManager.swift in Sources */,
 				8E8780C22A290CB400EBE979 /* MainSceneConfigurator.swift in Sources */,
+				8E2493732A2C1A7C001324BE /* PhotoFilterCollectionViewItem.swift in Sources */,
 				8ECDF9042A268323002DBF12 /* MainSceneInteractor.swift in Sources */,
 				8E3CE0CB2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift in Sources */,
 				8EC024372A285FE10000F56B /* MainSceneModels.swift in Sources */,
@@ -551,6 +566,7 @@
 				8EE7DC9E2A2BB6D200B2CD93 /* PhotoEditorSceneViewController.swift in Sources */,
 				8ECDF8EB2A2643EC002DBF12 /* AppDelegate.swift in Sources */,
 				8E8780B32A29045300EBE979 /* DetailSceneRouter.swift in Sources */,
+				8E2493712A2C1A52001324BE /* PhotoFilterCollectionViewController.swift in Sources */,
 				8E3CE0BE2A29B604007A3911 /* FavoritesScenePresenter.swift in Sources */,
 				8E8780B42A29045300EBE979 /* DetailSceneModels.swift in Sources */,
 				8E8780B22A29045300EBE979 /* DetailSceneWorker.swift in Sources */,

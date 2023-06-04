@@ -18,9 +18,18 @@ class PhotoEditorSceneWorker {
     init(photoEditorService: PhotoEditorServiceProtocol!) {
         self.photoEditorService = photoEditorService
     }
-    func doSomeWork() {
+    
+    func applyFIlterToImage(image: UIImage, filterType: PhotoFilterType?) async -> PhotoEditorScene.PhotoEditor.Response {
+        let image = await photoEditorService.applyBuiltInEffect(image: image, effectType: filterType)
+        return PhotoEditorScene.PhotoEditor.Response(image: image)
     }
-    //    func doSomeOtherWork() {
-    //
-    //    }
+    
+    func applyFilterToImageArray(image: UIImage, filterArray: [PhotoFilterType?]) async -> PhotoEditorScene.LoadFilters.Response {
+        var filteredImages: [UIImage] = []
+        for filter in filterArray {
+            let image = await photoEditorService.applyBuiltInEffect(image: image, effectType: filter)
+            filteredImages.append(image)
+        }
+        return PhotoEditorScene.LoadFilters.Response(images: filteredImages)
+    }
 }

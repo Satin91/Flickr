@@ -27,21 +27,33 @@ enum PhotoEditorScene {
             var photoModel: PhotoModel
         }
     }
-    //    enum SomethingElse
-    //    {
-    //        struct Request
-    //        {
-    //
-    //        }
-    //
-    //        struct Response
-    //        {
-    //
-    //        }
-    //
-    //        struct ViewModel
-    //        {
-    //
-    //        }
-    //    }
+        enum PhotoEditor {
+            struct Request {
+                var image: UIImage
+                var filterIndex: Int
+            }
+    
+            struct Response {
+                var image: UIImage
+            }
+    
+            struct ViewModel {
+                var image: UIImage
+            }
+        }
+    
+    enum LoadFilters {
+        struct Request {
+            var image: UIImage
+            var filters: [PhotoFilterType]
+        }
+
+        struct Response {
+            var images: [UIImage]
+        }
+
+        struct ViewModel {
+            var images: [UIImage]
+        }
+    }
 }

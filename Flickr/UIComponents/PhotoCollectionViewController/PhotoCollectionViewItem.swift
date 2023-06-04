@@ -25,12 +25,12 @@ class PhotoCollectionViewItem: UICollectionViewCell {
         imageView.layer.cornerCurve = .continuous
         imageView.layer.cornerRadius = radius
         imageView.layer.masksToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.equalConstraint(to: self)
     }
-
+    
     private func createImageView() {
         self.addSubview(imageView)
         imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.equalConstraint(to: self)
     }
 }

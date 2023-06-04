@@ -14,20 +14,25 @@ import UIKit
 
 protocol PhotoEditorScenePresentationLogic {
     func presentInitialSetup(response: PhotoEditorScene.InitialSetup.Response)
+    func presentPhotoFilter(response: PhotoEditorScene.PhotoEditor.Response)
+    func presentFilteredArray(response: PhotoEditorScene.LoadFilters.Response)
 }
 
 class PhotoEditorScenePresenter: PhotoEditorScenePresentationLogic {
     weak var viewController: PhotoEditorSceneDisplayLogic?
 
-    // MARK: Parse and calc respnse from PhotoEditorSceneInteractor and send simple view model to PhotoEditorSceneViewController to be displayed
-
     func presentInitialSetup(response: PhotoEditorScene.InitialSetup.Response) {
         let viewModel = PhotoEditorScene.InitialSetup.ViewModel(photoModel: response.photoModel)
         viewController?.fillData(viewModel: viewModel)
     }
-//
-//    func presentSomethingElse(response: PhotoEditorScene.SomethingElse.Response) {
-//        let viewModel = PhotoEditorScene.SomethingElse.ViewModel()
-//        viewController?.displaySomethingElse(viewModel: viewModel)
-//    }
+    
+    func presentPhotoFilter(response: PhotoEditorScene.PhotoEditor.Response) {
+        let viewModel = PhotoEditorScene.PhotoEditor.ViewModel(image: response.image)
+        viewController?.displayFilter(viewModel: viewModel)
+    }
+    
+    func presentFilteredArray(response: PhotoEditorScene.LoadFilters.Response) {
+        let viewModel = PhotoEditorScene.LoadFilters.ViewModel(images: response.images)
+        viewController?.displayFilters(viewModel: viewModel)
+    }
 }

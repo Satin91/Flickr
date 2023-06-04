@@ -9,7 +9,7 @@ import UIKit
 
 private struct PhotoCollectionViewConfig {
     let reuseIdentifier = "photosCollectionViewCell"
-    var horizontalSpacing: CGFloat
+    var horizontalSpacing: CGFloat = 8
     var verticalSpacing: CGFloat
     var itemsPerLine: CGFloat
     var minimumLineSpacing: CGFloat = 12
@@ -42,6 +42,10 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupUI()
+    }
+    
+    func setupUI() {
         applyLayout()
         collectionView.backgroundColor = .clear
     }

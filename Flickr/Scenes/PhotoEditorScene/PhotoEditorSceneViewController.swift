@@ -14,22 +14,24 @@ import UIKit
 
 protocol PhotoEditorSceneDisplayLogic: AnyObject {
     func fillData(viewModel: PhotoEditorScene.InitialSetup.ViewModel)
-    func displaySomething(viewModel: PhotoEditorScene.InitialSetup.ViewModel)
-    //    func displaySomethingElse(viewModel: PhotoEditorScene.SomethingElse.ViewModel)
+    func displayFilter(viewModel: PhotoEditorScene.PhotoEditor.ViewModel)
+    func displayFilters(viewModel: PhotoEditorScene.LoadFilters.ViewModel)
 }
 
 class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayLogic {
     var interactor: PhotoEditorSceneBusinessLogic?
     var router: (NSObjectProtocol & PhotoEditorSceneRoutingLogic & PhotoEditorSceneDataPassing)?
-    @IBOutlet private var imageView: UIImageView!
+    var collectionView: PhotoFilterCollectionViewController!
     
+    @IBOutlet private var collectionViewContainer: UIView!
+    @IBOutlet private var imageView: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initialUISetup()
-    }
-    
-    func aboutFilters() {
-        
+        setupUI()
+        loadFilters()
+        filterSelectionObserver()
     }
     
     func initialUISetup() {
@@ -41,6 +43,40 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
         imageView.image = viewModel.photoModel.image
     }
     
-    func displaySomething(viewModel: PhotoEditorScene.InitialSetup.ViewModel) {
+    func displayFilter(viewModel: PhotoEditorScene.PhotoEditor.ViewModel) {
+        let image = viewModel.image
+        DispatchQueue.main.async {
+            self.imageView.image = image
+        }
+    }
+    
+    func loadFilters() {
+        interactor?.fetchFilters(request: PhotoEditorScene.LoadFilters.Request(image: UIImage(), filters: []))
+    }
+    
+    func displayFilters(viewModel: PhotoEditorScene.LoadFilters.ViewModel) {
+        collectionView.display(filters: viewModel.images)
+    }
+    
+    private func filterSelectionObserver() {
+        collectionView.didSelectFilter = { [weak self] index in
+            guard let self else { return }
+            self.interactor?.applyFilter(request: PhotoEditorScene.PhotoEditor.Request(image: UIImage(), filterIndex: index) )
+        }
+    }
+}
+
+extension PhotoEditorSceneViewController {
+    func setupUI() {
+        addCollectionView()
+    }
+    
+    private func addCollectionView() {
+        collectionView = PhotoFilterCollectionViewController(collectionViewLayout: UICollectionViewLayout(), frame: collectionViewContainer.frame)
+        addChild(collectionView)
+        collectionViewContainer.addSubview(collectionView.view)
+        collectionView.didMove(toParent: self)
+        collectionView.view.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.view.equalConstraint(to: collectionViewContainer)
     }
 }
