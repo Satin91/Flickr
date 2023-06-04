@@ -13,6 +13,7 @@ protocol PhotoEditorSceneBusinessLogic {
     func fetchFilters(request: PhotoEditorScene.LoadFilters.Request)
     func uploadToGallery(request: PhotoEditorScene.Gallery.Request)
     func removePhoto(request: PhotoEditorScene.Gallery.Request)
+    func updatePhoto(request: PhotoEditorScene.Database.Request)
 }
 
 protocol PhotoEditorSceneDataStore {
@@ -67,6 +68,14 @@ class PhotoEditorSceneInteractor: PhotoEditorSceneBusinessLogic, PhotoEditorScen
         Task {
             let response = try await worker?.removeFromDB(object: photo)
             presenter?.presentRemovingResult(response: response!)
+        }
+    }
+    
+    func updatePhoto(request: PhotoEditorScene.Database.Request) {
+        self.photo.image = request.image
+        Task {
+            let response = try await worker?.updateDBObject(object: self.photo)
+            presenter?.presentUpdatingResult(response: response!)
         }
     }
 }

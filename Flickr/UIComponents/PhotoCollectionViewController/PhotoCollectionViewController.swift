@@ -45,6 +45,7 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        collectionView.reloadData()
         setupUI()
     }
     
@@ -94,7 +95,6 @@ class PhotoCollectionViewController: UICollectionViewController {
     }
     
     private func applyLayout() {
-        guard !photoArray.isEmpty else { return }
         let layout = UICollectionViewFlowLayout()
         let itemSide = (self.collectionView.bounds.width - config.horizontalSpacing * config.spacingCount) / config.itemsPerLine
         layout.itemSize = CGSize(width: itemSide, height: config.isLarge ? itemSide / 2 : itemSide)

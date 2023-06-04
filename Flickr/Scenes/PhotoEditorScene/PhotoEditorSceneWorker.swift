@@ -52,4 +52,15 @@ class PhotoEditorSceneWorker {
         databaseManager.delete(id: realmObject.id, object: RealmPhotoModel.self)
         return PhotoEditorScene.Database.Response(success: true)
     }
+    
+    func updateDBObject(object: PhotoModel) async throws -> PhotoEditorScene.Database.Response {
+        let realmObject = RealmPhotoModel()
+        realmObject.id = object.id
+        realmObject.image = object.image.pngData()
+        realmObject.imageURL = object.imageURL
+        realmObject.owner = object.owner
+        realmObject.title = object.title
+        databaseManager.update(object: realmObject)
+        return PhotoEditorScene.Database.Response(success: true)
+    }
 }

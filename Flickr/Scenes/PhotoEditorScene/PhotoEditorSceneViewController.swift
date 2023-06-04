@@ -18,6 +18,7 @@ protocol PhotoEditorSceneDisplayLogic: AnyObject {
     func displayFilters(viewModel: PhotoEditorScene.LoadFilters.ViewModel)
     func receiveSavingResult(viewModel: PhotoEditorScene.Gallery.ViewModel)
     func receiveRemovingResult(viewModel: PhotoEditorScene.Database.ViewModel)
+    func receiveUpdatingResult(viewModel: PhotoEditorScene.Database.ViewModel)
 }
 
 class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayLogic {
@@ -37,6 +38,16 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
         setupUI()
         loadFilters()
         filterSelectionObserver()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideTabBar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        showTabBar()
     }
     
     // MARK: Protocol methods
@@ -65,6 +76,12 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
         router?.routeBack()
     }
     
+    func receiveUpdatingResult(viewModel: PhotoEditorScene.Database.ViewModel) {
+        if viewModel.success {
+            router?.routeBack()
+        }
+    }
+    
     // MARK: Requests to the interactor
     
     func initialUISetup() {
@@ -82,7 +99,17 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
         interactor?.uploadToGallery(request: request)
     }
     
+    func applyChanges() {
+        guard let image = imageView.image else { return }
+        let request = PhotoEditorScene.Database.Request(image: image)
+        interactor?.updatePhoto(request: request)
+    }
+    
     // MARK: Menu actions
+    
+    private func applyChangesAction() {
+        applyChanges()
+    }
     
     private func savePhotoToGalleryAction() {
         savePhotoToGallery()
@@ -104,8 +131,17 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
 
 extension PhotoEditorSceneViewController {
     private func setupUI() {
+        hideTabBar()
         addCollectionView()
         setupMenu()
+    }
+    
+    func hideTabBar() {
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    func showTabBar() {
+        tabBarController?.tabBar.isHidden = false
     }
     
     private func addCollectionView() {
@@ -130,6 +166,10 @@ extension PhotoEditorSceneViewController {
     }
     
     private func setupMenu() {
+        let applyChanges = UIAction(title: "Apply changes", image: UIImage(systemName: "checkmark.circle")!) { _ in
+            self.applyChangesAction()
+        }
+        
         let saveToGallery = UIAction(title: "Save to photos", image: UIImage(systemName: "square.and.arrow.down")) { _ in
             self.savePhotoToGalleryAction()
         }
@@ -138,7 +178,7 @@ extension PhotoEditorSceneViewController {
             self.removePhotoAction()
         }
         
-        let menu = UIMenu(children: [saveToGallery, removePhoto])
+        let menu = UIMenu(children: [applyChanges, saveToGallery, removePhoto])
         menuButton.menu = menu
         menuButton.showsMenuAsPrimaryAction = true
     }

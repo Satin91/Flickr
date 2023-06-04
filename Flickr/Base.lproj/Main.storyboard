@@ -28,7 +28,7 @@
             </objects>
             <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
         </scene>
-        <!--Search-->
+        <!--Search Photos-->
         <scene sceneID="H8z-Ny-3np">
             <objects>
                 <viewController storyboardIdentifier="MainSceneViewController" id="GUD-6w-CfH" customClass="MainSceneViewController" customModule="Flickr" customModuleProvider="target" sceneMemberID="viewController">
@@ -59,7 +59,7 @@
                             </hierarchicalColors>
                         </imageReference>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Search" id="74h-gN-lpS"/>
+                    <navigationItem key="navigationItem" title="Search Photos" id="74h-gN-lpS"/>
                     <connections>
                         <outlet property="collectionViewContainer" destination="VNs-Lu-i4G" id="78A-jg-DXl"/>
                         <segue destination="z1h-2n-ng2" kind="show" id="hQk-zK-ahw"/>
@@ -198,26 +198,35 @@
                                 </constraints>
                             </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5J-xD-jP6">
-                                <rect key="frame" x="0.0" y="603" width="393" height="128"/>
+                                <rect key="frame" x="0.0" y="680" width="393" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="xaL-vi-dbb"/>
+                                    <constraint firstAttribute="height" constant="128" id="wcy-RK-qcQ"/>
                                 </constraints>
                             </containerView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="qFb-KX-BQN">
-                                <rect key="frame" x="186.66666666666666" y="657" width="20" height="20"/>
+                                <rect key="frame" x="186.66666666666666" y="734" width="20" height="20"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place for detailed filter customizations" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="end-yG-zef">
+                                <rect key="frame" x="107" y="553" width="178" height="93.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="A5p-Ht-LE3"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ajP-eG-C2d" firstAttribute="top" secondItem="A5p-Ht-LE3" secondAttribute="top" id="0sF-JX-Buy"/>
                             <constraint firstItem="qFb-KX-BQN" firstAttribute="centerX" secondItem="y5J-xD-jP6" secondAttribute="centerX" id="DMs-t4-jb4"/>
+                            <constraint firstItem="A5p-Ht-LE3" firstAttribute="trailing" secondItem="end-yG-zef" secondAttribute="trailing" constant="108" id="PQf-Mp-xtp"/>
                             <constraint firstItem="qFb-KX-BQN" firstAttribute="centerY" secondItem="y5J-xD-jP6" secondAttribute="centerY" id="Qxt-Hl-eJM"/>
-                            <constraint firstItem="A5p-Ht-LE3" firstAttribute="bottom" secondItem="y5J-xD-jP6" secondAttribute="bottom" constant="38" id="V3N-5g-fJ0"/>
                             <constraint firstItem="ajP-eG-C2d" firstAttribute="trailing" secondItem="A5p-Ht-LE3" secondAttribute="trailing" id="Xcz-ZQ-htQ"/>
+                            <constraint firstAttribute="bottom" secondItem="y5J-xD-jP6" secondAttribute="bottom" constant="44" id="YHz-o1-2CU"/>
                             <constraint firstItem="y5J-xD-jP6" firstAttribute="trailing" secondItem="A5p-Ht-LE3" secondAttribute="trailing" id="dGt-59-nfE"/>
+                            <constraint firstItem="end-yG-zef" firstAttribute="top" secondItem="ajP-eG-C2d" secondAttribute="bottom" constant="65" id="f2i-9e-RVg"/>
                             <constraint firstItem="y5J-xD-jP6" firstAttribute="leading" secondItem="A5p-Ht-LE3" secondAttribute="leading" id="gfS-7J-9BE"/>
                             <constraint firstItem="ajP-eG-C2d" firstAttribute="leading" secondItem="A5p-Ht-LE3" secondAttribute="leading" id="qW8-IV-JEZ"/>
+                            <constraint firstItem="end-yG-zef" firstAttribute="leading" secondItem="A5p-Ht-LE3" secondAttribute="leading" constant="107" id="uev-Ee-Mru"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Photo Editor" id="jQL-Vd-JOh">

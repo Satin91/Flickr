@@ -25,16 +25,18 @@ class DatabaseManager: DatabaseManagerProtocol {
     }
     
     func update(object: RealmSwift.Object) {
-        try! realm.write {
-            realm.add(object, update: .all)
+        DispatchQueue.main.async { [weak self] in
+            try! self?.realm.write {
+                self?.realm.add(object, update: .all)
+            }
         }
     }
     
     func delete<T: Object>(id: String, object: T.Type) {
-        DispatchQueue.main.async {
-            let object = self.realm.objects(T.self).filter("id=%@", id)
-            try! self.realm.write {
-                self.realm.delete(object)
+        DispatchQueue.main.async { [weak self] in
+            let object = self?.realm.objects(T.self).filter("id=%@", id)
+            try! self?.realm.write {
+                self?.realm.delete(object!)
             }
         }
     }
