@@ -247,7 +247,7 @@
 		8EC0242C2A2859060000F56B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				8EC0242D2A2859150000F56B /* MainScene */,
+				8EC0242D2A2859150000F56B /* SearchPhotosScene */,
 				8E8780AA2A29042500EBE979 /* DetailScene */,
 				8E3CE0B72A29B59F007A3911 /* FavoritesScene */,
 				8EE7DC932A2BB6B500B2CD93 /* PhotoEditorScene */,
@@ -255,7 +255,7 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		8EC0242D2A2859150000F56B /* MainScene */ = {
+		8EC0242D2A2859150000F56B /* SearchPhotosScene */ = {
 			isa = PBXGroup;
 			children = (
 				8EC024342A285FE10000F56B /* SearchPhotosSceneViewController.swift */,
@@ -266,7 +266,7 @@
 				8EC024322A285FE10000F56B /* SearchPhotosSceneRouter.swift */,
 				8EC024332A285FE10000F56B /* SearchPhotosSceneModels.swift */,
 			);
-			path = MainScene;
+			path = SearchPhotosScene;
 			sourceTree = "<group>";
 		};
 		8EC024392A28D98F0000F56B /* UIComponents */ = {
