@@ -116,7 +116,7 @@ class PhotoEditorSceneViewController: UIViewController, PhotoEditorSceneDisplayL
     }
     
     private func removePhotoAction() {
-        interactor?.removePhoto(request: PhotoEditorScene.Gallery.Request(image: UIImage()))
+        interactor?.removePhoto()
     }
     
     // MARK: - Other

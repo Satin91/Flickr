@@ -27,18 +27,13 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         configureDependencies()
         photoSelectionCallbackObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        setupUI()
     }
     
     // MARK: - Protocol methods
@@ -63,6 +58,7 @@ class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     }
     
     // MARK: Other
+    
     private func photoSelectionCallbackObserver() {
         collectionView.didSelectPhoto = { [weak self] photo in
             guard let self else { return }
@@ -92,6 +88,7 @@ extension MainSceneViewController {
     
     private func configureNavigationBar() {
         navigationItem.searchController = createSearchController()
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func createSearchController() -> UISearchController {

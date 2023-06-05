@@ -41,7 +41,7 @@ class FavoritesSceneViewController: UIViewController, FavoritesSceneDisplayLogic
         collectionView.display(photos: viewModel.photos)
     }
     
-    // MARK: - Requests to the interactor
+    // MARK: - Requests to interactor
     
     func loadPhotos() {
         interactor?.fetchPhotos()

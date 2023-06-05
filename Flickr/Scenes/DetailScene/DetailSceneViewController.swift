@@ -54,7 +54,7 @@ class DetailSceneViewController: UIViewController, DetailSceneDisplayLogic {
         viewModel.activityView.showOn(self)
     }
     
-    // MARK: - Requests to the interactor
+    // MARK: - Requests to interactor
     
     func initialUISetup() {
         let request = DetailScene.InitialSetup.Request()
