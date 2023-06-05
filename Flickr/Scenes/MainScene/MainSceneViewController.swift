@@ -20,7 +20,6 @@ protocol MainSceneDisplayLogic: AnyObject {
 class MainSceneViewController: UIViewController, MainSceneDisplayLogic {
     var interactor: MainSceneInteractor?
     var router: (NSObjectProtocol & MainSceneRoutingLogic & MainSceneDataPassing)?
-    private var searchText = ""
     @IBOutlet private var collectionViewContainer: UIView!
     
     let collectionView = PhotoCollectionViewController(collectionViewLayout: UICollectionViewLayout(), layoutSize: .medium)
@@ -93,19 +92,11 @@ extension MainSceneViewController {
     
     private func createSearchController() -> UISearchController {
         let searchController = UISearchController()
-        searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Enter text"
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
         definesPresentationContext = true
         return searchController
-    }
-}
-
-extension MainSceneViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        searchText = text
     }
 }
 
