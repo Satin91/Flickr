@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainSceneConfigurator: ConfiguratorProtocol {
+final class SearchPhotosSceneConfigurator: ConfiguratorProtocol {
     private weak var sceneFactory: SceneFactoryProtocol!
     
     init(sceneFactory: SceneFactoryProtocol) {
@@ -17,13 +17,13 @@ final class MainSceneConfigurator: ConfiguratorProtocol {
     // This attribute is needed so as not to bother with a warning that the method is not used
     @discardableResult
     func configure<T>(_ vc: T) -> T where T: UIViewController {
-        let vc = vc as! MainSceneViewController
+        let vc = vc as! SearchPhotosSceneViewController
         sceneFactory.sceneConfigurator = self
         let networkService = NetworkService()
-        let worker = MainSceneWorker(networkService: networkService)
-        let presenter = MainScenePresenter()
-        let interactor = MainSceneInteractor(worker: worker, presenter: presenter)
-        let router = MainSceneRouter()
+        let worker = SearchPhotosSceneWorker(networkService: networkService)
+        let presenter = SearchPhotosScenePresenter()
+        let interactor = SearchPhotosSceneInteractor(worker: worker, presenter: presenter)
+        let router = SearchPhotosSceneRouter()
         vc.interactor = interactor
         vc.router = router
         interactor.presenter = presenter

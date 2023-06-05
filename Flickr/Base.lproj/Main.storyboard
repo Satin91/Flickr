@@ -31,7 +31,7 @@
         <!--Search Photos-->
         <scene sceneID="H8z-Ny-3np">
             <objects>
-                <viewController storyboardIdentifier="MainSceneViewController" id="GUD-6w-CfH" customClass="MainSceneViewController" customModule="Flickr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainSceneViewController" id="GUD-6w-CfH" customClass="SearchPhotosSceneViewController" customModule="Flickr" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NkS-T4-yRh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

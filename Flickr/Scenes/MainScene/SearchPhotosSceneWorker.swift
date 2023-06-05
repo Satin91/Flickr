@@ -1,5 +1,5 @@
 //
-//  MainSceneWorker.swift
+//  SearchPhotosSceneWorker.swift
 //  Flickr
 //
 //  Created by Артур Кулик on 01.06.2023.
@@ -14,10 +14,10 @@ enum ImageLoadError: Error {
 }
 
 protocol MainSceneWorkerLogic {
-    func downLoadPhotos(request: MainScene.LoadPhotos.Request) async throws -> MainScene.LoadPhotos.Response
+    func downLoadPhotos(request: SearchPhotosScene.LoadPhotos.Request) async throws -> SearchPhotosScene.LoadPhotos.Response
 }
 
-class MainSceneWorker {
+class SearchPhotosSceneWorker {
     var networkService: NetworkServiceProtocol
     
     init(networkService: NetworkServiceProtocol) {
@@ -25,14 +25,14 @@ class MainSceneWorker {
     }
 }
 
-extension MainSceneWorker: MainSceneWorkerLogic {
-    func downLoadPhotos(request: MainScene.LoadPhotos.Request) async throws -> MainScene.LoadPhotos.Response {
+extension SearchPhotosSceneWorker: MainSceneWorkerLogic {
+    func downLoadPhotos(request: SearchPhotosScene.LoadPhotos.Request) async throws -> SearchPhotosScene.LoadPhotos.Response {
         var photoNetworkModel: PhotoNetworkModel
         do {
             photoNetworkModel = try await parseJson(params: request.params)
         } catch let error {
             let errorText = error.asAFError?.localizedDescription.removeTo(symbol: ":")
-            return MainScene.LoadPhotos.Response(errorMessage: errorText)
+            return SearchPhotosScene.LoadPhotos.Response(errorMessage: errorText)
         }
         
         var photos: [PhotoModel] = []
@@ -40,9 +40,9 @@ extension MainSceneWorker: MainSceneWorkerLogic {
             photos = try await downloadImages(from: photoNetworkModel)
         } catch let error {
             let errorText = error.asAFError?.localizedDescription.removeTo(symbol: ":")
-            return MainScene.LoadPhotos.Response(errorMessage: errorText)
+            return SearchPhotosScene.LoadPhotos.Response(errorMessage: errorText)
         }
-        return MainScene.LoadPhotos.Response(photos: photos)
+        return SearchPhotosScene.LoadPhotos.Response(photos: photos)
     }
     
     private func parseJson(params: [String: Any]) async throws -> PhotoNetworkModel {

@@ -29,18 +29,18 @@
 		8E8780B42A29045300EBE979 /* DetailSceneModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AE2A29045300EBE979 /* DetailSceneModels.swift */; };
 		8E8780B52A29045300EBE979 /* DetailSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780AF2A29045300EBE979 /* DetailSceneViewController.swift */; };
 		8E8780B62A29045300EBE979 /* DetailSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780B02A29045300EBE979 /* DetailSceneInteractor.swift */; };
-		8E8780C22A290CB400EBE979 /* MainSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780C12A290CB400EBE979 /* MainSceneConfigurator.swift */; };
+		8E8780C22A290CB400EBE979 /* SearchPhotosSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780C12A290CB400EBE979 /* SearchPhotosSceneConfigurator.swift */; };
 		8E8780C42A2911D300EBE979 /* UIViewControllerInstantiate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780C32A2911D300EBE979 /* UIViewControllerInstantiate.swift */; };
 		8E8780CC2A29236700EBE979 /* SceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780CB2A29236700EBE979 /* SceneFactory.swift */; };
 		8E8780CF2A292A2A00EBE979 /* ConfiguratorsLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780CE2A292A2A00EBE979 /* ConfiguratorsLibrary.swift */; };
 		8E8780D12A292B0500EBE979 /* DetailSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780D02A292B0500EBE979 /* DetailSceneConfigurator.swift */; };
 		8E8780D32A2949FF00EBE979 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780D22A2949FF00EBE979 /* PhotoModel.swift */; };
 		8E8780D62A29528F00EBE979 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8780D52A29528F00EBE979 /* AlertController.swift */; };
-		8EC024302A285CA70000F56B /* MainSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC0242F2A285CA70000F56B /* MainSceneWorker.swift */; };
-		8EC024352A285FE10000F56B /* MainScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC024312A285FE10000F56B /* MainScenePresenter.swift */; };
-		8EC024362A285FE10000F56B /* MainSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC024322A285FE10000F56B /* MainSceneRouter.swift */; };
-		8EC024372A285FE10000F56B /* MainSceneModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC024332A285FE10000F56B /* MainSceneModels.swift */; };
-		8EC024382A285FE10000F56B /* MainSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC024342A285FE10000F56B /* MainSceneViewController.swift */; };
+		8EC024302A285CA70000F56B /* SearchPhotosSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC0242F2A285CA70000F56B /* SearchPhotosSceneWorker.swift */; };
+		8EC024352A285FE10000F56B /* SearchPhotosScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC024312A285FE10000F56B /* SearchPhotosScenePresenter.swift */; };
+		8EC024362A285FE10000F56B /* SearchPhotosSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC024322A285FE10000F56B /* SearchPhotosSceneRouter.swift */; };
+		8EC024372A285FE10000F56B /* SearchPhotosSceneModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC024332A285FE10000F56B /* SearchPhotosSceneModels.swift */; };
+		8EC024382A285FE10000F56B /* SearchPhotosSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC024342A285FE10000F56B /* SearchPhotosSceneViewController.swift */; };
 		8EC0243D2A28E4640000F56B /* UIViewConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC0243C2A28E4640000F56B /* UIViewConstraintExtension.swift */; };
 		8ECDF8EB2A2643EC002DBF12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF8EA2A2643EC002DBF12 /* AppDelegate.swift */; };
 		8ECDF8ED2A2643EC002DBF12 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF8EC2A2643EC002DBF12 /* SceneDelegate.swift */; };
@@ -49,7 +49,7 @@
 		8ECDF8F72A2643EE002DBF12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ECDF8F52A2643EE002DBF12 /* LaunchScreen.storyboard */; };
 		8ECDF8FF2A2667AC002DBF12 /* PhotoCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF8FE2A2667AC002DBF12 /* PhotoCollectionViewItem.swift */; };
 		8ECDF9012A26681E002DBF12 /* PhotoNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9002A26681E002DBF12 /* PhotoNetworkModel.swift */; };
-		8ECDF9042A268323002DBF12 /* MainSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9032A268323002DBF12 /* MainSceneInteractor.swift */; };
+		8ECDF9042A268323002DBF12 /* SearchPhotosSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9032A268323002DBF12 /* SearchPhotosSceneInteractor.swift */; };
 		8ECDF9072A2683D4002DBF12 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9062A2683D4002DBF12 /* NetworkService.swift */; };
 		8ECDF90E2A2685A4002DBF12 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF90D2A2685A4002DBF12 /* PhotoCollectionViewController.swift */; };
 		8ECDF9152A269A26002DBF12 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECDF9142A269A26002DBF12 /* Constants.swift */; };
@@ -90,18 +90,18 @@
 		8E8780AE2A29045300EBE979 /* DetailSceneModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSceneModels.swift; sourceTree = "<group>"; };
 		8E8780AF2A29045300EBE979 /* DetailSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSceneViewController.swift; sourceTree = "<group>"; };
 		8E8780B02A29045300EBE979 /* DetailSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSceneInteractor.swift; sourceTree = "<group>"; };
-		8E8780C12A290CB400EBE979 /* MainSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneConfigurator.swift; sourceTree = "<group>"; };
+		8E8780C12A290CB400EBE979 /* SearchPhotosSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosSceneConfigurator.swift; sourceTree = "<group>"; };
 		8E8780C32A2911D300EBE979 /* UIViewControllerInstantiate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerInstantiate.swift; sourceTree = "<group>"; };
 		8E8780CB2A29236700EBE979 /* SceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneFactory.swift; sourceTree = "<group>"; };
 		8E8780CE2A292A2A00EBE979 /* ConfiguratorsLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfiguratorsLibrary.swift; sourceTree = "<group>"; };
 		8E8780D02A292B0500EBE979 /* DetailSceneConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSceneConfigurator.swift; sourceTree = "<group>"; };
 		8E8780D22A2949FF00EBE979 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		8E8780D52A29528F00EBE979 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
-		8EC0242F2A285CA70000F56B /* MainSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneWorker.swift; sourceTree = "<group>"; };
-		8EC024312A285FE10000F56B /* MainScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScenePresenter.swift; sourceTree = "<group>"; };
-		8EC024322A285FE10000F56B /* MainSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneRouter.swift; sourceTree = "<group>"; };
-		8EC024332A285FE10000F56B /* MainSceneModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneModels.swift; sourceTree = "<group>"; };
-		8EC024342A285FE10000F56B /* MainSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneViewController.swift; sourceTree = "<group>"; };
+		8EC0242F2A285CA70000F56B /* SearchPhotosSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosSceneWorker.swift; sourceTree = "<group>"; };
+		8EC024312A285FE10000F56B /* SearchPhotosScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosScenePresenter.swift; sourceTree = "<group>"; };
+		8EC024322A285FE10000F56B /* SearchPhotosSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosSceneRouter.swift; sourceTree = "<group>"; };
+		8EC024332A285FE10000F56B /* SearchPhotosSceneModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosSceneModels.swift; sourceTree = "<group>"; };
+		8EC024342A285FE10000F56B /* SearchPhotosSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosSceneViewController.swift; sourceTree = "<group>"; };
 		8EC0243C2A28E4640000F56B /* UIViewConstraintExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewConstraintExtension.swift; sourceTree = "<group>"; };
 		8ECDF8E72A2643EC002DBF12 /* Flickr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flickr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECDF8EA2A2643EC002DBF12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 		8ECDF8F82A2643EE002DBF12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8ECDF8FE2A2667AC002DBF12 /* PhotoCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewItem.swift; sourceTree = "<group>"; };
 		8ECDF9002A26681E002DBF12 /* PhotoNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoNetworkModel.swift; sourceTree = "<group>"; };
-		8ECDF9032A268323002DBF12 /* MainSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneInteractor.swift; sourceTree = "<group>"; };
+		8ECDF9032A268323002DBF12 /* SearchPhotosSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosSceneInteractor.swift; sourceTree = "<group>"; };
 		8ECDF9062A2683D4002DBF12 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8ECDF90D2A2685A4002DBF12 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		8ECDF9142A269A26002DBF12 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -258,13 +258,13 @@
 		8EC0242D2A2859150000F56B /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
-				8EC024342A285FE10000F56B /* MainSceneViewController.swift */,
-				8E8780C12A290CB400EBE979 /* MainSceneConfigurator.swift */,
-				8EC0242F2A285CA70000F56B /* MainSceneWorker.swift */,
-				8ECDF9032A268323002DBF12 /* MainSceneInteractor.swift */,
-				8EC024312A285FE10000F56B /* MainScenePresenter.swift */,
-				8EC024322A285FE10000F56B /* MainSceneRouter.swift */,
-				8EC024332A285FE10000F56B /* MainSceneModels.swift */,
+				8EC024342A285FE10000F56B /* SearchPhotosSceneViewController.swift */,
+				8E8780C12A290CB400EBE979 /* SearchPhotosSceneConfigurator.swift */,
+				8EC0242F2A285CA70000F56B /* SearchPhotosSceneWorker.swift */,
+				8ECDF9032A268323002DBF12 /* SearchPhotosSceneInteractor.swift */,
+				8EC024312A285FE10000F56B /* SearchPhotosScenePresenter.swift */,
+				8EC024322A285FE10000F56B /* SearchPhotosSceneRouter.swift */,
+				8EC024332A285FE10000F56B /* SearchPhotosSceneModels.swift */,
 			);
 			path = MainScene;
 			sourceTree = "<group>";
@@ -549,28 +549,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EC0243D2A28E4640000F56B /* UIViewConstraintExtension.swift in Sources */,
-				8EC024362A285FE10000F56B /* MainSceneRouter.swift in Sources */,
+				8EC024362A285FE10000F56B /* SearchPhotosSceneRouter.swift in Sources */,
 				8EE7DC9D2A2BB6D200B2CD93 /* PhotoEditorSceneModels.swift in Sources */,
 				8E8780B52A29045300EBE979 /* DetailSceneViewController.swift in Sources */,
 				8ECDF9072A2683D4002DBF12 /* NetworkService.swift in Sources */,
 				8EE7DCA42A2BBA1D00B2CD93 /* PhotoEditorService.swift in Sources */,
 				8E3CE0C72A29BAC4007A3911 /* DatabaseManager.swift in Sources */,
-				8E8780C22A290CB400EBE979 /* MainSceneConfigurator.swift in Sources */,
+				8E8780C22A290CB400EBE979 /* SearchPhotosSceneConfigurator.swift in Sources */,
 				8E2493732A2C1A7C001324BE /* PhotoFilterCollectionViewItem.swift in Sources */,
-				8ECDF9042A268323002DBF12 /* MainSceneInteractor.swift in Sources */,
+				8ECDF9042A268323002DBF12 /* SearchPhotosSceneInteractor.swift in Sources */,
 				8E3CE0CB2A29C2D1007A3911 /* FavoritesSceneConfigurator.swift in Sources */,
-				8EC024372A285FE10000F56B /* MainSceneModels.swift in Sources */,
+				8EC024372A285FE10000F56B /* SearchPhotosSceneModels.swift in Sources */,
 				8EF932912A2C5776002D14B1 /* PhotoGalleryManager.swift in Sources */,
 				8EE7DCA12A2BB8B700B2CD93 /* PhotoEditorSceneConfigurator.swift in Sources */,
 				8E3CE0C92A29BC2F007A3911 /* RealmPhotoModel.swift in Sources */,
 				8E8780C42A2911D300EBE979 /* UIViewControllerInstantiate.swift in Sources */,
 				8E3CE0C22A29B604007A3911 /* FavoritesSceneViewController.swift in Sources */,
 				8ECDF8FF2A2667AC002DBF12 /* PhotoCollectionViewItem.swift in Sources */,
-				8EC024352A285FE10000F56B /* MainScenePresenter.swift in Sources */,
+				8EC024352A285FE10000F56B /* SearchPhotosScenePresenter.swift in Sources */,
 				8E3CE0C32A29B604007A3911 /* FavoritesSceneInteractor.swift in Sources */,
 				8ECDF90E2A2685A4002DBF12 /* PhotoCollectionViewController.swift in Sources */,
 				8ECDF9152A269A26002DBF12 /* Constants.swift in Sources */,
-				8EC024382A285FE10000F56B /* MainSceneViewController.swift in Sources */,
+				8EC024382A285FE10000F56B /* SearchPhotosSceneViewController.swift in Sources */,
 				8E16A7902A2A507D00EABE10 /* StringExtensions.swift in Sources */,
 				8EE7DC9A2A2BB6D200B2CD93 /* PhotoEditorScenePresenter.swift in Sources */,
 				8EE7DC9B2A2BB6D200B2CD93 /* PhotoEditorSceneWorker.swift in Sources */,
@@ -584,7 +584,7 @@
 				8E8780B22A29045300EBE979 /* DetailSceneWorker.swift in Sources */,
 				8ECDF9012A26681E002DBF12 /* PhotoNetworkModel.swift in Sources */,
 				8EE7DC9F2A2BB6D200B2CD93 /* PhotoEditorSceneInteractor.swift in Sources */,
-				8EC024302A285CA70000F56B /* MainSceneWorker.swift in Sources */,
+				8EC024302A285CA70000F56B /* SearchPhotosSceneWorker.swift in Sources */,
 				8E8780CC2A29236700EBE979 /* SceneFactory.swift in Sources */,
 				8E8780D12A292B0500EBE979 /* DetailSceneConfigurator.swift in Sources */,
 				8E8780CF2A292A2A00EBE979 /* ConfiguratorsLibrary.swift in Sources */,
